@@ -3,161 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdulrahman Ahmed Bashir</title>
+<title>Abdulrahman | Gamer</title>
 
 <style>
-body{
+*{
 margin:0;
-font-family:Tahoma;
-background:#0f2027;
-background-image: radial-gradient(white 1px, transparent 1px);
-background-size:40px 40px;
+padding:0;
+box-sizing:border-box;
+font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+background: radial-gradient(circle at top,#0f0f1a,#000);
 color:white;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow-x:hidden;
+}
+
+/* خلفية نيون متحركة */
+body::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background: radial-gradient(circle, rgba(0,255,255,0.2), transparent 60%);
+top:-100px;
+right:-100px;
+animation: glow 6s infinite alternate;
+}
+
+@keyframes glow{
+from{transform:translateY(0);}
+to{transform:translateY(80px);}
+}
+
+.card{
+width:380px;
+padding:30px;
+border-radius:25px;
+background: rgba(255,255,255,0.05);
+backdrop-filter: blur(20px);
+box-shadow:0 0 50px rgba(0,255,255,0.3);
 text-align:center;
+position:relative;
 }
 
-/* العنوان */
-h1{
-margin-top:40px;
-font-size:40px;
-background: linear-gradient(90deg, red, blue, lime, cyan, magenta);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-animation: rgbText 5s linear infinite;
-}
-
-@keyframes rgbText{
-0%{filter:hue-rotate(0deg)}
-100%{filter:hue-rotate(360deg)}
-}
-
-/* صورة البروفايل */
-.profile-img{
-width:180px;
-height:180px;
+.profile{
+width:140px;
+height:140px;
 border-radius:50%;
-margin-top:20px;
-border:5px solid;
-animation: rgbBorder 4s linear infinite;
-}
-
-@keyframes rgbBorder{
-0%{border-color:red}
-25%{border-color:blue}
-50%{border-color:lime}
-75%{border-color:cyan}
-100%{border-color:red}
-}
-
-.description{
-margin:15px;
-font-size:18px;
-}
-
-/* أزرار */
-.buttons{
-margin:20px;
-}
-
-.buttons a{
-display:inline-block;
-margin:8px;
-padding:12px 25px;
-border-radius:30px;
-text-decoration:none;
-color:white;
-font-weight:bold;
-transition:0.3s;
-}
-
-.tiktok{background:black}
-.youtube{background:red}
-.instagram{background:linear-gradient(45deg,purple,orange)}
-.whatsapp{background:green}
-.facebook{background:#1877f2}
-
-.buttons a:hover{
-transform:scale(1.1);
-box-shadow:0 0 15px white;
-}
-
-/* أقسام */
-.section{
-margin-top:40px;
-}
-
-.section h2{
-font-size:28px;
+object-fit:cover;
+border:3px solid #00f5ff;
+box-shadow:0 0 30px #00f5ff;
 margin-bottom:15px;
 }
 
-/* أزرار الألعاب والتعلم */
-.link-btn{
-display:inline-block;
-margin:10px;
-padding:10px 20px;
-border-radius:20px;
-background:linear-gradient(45deg,orange,yellow);
-color:black;
-text-decoration:none;
-font-weight:bold;
-}
-
-.link-btn:hover{
-transform:scale(1.1);
-}
-
-/* عداد الزوار RGB */
-.counter{
-margin-top:40px;
-font-size:20px;
-font-weight:bold;
-background: linear-gradient(90deg, red, blue, lime, cyan);
+h1{
+font-size:24px;
+background:linear-gradient(90deg,#00f5ff,#ff00ff);
 -webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-animation: rgbText 5s linear infinite;
+color:transparent;
+margin-bottom:10px;
+}
+
+.desc{
+opacity:0.8;
+margin-bottom:20px;
+}
+
+.links a{
+display:block;
+margin:10px 0;
+padding:12px;
+border-radius:15px;
+background: rgba(255,255,255,0.08);
+color:white;
+text-decoration:none;
+transition:0.3s;
+font-weight:bold;
+}
+
+.links a:hover{
+background:#00f5ff;
+color:black;
+transform:scale(1.07);
+}
+
+.story{
+margin-top:20px;
+font-size:14px;
+line-height:1.7;
+opacity:0.85;
+border-top:1px solid rgba(255,255,255,0.1);
+padding-top:15px;
+}
+
+.counter{
+margin-top:15px;
+color:#00f5ff;
+font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Abdulrahman Ahmed Bashir</h1>
+<div class="card">
 
-<img class="profile-img" src="عبدالرحمن.jpeg">
+<img src="عبدالرحمن.jpeg" class="profile">
 
-<div class="description">
-صانع محتوى وجيمر 🎮🔥 يحب البرمجة وتطوير المواقع 💻
+<h1>Abdulrahman Ahmed</h1>
+
+<div class="desc">
+🎮 Elite Gamer | 💻 Future Developer | 🔥 Content Creator
 </div>
 
-<div class="buttons">
-<a class="tiktok" href="https://vt.tiktok.com/ZS5DVkacM/" target="_blank">TikTok</a>
-<a class="youtube" href="https://www.youtube.com/@algamers-b7l" target="_blank">YouTube</a>
-<a class="instagram" href="https://www.instagram.com/abdulrahmanbashir781" target="_blank">Instagram</a>
-<a class="whatsapp" href="https://wa.me/201025474780" target="_blank">WhatsApp</a>
-<a class="facebook" href="https://www.facebook.com/share/1CCHyCMEAK/" target="_blank">Facebook</a>
+<div class="links">
+<a href="https://www.poki.com" target="_blank">🎮 Play on Poki</a>
+<a href="https://poki.com/en/g/subway-surfers" target="_blank">🚆 Subway Surfers</a>
+<a href="https://poki.com/en/g/magic-piano-tiles" target="_blank">🎹 Piano Game</a>
+<a href="#">📺 YouTube</a>
+<a href="#">📸 Instagram</a>
 </div>
 
-<div class="section">
-<h2>🎮 الألعاب</h2>
-
-<a class="link-btn" href="https://www.pubgmobile.com/" target="_blank">PUBG Mobile</a>
-<a class="link-btn" href="https://www.crazygames.com/t/football" target="_blank">Football Games</a>
-<a class="link-btn" href="https://www.crazygames.com/t/motorcycle" target="_blank">Motorcycle Games</a>
-
-</div>
-
-<div class="section">
-<h2>📚 التعلم</h2>
-
-<a class="link-btn" href="https://quran.com/" target="_blank">القرآن الكريم</a>
-<a class="link-btn" href="https://www.youtube.com/results?search_query=تعلم+البرمجة" target="_blank">تعلم البرمجة</a>
-<a class="link-btn" href="https://www.w3schools.com/" target="_blank">W3Schools</a>
-
+<div class="story">
+💎 ثروتي مش فلوس…  
+ثروتي إني ببدأ من الصفر ومبستسلمش.  
+كل كود بكتبه بيقربني من حلمي.  
+أنا مش بلعب ألعاب بس…  
+أنا ببني مستقبلي.
 </div>
 
 <div class="counter">
-👀 عدد الزوار: <span id="visits">0</span>
+👁 Visitors: <span id="visits">0</span>
+</div>
+
 </div>
 
 <script>
