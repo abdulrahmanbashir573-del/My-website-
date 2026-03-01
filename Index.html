@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdulrahman Bashir | Pro Gamer</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+margin:0;
+font-family:Tahoma;
+background:linear-gradient(45deg,#ff00cc,#3333ff,#00ffcc,#ff0000);
+background-size:400% 400%;
+animation:bgMove 12s infinite alternate;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+100%{background-position:100% 50%}
+}
+
+.container{padding:20px}
+
+.profile-img{
+width:180px;
+height:180px;
+border-radius:50%;
+border:4px solid #00ffff;
+box-shadow:0 0 25px #00ffff;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{box-shadow:0 0 10px #00ffff}
+to{box-shadow:0 0 35px #ff00ff}
+}
+
+h1{
+font-size:30px;
+margin:10px 0;
+text-shadow:0 0 15px #00ffff;
+}
+
+.section{
+background:rgba(0,0,0,0.6);
+margin:25px auto;
+padding:20px;
+width:90%;
+max-width:650px;
+border-radius:20px;
+box-shadow:0 0 25px #ff00ff;
+}
+
+.social a{
+display:inline-block;
+margin:10px;
+font-size:30px;
+color:#00ffff;
+transition:0.3s;
+}
+
+.social a:hover{
+color:#ff00ff;
+transform:scale(1.3) rotate(10deg);
+}
+
+ul{list-style:none;padding:0}
+ul li{margin:8px 0;font-size:18px}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:15px;
+background:#00ffcc;
+color:black;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 0 15px #00ffcc;
+margin:5px;
+}
+
+button:hover{
+background:#ff00ff;
+color:white;
+}
+
+#topBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+display:none;
+}
+
+.visits{
+font-size:18px;
+color:#00ffcc;
+margin-top:10px;
+}
+
+.typing{
+border-right:3px solid #fff;
+white-space:nowrap;
+overflow:hidden;
+width:0;
+animation:typing 4s steps(30,end) forwards, blink .7s infinite;
+}
+
+@keyframes typing{
+from{width:0}
+to{width:100%}
+}
+
+@keyframes blink{
+50%{border-color:transparent}
+}
+</style>
+</head>
+
+<body>
+
+<!-- موسيقى خلفية -->
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<div class="container">
+
+<img class="profile-img" src="https://i.postimg.cc/7L6H5K5R/gamer-avatar.png">
+
+<h1>Abdulrahman Bashir 🎮</h1>
+
+<p class="typing">طالب في الصف الأول الثانوي وبحب البرمجة وألعاب الفيديو 🔥</p>
+
+<div class="visits">
+👁 عدد الزيارات: <span id="counter"></span>
+</div>
+
+<div class="section">
+<h2>تواصل معي</h2>
+
+<div class="social">
+<a href="https://www.facebook.com/share/1CCHyCMEAK/" target="_blank"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="https://youtube.com/@algamers-b7l?si=PA_cb863tyMvPeqe" target="_blank"><i class="fab fa-youtube"></i></a>
+<a href="https://vt.tiktok.com/ZS5DVkacM/" target="_blank"><i class="fab fa-tiktok"></i></a>
+<a href="https://www.instagram.com/abdulrahmanbashir781?igsh=MXBxamxrcXg0YmJ3bQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://wa.me/201025474780" target="_blank"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<p>📧 abdulrahmanbashir573@gmail.com</p>
+<p>📞 01025474780</p>
+
+<button onclick="window.location.href='https://wa.me/201025474780'">تواصل واتساب مباشر</button>
+</div>
+
+<div class="section">
+<h2>🎮 ألعابي المفضلة</h2>
+<ul>
+<li>PUBG Mobile</li>
+<li>Subway Surfers</li>
+<li>Piano Tiles</li>
+<li>Motorcycle Games</li>
+<li>Football Games</li>
+</ul>
+<button onclick="alert('قريبًا هضيف روابط تحميل 🔥')">تحميل ألعاب</button>
+</div>
+
+<div class="section">
+<h2>📖 جزء التعلم</h2>
+<ul>
+<li>قصص الأنبياء</li>
+<li>مصحف القرآن الكريم</li>
+<li>تعلم تجويد القرآن الكريم</li>
+</ul>
+<button onclick="alert('قسم التعلم قيد التطوير 💡')">ابدأ التعلم</button>
+</div>
+
+</div>
+
+<button id="topBtn" onclick="topFunction()">⬆</button>
+
+<script>
+let count = localStorage.getItem("visits");
+if(count === null){ count = 0; }
+count++;
+localStorage.setItem("visits", count);
+document.getElementById("counter").innerText = count;
+
+window.onscroll = function() {
+let btn = document.getElementById("topBtn");
+if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+btn.style.display = "block";
+} else {
+btn.style.display = "none";
+}
+};
+
+function topFunction() {
+document.body.scrollTop = 0;
+document.documentElement.scrollTop = 0;
+}
+</script>
+
+</body>
+</html>
