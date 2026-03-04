@@ -108,6 +108,32 @@ margin:60px 0;
 color:#00f5ff;
 font-weight:bold;
 }
+
+/* شكل المتصفح */
+.browser-box{
+display:flex;
+justify-content:center;
+margin-top:20px;
+}
+
+.browser-box input{
+padding:15px;
+width:260px;
+border:none;
+border-radius:30px 0 0 30px;
+outline:none;
+font-size:16px;
+}
+
+.browser-box button{
+padding:15px 25px;
+border:none;
+background:#00f5ff;
+color:black;
+cursor:pointer;
+border-radius:0 30px 30px 0;
+font-weight:bold;
+}
 </style>
 </head>
 
@@ -120,7 +146,7 @@ font-weight:bold;
 <h1>Abdulrahman Ahmed Bashir</h1>
 <div class="info">
 أنا طالب في الصف الأول الثانوي <br>
- هذا الموقع تحت التطوير بحب البرمجة وإنشاء المواقع وتطويرها <br>
+هذا الموقع تحت التطوير بحب البرمجة وإنشاء المواقع وتطويرها <br>
 للتواصل: 01025474780 <br>
 abdulrahmanbashir573@gmail.com
 </div>
@@ -129,43 +155,43 @@ abdulrahmanbashir573@gmail.com
 <div class="section">
 <h2>📱 التواصل</h2>
 <div class="grid">
-
 <a class="card" href="https://www.facebook.com/share/1CCHyCMEAK/" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
-
 <a class="card" href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i>Twitter</a>
-
 <a class="card" href="https://youtube.com/@algamers-b7l?si=PA_cb863tyMvPeqe" target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
-
 <a class="card" href="https://vt.tiktok.com/ZS5DVkacM/" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
-
 <a class="card" href="https://www.instagram.com/abdulrahmanbashir781?igsh=MXBxamxrcXg0YmJ3bQ==" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
-
 <a class="card" href="https://wa.me/201025474780" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a>
-
 </div>
 </div>
 
 <div class="section">
 <h2>🎮 الألعاب</h2>
 <div class="grid">
-
 <a class="card" href="https://poki.com/en/g/subway-surfers" target="_blank">Subway Surfers</a>
 <a class="card" href="https://poki.com/en/g/magic-piano-tiles" target="_blank">Piano Tiles</a>
 <a class="card" href="https://poki.com/en/g/moto-x3m" target="_blank">Moto X3M</a>
 <a class="card" href="https://poki.com/en/g/penalty-shooters-2" target="_blank">لعبة كورة</a>
-
 </div>
 </div>
 
 <div class="section">
 <h2>📚 التعلم</h2>
 <div class="grid">
-
 <a class="card" href="https://quran.com" target="_blank">المصحف الشريف</a>
 <a class="card" href="https://islamweb.net/ar/article/13578" target="_blank">قصص الأنبياء</a>
 <a class="card" href="https://tajweed.me" target="_blank">تعلم تجويد القرآن</a>
-
 </div>
+</div>
+
+<!-- القسم الجديد -->
+<div class="section">
+<h2>💻 برامج</h2>
+
+<div class="browser-box">
+<input type="text" id="searchBox" placeholder="ابحث في جوجل...">
+<button onclick="search()">بحث</button>
+</div>
+
 </div>
 
 <div class="footer">
@@ -173,38 +199,10 @@ abdulrahmanbashir573@gmail.com
 </div>
 
 <script>
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let stars = [];
-
-for(let i=0;i<300;i++){
-stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-radius:Math.random()*1.5,
-speed:Math.random()*0.5
-});
+function search(){
+let query = document.getElementById("searchBox").value;
+if(query.trim() !== ""){
+window.open("https://www.google.com/search?q=" + query, "_blank");
 }
-
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="white";
-stars.forEach(star=>{
-star.y+=star.speed;
-if(star.y>canvas.height) star.y=0;
-ctx.beginPath();
-ctx.arc(star.x,star.y,star.radius,0,Math.PI*2);
-ctx.fill();
-});
-requestAnimationFrame(animate);
 }
-
-animate();
 </script>
-
-</body>
-</html>
