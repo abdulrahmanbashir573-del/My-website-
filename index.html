@@ -1,4 +1,4 @@
-٥<!DOCTYPE html>
+DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
@@ -576,6 +576,108 @@ fetch("https://api.countapi.xyz/hit/bashir-unique-site-2026/visits")
     }
   },10);
 });
+</script>
+  <div style="margin-top:60px;text-align:center;">
+
+<h2 style="color:#00f5ff;text-shadow:0 0 15px #00f5ff;">⏳ مؤقت احترافي</h2>
+
+<div id="timerBox" style="
+font-size:50px;
+margin:25px 0;
+color:#00f5ff;
+text-shadow:0 0 20px #00f5ff;
+transition:0.3s;">
+<span id="minutes">00</span>:<span id="seconds">00</span>
+</div>
+
+<input type="number" id="timeInput" placeholder="اكتب الوقت بالدقائق"
+style="padding:12px;border-radius:15px;border:none;width:220px;text-align:center;font-size:16px;">
+
+<br><br>
+
+<button onclick="startTimer()" style="padding:12px 20px;border:none;border-radius:12px;background:#00f5ff;font-weight:bold;margin:5px;">ابدأ</button>
+
+<button onclick="stopTimer()" style="padding:12px 20px;border:none;border-radius:12px;background:#ff0033;color:white;font-weight:bold;margin:5px;">إيقاف</button>
+
+<button onclick="resetTimer()" style="padding:12px 20px;border:none;border-radius:12px;background:gray;color:white;font-weight:bold;margin:5px;">إعادة</button>
+
+<br><br>
+
+<button onclick="pomodoro()" style="padding:12px 25px;border:none;border-radius:15px;background:#ff00ff;color:white;font-weight:bold;">
+🍅 تشغيل بومودورو 25 دقيقة
+</button>
+
+</div>
+
+<audio id="alarmSound">
+<source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let countdown;
+let totalSeconds = 0;
+
+function updateDisplay(){
+let minutes = Math.floor(totalSeconds / 60);
+let seconds = totalSeconds % 60;
+
+document.getElementById("minutes").innerText =
+minutes < 10 ? "0" + minutes : minutes;
+
+document.getElementById("seconds").innerText =
+seconds < 10 ? "0" + seconds : seconds;
+}
+
+function startTimer(){
+let input = document.getElementById("timeInput").value;
+if(input <= 0) return;
+
+totalSeconds = input * 60;
+clearInterval(countdown);
+
+countdown = setInterval(()=>{
+if(totalSeconds <= 0){
+clearInterval(countdown);
+finishTimer();
+return;
+}
+totalSeconds--;
+updateDisplay();
+},1000);
+}
+
+function stopTimer(){
+clearInterval(countdown);
+}
+
+function resetTimer(){
+clearInterval(countdown);
+totalSeconds = 0;
+updateDisplay();
+document.getElementById("timerBox").style.transform="scale(1)";
+}
+
+function pomodoro(){
+document.getElementById("timeInput").value = 25;
+startTimer();
+}
+
+function finishTimer(){
+document.getElementById("alarmSound").play();
+let box = document.getElementById("timerBox");
+
+box.style.transform="scale(1.2)";
+box.style.color="#ff0000";
+box.style.textShadow="0 0 25px red";
+
+setTimeout(()=>{
+box.style.transform="scale(1)";
+box.style.color="#00f5ff";
+box.style.textShadow="0 0 20px #00f5ff";
+},2000);
+}
+
+updateDisplay();
 </script>
 </body>
 </html>
