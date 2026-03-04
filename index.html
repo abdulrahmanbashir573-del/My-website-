@@ -143,7 +143,7 @@ font-weight:bold;
 
 <div class="header">
 <img src="عبدالرحمن.jpg" class="profile">
-<h1>Abdulrahman Ahmed Bashir</h1>
+<h1> id="typing"></h1>
 <div class="info">
 أنا طالب في الصف الأول الثانوي <br>
 هذا الموقع تحت التطوير بحب البرمجة وإنشاء المواقع وتطويرها <br>
@@ -726,5 +726,19 @@ alert("كلمة السر غلط ❌");
 }
 }
 </script>
+  <script>
+let text = "Abdulrahman Ahmed Bashir 👑";
+let i = 0;
+
+function typeEffect(){
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 100);
+  }
+}
+
+typeEffect();
+  </script>
 </body>
 </html>
