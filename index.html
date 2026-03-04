@@ -493,5 +493,26 @@ document.body.style.backgroundSize = "cover";
 }
 }
 </script>
+  <button onclick="scrollToTop()" id="topBtn"
+style="display:none;position:fixed;bottom:20px;left:20px;
+padding:10px 15px;border:none;border-radius:50%;
+background:#00f5ff;cursor:pointer;font-size:18px;">
+⬆
+</button>
+
+<script>
+window.onscroll = function() {
+let btn = document.getElementById("topBtn");
+if (document.documentElement.scrollTop > 200) {
+btn.style.display = "block";
+} else {
+btn.style.display = "none";
+}
+};
+
+function scrollToTop() {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
