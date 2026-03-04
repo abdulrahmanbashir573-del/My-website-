@@ -391,5 +391,25 @@ document.body.classList.add("light-mode");
 toggleBtn.innerHTML = "☀️ وضع نهاري";
 }
 </script>
+  <!-- الساعة -->
+<div id="clockBox" 
+style="position:fixed;top:20px;right:20px;
+background:#111;
+padding:10px 20px;
+border-radius:20px;
+font-weight:bold;
+box-shadow:0 0 15px #00f5ff;">
+<span id="clock"></span>
+</div>
+
+<script>
+function updateClock(){
+let now = new Date();
+let time = now.toLocaleTimeString();
+document.getElementById("clock").innerText = time;
+}
+setInterval(updateClock,1000);
+updateClock();
+</script>
 </body>
 </html>
