@@ -514,5 +514,37 @@ function scrollToTop() {
 window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
+  <!-- كارت الترحيب -->
+<div id="welcomeBox" style="
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(0,0,0,0.85);
+color:white;
+padding:25px 40px;
+border-radius:20px;
+box-shadow:0 0 30px #00f5ff;
+text-align:center;
+font-size:18px;
+z-index:9999;
+opacity:0;
+transition:0.5s;">
+👋 أهلاً بيك في موقعي  
+<br><br>
+استمتع بالأدوات والتطبيقات 🚀
+</div>
+
+<script>
+let box = document.getElementById("welcomeBox");
+
+setTimeout(()=>{
+box.style.opacity="1";
+},500);
+
+setTimeout(()=>{
+box.style.opacity="0";
+},4000);
+</script>
 </body>
 </html>
