@@ -546,5 +546,36 @@ setTimeout(()=>{
 box.style.opacity="0";
 },4000);
 </script>
+  <div style="margin:25px;text-align:center;">
+  <div style="
+    display:inline-block;
+    background:linear-gradient(45deg,#00f5ff,#0066ff);
+    padding:15px 30px;
+    border-radius:15px;
+    color:white;
+    font-size:20px;
+    box-shadow:0 0 20px rgba(0,255,255,0.7);
+  ">
+    👀 عدد زوار الموقع: 
+    <span id="visits" style="font-weight:bold;">0</span>
+  </div>
+</div>
+
+<script>
+fetch("https://api.countapi.xyz/hit/bashir-unique-site-2026/visits")
+.then(res => res.json())
+.then(res => {
+  let count = res.value;
+  let current = 0;
+  let interval = setInterval(()=>{
+    if(current < count){
+      current++;
+      document.getElementById("visits").innerText = current;
+    } else {
+      clearInterval(interval);
+    }
+  },10);
+});
+</script>
 </body>
 </html>
