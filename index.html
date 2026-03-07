@@ -250,37 +250,6 @@ transition:0.3s;
 background:#00f5ff;
 color:black;
 }
- /* إطار RGB حول الموقع */
-body::after{
-content:"";
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-border:6px solid transparent;
-border-radius:10px;
-background:linear-gradient(45deg,
-red,orange,yellow,green,cyan,blue,purple,red);
-background-size:400%;
-animation:rgbBorder 10s linear infinite;
-
-mask:
-linear-gradient(#000 0 0) content-box,
-linear-gradient(#000 0 0);
-
--webkit-mask:
-linear-gradient(#000 0 0) content-box,
-linear-gradient(#000 0 0);
-
-padding:6px;
-}
-
-@keyframes rgbBorder{
-0%{background-position:0%}
-100%{background-position:400%}
-}
 </style>
 
 <script>
@@ -772,14 +741,4 @@ function typeEffect(){
 typeEffect();
   </script>
 </body>
- <div style="
-width:100%;
-background:linear-gradient(90deg,#00f5ff,#ff00ff);
-padding:10px;
-font-weight:bold;
-letter-spacing:2px;
-box-shadow:0 0 20px #00f5ff;
-text-align:center;">
-🎮 Abdulrahman Gaming World 🎮
- </div>
 </html>
