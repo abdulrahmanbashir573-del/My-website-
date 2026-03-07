@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
@@ -19,22 +19,18 @@ body{
 color:white;
 text-align:center;
 overflow-x:hidden;
-background:url("gaming-bg.jpg");
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+background:#000;
 }
 
-/* طبقة تغميق علشان النص يبان */
-body::before{
-content:"";
+/* خلفية النجوم */
+#stars{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.7);
 z-index:-1;
+background:#000;
 }
 
 .header{
@@ -143,116 +139,606 @@ font-weight:bold;
 
 <body>
 
+<canvas id="stars"></canvas>
+
 <div class="header">
 <img src="عبدالرحمن.jpg" class="profile">
 <h1>AbdulrahmanAhmedBashir</h1>
-
 <div class="info">
 أنا طالب في الصف الأول الثانوي <br>
-بحب البرمجة وإنشاء المواقع وتطويرها <br>
-</div>
+ بحب البرمجة وإنشاء المواقع وتطويرها <br>
+للتواصل:  <br>
 
+</div>
 </div>
 
 <div class="section">
 <h2>📱 التواصل</h2>
-
 <div class="grid">
-
-<a class="card" href="https://www.facebook.com/share/1HriMHU17G/" target="_blank">
-<i class="fab fa-facebook"></i>Facebook
-</a>
-
-<a class="card" href="https://twitter.com" target="_blank">
-<i class="fab fa-twitter"></i>Twitter
-</a>
-
-<a class="card" href="https://youtube.com/@algamers-b7l?si=PA_cb863tyMvPeqe" target="_blank">
-<i class="fab fa-youtube"></i>YouTube
-</a>
-
-<a class="card" href="https://vt.tiktok.com/ZS5DVkacM/" target="_blank">
-<i class="fab fa-tiktok"></i>TikTok
-</a>
-
-<a class="card" href="https://www.instagram.com/abdulrahmanbashir781" target="_blank">
-<i class="fab fa-instagram"></i>Instagram
-</a>
-
-<a class="card" href="https://wa.me/201025474780" target="_blank">
-<i class="fab fa-whatsapp"></i>WhatsApp
-</a>
-
+<a class="card" href="https://www.facebook.com/share/1HriMHU17G/" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
+<a class="card" href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i>Twitter</a>
+<a class="card" href="https://youtube.com/@algamers-b7l?si=PA_cb863tyMvPeqe" target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
+<a class="card" href="https://vt.tiktok.com/ZS5DVkacM/" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
+<a class="card" href="https://www.instagram.com/abdulrahmanbashir781?igsh=MXBxamxrcXg0YmJ3bQ==" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+<a class="card" href="https://wa.me/201025474780" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a>
 </div>
 </div>
 
 <div class="section">
 <h2>🎮 الألعاب</h2>
-
 <div class="grid">
-
-<a class="card" href="https://poki.com/en/g/subway-surfers" target="_blank">
-Subway Surfers
-</a>
-
-<a class="card" href="https://poki.com/en/g/magic-piano-tiles" target="_blank">
-Piano Tiles
-</a>
-
-<a class="card" href="https://poki.com/en/g/moto-x3m" target="_blank">
-Moto X3M
-</a>
-
-<a class="card" href="https://poki.com/en/g/penalty-shooters-2" target="_blank">
-لعبة كورة
-</a>
-
+<a class="card" href="https://poki.com/en/g/subway-surfers" target="_blank">Subway Surfers</a>
+<a class="card" href="https://poki.com/en/g/magic-piano-tiles" target="_blank">Piano Tiles</a>
+<a class="card" href="https://poki.com/en/g/moto-x3m" target="_blank">Moto X3M</a>
+<a class="card" href="https://poki.com/en/g/penalty-shooters-2" target="_blank">لعبة كورة</a>
 </div>
 </div>
 
 <div class="section">
 <h2>📚 التعلم</h2>
+<div class="grid">
+<a class="card" href="https://quran.com" target="_blank">المصحف الشريف</a>
+<a class="card" href="https://islamweb.net/ar/article/13578" target="_blank">قصص الأنبياء</a>
+<a class="card" href="https://tajweed.me" target="_blank">تعلم تجويد القرآن</a>
+</div>
+</div>
+
+<!-- قسم تطبيقاتي -->
+<!-- قسم تطبيقاتي -->
+<div class="section" id="apps">
+<h2>📱 تطبيقاتي</h2>
 
 <div class="grid">
 
-<a class="card" href="https://quran.com" target="_blank">
-المصحف الشريف
-</a>
+<div class="card">
+<h3 style="margin-bottom:15px;">Bashir X Calculator</h3>
 
-<a class="card" href="https://islamweb.net/ar/article/13578" target="_blank">
-قصص الأنبياء
-</a>
+<div style="max-width:260px;margin:auto;">
 
-<a class="card" href="https://tajweed.me" target="_blank">
-تعلم تجويد القرآن
-</a>
+<input type="text" id="calcScreen" 
+style="width:100%;padding:15px;font-size:20px;
+border:none;border-radius:10px;margin-bottom:15px;
+text-align:right;" readonly>
+
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+
+<button onclick="press('7')" class="calcBtn">7</button>
+<button onclick="press('8')" class="calcBtn">8</button>
+<button onclick="press('9')" class="calcBtn">9</button>
+<button onclick="press('/')" class="calcBtn">÷</button>
+
+<button onclick="press('4')" class="calcBtn">4</button>
+<button onclick="press('5')" class="calcBtn">5</button>
+<button onclick="press('6')" class="calcBtn">6</button>
+<button onclick="press('*')" class="calcBtn">×</button>
+
+<button onclick="press('1')" class="calcBtn">1</button>
+<button onclick="press('2')" class="calcBtn">2</button>
+<button onclick="press('3')" class="calcBtn">3</button>
+<button onclick="press('-')" class="calcBtn">-</button>
+
+<button onclick="press('0')" class="calcBtn">0</button>
+<button onclick="press('.')" class="calcBtn">.</button>
+<button onclick="calculate()" class="calcBtn">=</button>
+<button onclick="press('+')" class="calcBtn">+</button>
+
+<button onclick="clearScreen()" 
+style="grid-column:span 4;background:red;color:white;
+padding:10px;border:none;border-radius:10px;">
+مسح
+</button>
 
 </div>
 </div>
+</div>
+
+</div>
+</div>
+
+<style>
+.calcBtn{
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#1f2a40;
+color:white;
+transition:0.3s;
+}
+.calcBtn:hover{
+background:#00f5ff;
+color:black;
+}
+</style>
+
+<script>
+function press(num){
+document.getElementById("calcScreen").value += num;
+}
+
+function calculate(){
+try{
+document.getElementById("calcScreen").value =
+eval(document.getElementById("calcScreen").value);
+}
+catch{
+alert("عملية غير صحيحة");
+}
+}
+
+function clearScreen(){
+document.getElementById("calcScreen").value = "";
+}
+</script>
 
 <div class="section">
 <h2>💻 بحث</h2>
-
 <div class="browser-box">
 <input type="text" id="searchBox" placeholder="ابحث في جوجل...">
 <button onclick="search()">بحث</button>
 </div>
-
 </div>
 
 <div class="footer">
-© 2026 Abdulrahman Ahmed Bashir شرفتنى بزيارة موقعى
+© 2026 Abdulrahman Ahmed Bashir شرفتنى بزيارة موقعى 
 </div>
 
 <script>
 function search(){
 let query = document.getElementById("searchBox").value;
-
 if(query.trim() !== ""){
 window.open("https://www.google.com/search?q=" + query, "_blank");
 }
 }
-</script>
 
+/* النجوم */
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas(){
+canvas.width = window.innerWidth;
+canvas.height = document.body.scrollHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+let stars=[];
+for(let i=0;i<300;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+radius:Math.random()*1.5,
+speed:Math.random()*0.5
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+stars.forEach(star=>{
+star.y+=star.speed;
+if(star.y>canvas.height) star.y=0;
+ctx.beginPath();
+ctx.arc(star.x,star.y,star.radius,0,Math.PI*2);
+ctx.fill();
+});
+requestAnimationFrame(animate);
+}
+animate();
+</script>
+<!-- زرار الوضع -->
+<button id="themeToggle"
+style="position:fixed;top:20px;left:20px;
+padding:10px 15px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+z-index:999;">
+🌙 وضع ليلي
+</button>
+
+<style>
+body.light-mode{
+background:#f5f5f5 !important;
+color:#111 !important;
+}
+
+body.light-mode .card{
+background:#ffffff !important;
+color:#111 !important;
+box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+body.light-mode input{
+background:#eee !important;
+color:#000 !important;
+}
+
+body.light-mode .calcBtn{
+background:#ddd !important;
+color:#000 !important;
+}
+
+body.light-mode .calcBtn:hover{
+background:#bbb !important;
+}
+
+body.light-mode .section h2{
+color:#111 !important;
+text-shadow:none !important;
+}
+</style>
+
+<script>
+const toggleBtn = document.getElementById("themeToggle");
+
+toggleBtn.onclick = function(){
+document.body.classList.toggle("light-mode");
+
+if(document.body.classList.contains("light-mode")){
+toggleBtn.innerHTML = "☀️ وضع نهاري";
+localStorage.setItem("theme","light");
+}else{
+toggleBtn.innerHTML = "🌙 وضع ليلي";
+localStorage.setItem("theme","dark");
+}
+};
+
+if(localStorage.getItem("theme") === "light"){
+document.body.classList.add("light-mode");
+toggleBtn.innerHTML = "☀️ وضع نهاري";
+}
+</script>
+  <!-- الساعة -->
+<div id="clockBox" 
+style="position:fixed;top:20px;right:20px;
+background:#111;
+padding:10px 20px;
+border-radius:20px;
+font-weight:bold;
+box-shadow:0 0 15px #00f5ff;">
+<span id="clock"></span>
+</div>
+
+<script>
+function updateClock(){
+let now = new Date();
+let time = now.toLocaleTimeString();
+document.getElementById("clock").innerText = time;
+}
+setInterval(updateClock,1000);
+updateClock();
+</script>
+  <!-- زر التحكم -->
+<button onclick="toggleBgPanel()" 
+style="position:fixed;bottom:20px;right:20px;
+padding:10px 15px;
+border:none;
+border-radius:20px;
+background:#00f5ff;
+cursor:pointer;
+font-weight:bold;">
+🎨 الخلفية
+</button>
+
+<!-- لوحة التحكم -->
+<div id="bgPanel" 
+style="display:none;
+position:fixed;
+bottom:70px;
+right:20px;
+background:#111;
+padding:15px;
+border-radius:15px;
+box-shadow:0 0 15px #00f5ff;">
+
+<input type="color" id="colorPicker">
+
+<br><br>
+
+<input type="file" id="imagePicker" accept="image/*">
+
+<br><br>
+
+<button onclick="resetBg()">رجوع للأصل</button>
+
+</div>
+
+<script>
+function toggleBgPanel(){
+let panel = document.getElementById("bgPanel");
+panel.style.display = panel.style.display === "none" ? "block" : "none";
+}
+
+const colorPicker = document.getElementById("colorPicker");
+const imagePicker = document.getElementById("imagePicker");
+
+colorPicker.addEventListener("input", function(){
+document.body.style.backgroundImage = "none";
+document.body.style.backgroundColor = this.value;
+localStorage.setItem("bgColor", this.value);
+localStorage.removeItem("bgImage");
+});
+
+imagePicker.addEventListener("change", function(){
+let file = this.files[0];
+let reader = new FileReader();
+reader.onload = function(e){
+document.body.style.backgroundImage = `url(${e.target.result})`;
+document.body.style.backgroundSize = "cover";
+localStorage.setItem("bgImage", e.target.result);
+localStorage.removeItem("bgColor");
+}
+reader.readAsDataURL(file);
+});
+
+function resetBg(){
+document.body.style.background = "";
+localStorage.removeItem("bgColor");
+localStorage.removeItem("bgImage");
+}
+
+window.onload = function(){
+let savedColor = localStorage.getItem("bgColor");
+let savedImage = localStorage.getItem("bgImage");
+
+if(savedColor){
+document.body.style.backgroundColor = savedColor;
+}
+if(savedImage){
+document.body.style.backgroundImage = `url(${savedImage})`;
+document.body.style.backgroundSize = "cover";
+}
+}
+</script>
+  <button onclick="scrollToTop()" id="topBtn"
+style="display:none;position:fixed;bottom:20px;left:20px;
+padding:10px 15px;border:none;border-radius:50%;
+background:#00f5ff;cursor:pointer;font-size:18px;">
+⬆
+</button>
+
+<script>
+window.onscroll = function() {
+let btn = document.getElementById("topBtn");
+if (document.documentElement.scrollTop > 200) {
+btn.style.display = "block";
+} else {
+btn.style.display = "none";
+}
+};
+
+function scrollToTop() {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+  <!-- كارت الترحيب -->
+<div id="welcomeBox" style="
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(0,0,0,0.85);
+color:white;
+padding:25px 40px;
+border-radius:20px;
+box-shadow:0 0 30px #00f5ff;
+text-align:center;
+font-size:18px;
+z-index:9999;
+opacity:0;
+transition:0.5s;">
+👋 أهلاً بيك في موقعي  
+<br><br>
+استمتع بالأدوات والتطبيقات 🚀
+</div>
+
+<script>
+let box = document.getElementById("welcomeBox");
+
+setTimeout(()=>{
+box.style.opacity="1";
+},500);
+
+setTimeout(()=>{
+box.style.opacity="0";
+},4000);
+</script>
+  <div style="margin:25px;text-align:center;">
+  <div style="
+    display:inline-block;
+    background:linear-gradient(45deg,#00f5ff,#0066ff);
+    padding:15px 30px;
+    border-radius:15px;
+    color:white;
+    font-size:20px;
+    box-shadow:0 0 20px rgba(0,255,255,0.7);
+  ">
+    👀 عدد زوار الموقع: 
+    <span id="visits" style="font-weight:bold;">0</span>
+  </div>
+</div>
+
+<script>
+fetch("https://api.countapi.xyz/hit/bashir-unique-site-2026/visits")
+.then(res => res.json())
+.then(res => {
+  let count = res.value;
+  let current = 0;
+  let interval = setInterval(()=>{
+    if(current < count){
+      current++;
+      document.getElementById("visits").innerText = current;
+    } else {
+      clearInterval(interval);
+    }
+  },10);
+});
+</script>
+  <div style="margin-top:60px;text-align:center;">
+
+<h2 style="color:#00f5ff;text-shadow:0 0 15px #00f5ff;">⏳ مؤقت احترافي</h2>
+
+<div id="timerBox" style="
+font-size:50px;
+margin:25px 0;
+color:#00f5ff;
+text-shadow:0 0 20px #00f5ff;
+transition:0.3s;">
+<span id="minutes">00</span>:<span id="seconds">00</span>
+</div>
+
+<input type="number" id="timeInput" placeholder="اكتب الوقت بالدقائق"
+style="padding:12px;border-radius:15px;border:none;width:220px;text-align:center;font-size:16px;">
+
+<br><br>
+
+<button onclick="startTimer()" style="padding:12px 20px;border:none;border-radius:12px;background:#00f5ff;font-weight:bold;margin:5px;">ابدأ</button>
+
+<button onclick="stopTimer()" style="padding:12px 20px;border:none;border-radius:12px;background:#ff0033;color:white;font-weight:bold;margin:5px;">إيقاف</button>
+
+<button onclick="resetTimer()" style="padding:12px 20px;border:none;border-radius:12px;background:gray;color:white;font-weight:bold;margin:5px;">إعادة</button>
+
+<br><br>
+
+<button onclick="pomodoro()" style="padding:12px 25px;border:none;border-radius:15px;background:#ff00ff;color:white;font-weight:bold;">
+🍅 تشغيل بومودورو 25 دقيقة
+</button>
+
+</div>
+
+<audio id="alarmSound">
+<source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let countdown;
+let totalSeconds = 0;
+
+function updateDisplay(){
+let minutes = Math.floor(totalSeconds / 60);
+let seconds = totalSeconds % 60;
+
+document.getElementById("minutes").innerText =
+minutes < 10 ? "0" + minutes : minutes;
+
+document.getElementById("seconds").innerText =
+seconds < 10 ? "0" + seconds : seconds;
+}
+
+function startTimer(){
+let input = document.getElementById("timeInput").value;
+if(input <= 0) return;
+
+totalSeconds = input * 60;
+clearInterval(countdown);
+
+countdown = setInterval(()=>{
+if(totalSeconds <= 0){
+clearInterval(countdown);
+finishTimer();
+return;
+}
+totalSeconds--;
+updateDisplay();
+},1000);
+}
+
+function stopTimer(){
+clearInterval(countdown);
+}
+
+function resetTimer(){
+clearInterval(countdown);
+totalSeconds = 0;
+updateDisplay();
+document.getElementById("timerBox").style.transform="scale(1)";
+}
+
+function pomodoro(){
+document.getElementById("timeInput").value = 25;
+startTimer();
+}
+
+function finishTimer(){
+document.getElementById("alarmSound").play();
+let box = document.getElementById("timerBox");
+
+box.style.transform="scale(1.2)";
+box.style.color="#ff0000";
+box.style.textShadow="0 0 25px red";
+
+setTimeout(()=>{
+box.style.transform="scale(1)";
+box.style.color="#00f5ff";
+box.style.textShadow="0 0 20px #00f5ff";
+},2000);
+}
+
+updateDisplay();
+</script>
+  <div id="lockScreen" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+color:white;">
+
+<h2 style="color:#00f5ff;">🔒 هذا الموقع خاص</h2>
+
+<input type="password" id="passwordInput"
+placeholder="ادخل كلمة السر"
+style="padding:10px;
+margin:15px;
+border-radius:10px;
+border:none;
+text-align:center;">
+
+<button onclick="checkPassword()"
+style="padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#00f5ff;
+font-weight:bold;">
+دخول
+</button>
+
+</div>
+
+<script>
+function checkPassword(){
+let password = document.getElementById("passwordInput").value;
+
+// غير كلمة السر هنا 👇
+if(password === "1234"){
+document.getElementById("lockScreen").style.display = "none";
+}else{
+alert("كلمة السر غلط ❌");
+}
+}
+</script>
+  <script>
+let text = "Abdulrahman Ahmed Bashir 👑";
+let i = 0;
+
+function typeEffect(){
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 100);
+  }
+}
+
+typeEffect();
+  </script>
 </body>
 </html>
