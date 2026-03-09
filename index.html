@@ -1,744 +1,592 @@
-<DOCTYPE html>
-<html lang="ar">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdulrahman Ahmed Bashir</title>
-
+<title>Abdulrahman Ahmed Bashir | موقعي الشخصي</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Segoe UI, sans-serif;
-}
+/* ========== الأساسيات ========== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
 
 body{
-color:white;
-text-align:center;
-overflow-x:hidden;
-background:#000;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000000);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    padding-bottom: 50px;
 }
 
-/* خلفية النجوم */
-#stars{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-background:#000;
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.header{
-padding:60px 20px;
-}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
+
+/* ========== الهيدر ========== */
+.header{padding:60px 20px 30px;}
 
 .profile{
-width:180px;
-height:180px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid #00f5ff;
-box-shadow:0 0 50px #00f5ff, 0 0 100px #ff00ff;
+    width:180px;height:180px;border-radius:50%;object-fit:cover;
+    border:4px solid #00f5ff;
+    box-shadow:0 0 50px #00f5ff, 0 0 100px #ff00ff;
+    transition:0.3s;
 }
+.profile:hover{transform:scale(1.05);box-shadow:0 0 70px #00f5ff, 0 0 120px #ff00ff;}
 
-h1{
-margin-top:20px;
-font-size:32px;
-letter-spacing:2px;
-text-shadow:0 0 15px #00f5ff;
-}
+h1{margin-top:20px;font-size:32px;letter-spacing:2px;text-shadow:0 0 15px #00f5ff;}
 
-.info{
-margin-top:15px;
-line-height:1.9;
-font-size:18px;
-}
+.info{margin-top:15px;line-height:1.9;font-size:18px;opacity:0.9;}
 
-.section{
-margin-top:70px;
-}
-
+/* ========== الأقسام ========== */
+.section{margin:50px 20px;padding:20px;}
 .section h2{
-margin-bottom:30px;
-font-size:26px;
-color:#00f5ff;
-text-shadow:0 0 15px #00f5ff;
+    margin-bottom:25px;font-size:26px;color:#00f5ff;
+    text-shadow:0 0 15px #00f5ff;position:relative;display:inline-block;}
+.section h2::after{
+    content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
+    width:60px;height:3px;background:#00f5ff;border-radius:2px;
 }
 
+/* ========== الشبكة والبطاقات ========== */
 .grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:25px;
-max-width:900px;
-margin:auto;
-padding:0 20px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:20px;max-width:1000px;margin:auto;padding:0 10px;
 }
 
 .card{
-background:rgba(15,20,35,0.7);
-padding:22px;
-border-radius:20px;
-text-decoration:none;
-color:white;
-transition:0.4s;
-border:1px solid rgba(255,255,255,0.1);
-backdrop-filter:blur(10px);
+    background:rgba(15,20,35,0.7);padding:20px;border-radius:20px;
+    text-decoration:none;color:white;transition:0.4s;
+    border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    min-height:100px;cursor:pointer;
 }
-
-.card i{
-display:block;
-font-size:26px;
-margin-bottom:12px;
-}
-
+.card i{font-size:26px;margin-bottom:10px;display:block;}
 .card:hover{
-background:#00f5ff;
-color:black;
-transform:translateY(-8px) scale(1.05);
-box-shadow:0 0 30px #00f5ff;
+    background:#00f5ff;color:black;transform:translateY(-8px) scale(1.05);
+    box-shadow:0 0 30px #00f5ff;
 }
 
-.footer{
-margin:60px 0;
-color:#00f5ff;
-font-weight:bold;
+/* ========== نموذج التواصل ========== */
+.contact-form-container{
+    max-width:500px;margin:0 auto;background:rgba(15,20,35,0.8);
+    padding:25px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
+    backdrop-filter:blur(10px);
+}
+.contact-form-container input,
+.contact-form-container textarea{
+    width:100%;padding:12px;margin:8px 0;border:1px solid rgba(255,255,255,0.2);
+    border-radius:10px;background:rgba(255,255,255,0.1);color:white;
+    font-size:15px;outline:none;transition:0.3s;
+}
+.contact-form-container input:focus,
+.contact-form-container textarea:focus{
+    border-color:#00f5ff;box-shadow:0 0 10px rgba(0,245,255,0.5);
+}
+.contact-form-container textarea{min-height:100px;resize:vertical;}
+.contact-form-container button{
+    background:linear-gradient(45deg,#00f5ff,#0066ff);color:white;
+    padding:12px 30px;border:none;border-radius:25px;font-size:16px;
+    font-weight:bold;cursor:pointer;margin-top:10px;width:100%;
+    transition:0.3s;
+}
+.contact-form-container button:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(0,245,255,0.7);}
+.success-message{    display:none;background:#00ff88;color:#000;padding:12px;
+    border-radius:10px;margin-top:12px;font-weight:bold;animation:fadeIn 0.5s;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ========== مواقيت الصلاة ========== */
+.prayer-box{
+    background:rgba(15,20,35,0.8);padding:20px;border-radius:20px;
+    max-width:600px;margin:auto;border:1px solid rgba(0,245,255,0.3);
+}
+.prayer-times{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:10px;margin-top:15px;}
+.prayer-item{
+    background:rgba(255,255,255,0.1);padding:12px 8px;border-radius:12px;
+    transition:0.3s;
+}
+.prayer-item.active{background:#00f5ff;color:black;font-weight:bold;transform:scale(1.05);}
+.prayer-name{font-size:13px;margin-bottom:5px;}
+.prayer-time{font-size:16px;font-weight:bold;}
+.city-selector{margin:15px 0;}
+.city-selector select{
+    padding:10px 15px;border-radius:20px;border:none;background:rgba(255,255,255,0.2);
+    color:white;font-size:15px;cursor:pointer;outline:none;
 }
 
-/* المتصفح */
-.browser-box{
-display:flex;
-justify-content:center;
-margin-top:20px;
+/* ========== قائمة المهام ========== */
+.todo-container{
+    max-width:500px;margin:auto;background:rgba(15,20,35,0.8);
+    padding:20px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
+}
+.todo-input-group{display:flex;gap:10px;margin-bottom:15px;}
+.todo-input-group input{
+    flex:1;padding:12px;border-radius:20px;border:none;
+    background:rgba(255,255,255,0.1);color:white;outline:none;
+}
+.todo-input-group button{
+    padding:12px 20px;border:none;border-radius:20px;
+    background:#00f5ff;color:black;font-weight:bold;cursor:pointer;
+}
+.todo-list{list-style:none;text-align:right;}
+.todo-item{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px;margin:8px 0;background:rgba(255,255,255,0.1);
+    border-radius:12px;transition:0.3s;
+}
+.todo-item.completed span{text-decoration:line-through;opacity:0.6;}
+.todo-checkbox{
+    width:20px;height:20px;margin-left:10px;cursor:pointer;accent-color:#00f5ff;
+}
+.todo-delete{
+    background:#ff4757;color:white;border:none;width:28px;height:28px;    border-radius:50%;cursor:pointer;font-size:14px;transition:0.3s;
+}
+.todo-delete:hover{background:#ff0000;transform:scale(1.1);}
+
+/* ========== معرض المشاريع ========== */
+.projects-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;max-width:1000px;margin:auto;
+}
+.project-card{
+    background:rgba(15,20,35,0.9);border-radius:20px;overflow:hidden;
+    border:1px solid rgba(255,255,255,0.1);transition:0.4s;
+}
+.project-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,245,255,0.3);}
+.project-img{
+    width:100%;height:150px;background:linear-gradient(45deg,#00f5ff,#0066ff);
+    display:flex;align-items:center;justify-content:center;font-size:40px;
+}
+.project-content{padding:20px;text-align:right;}
+.project-content h3{color:#00f5ff;margin-bottom:8px;}
+.project-content p{font-size:14px;opacity:0.9;margin-bottom:12px;}
+.project-link{
+    display:inline-block;padding:8px 20px;background:#00f5ff;color:black;
+    border-radius:15px;text-decoration:none;font-weight:bold;font-size:14px;
+    transition:0.3s;
+}
+.project-link:hover{background:#0066ff;color:white;}
+
+/* ========== الاقتباسات ========== */
+.quote-box{
+    max-width:600px;margin:auto;background:rgba(15,20,35,0.8);
+    padding:30px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
+    position:relative;
+}
+.quote-box::before{
+    content:'"';position:absolute;top:10px;right:20px;font-size:80px;
+    color:rgba(0,245,255,0.2);font-family:serif;
+}
+.quote-text{font-size:18px;font-style:italic;line-height:1.8;margin-bottom:15px;}
+.quote-author{color:#00f5ff;font-weight:bold;}
+.quote-refresh{
+    margin-top:15px;padding:8px 20px;background:transparent;
+    border:2px solid #00f5ff;color:#00f5ff;border-radius:20px;
+    cursor:pointer;transition:0.3s;font-weight:bold;
+}
+.quote-refresh:hover{background:#00f5ff;color:black;}
+
+/* ========== الطقس ========== */
+.weather-box{
+    max-width:400px;margin:auto;background:rgba(15,20,35,0.8);    padding:25px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
+}
+.weather-main{font-size:48px;font-weight:bold;color:#00f5ff;margin:10px 0;}
+.weather-desc{font-size:18px;opacity:0.9;margin-bottom:15px;}
+.weather-details{display:flex;justify-content:center;gap:20px;font-size:14px;}
+.weather-input{
+    padding:10px 15px;border-radius:20px;border:none;
+    background:rgba(255,255,255,0.1);color:white;width:150px;
+    text-align:center;margin:10px 0;
+}
+.weather-btn{
+    padding:10px 20px;border:none;border-radius:20px;
+    background:#00f5ff;color:black;font-weight:bold;cursor:pointer;
 }
 
-.browser-box input{
-padding:15px;
-width:260px;
-border:none;
-border-radius:30px 0 0 30px;
-outline:none;
-font-size:16px;
+/* ========== المفكرة ========== */
+.notes-container{
+    max-width:600px;margin:auto;background:rgba(15,20,35,0.8);
+    padding:20px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
+}
+.notes-textarea{
+    width:100%;min-height:150px;padding:15px;border-radius:15px;
+    border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);
+    color:white;font-size:16px;outline:none;resize:vertical;
+}
+.notes-status{margin-top:10px;font-size:14px;opacity:0.8;}
+
+/* ========== العداد التنازلي ========== */
+.countdown-box{
+    max-width:500px;margin:auto;background:rgba(15,20,35,0.8);
+    padding:25px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
+}
+.countdown-inputs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:15px 0;}
+.countdown-inputs input{
+    width:80px;padding:10px;border-radius:10px;border:none;
+    background:rgba(255,255,255,0.1);color:white;text-align:center;
+}
+.countdown-display{
+    font-size:36px;font-weight:bold;color:#00f5ff;margin:20px 0;
+    text-shadow:0 0 20px rgba(0,245,255,0.5);
+}
+.countdown-display span{margin:0 5px;}
+.countdown-btns button{
+    padding:10px 20px;border:none;border-radius:15px;margin:5px;
+    font-weight:bold;cursor:pointer;transition:0.3s;
+}
+.countdown-btns .start{background:#00ff88;color:black;}
+.countdown-btns .stop{background:#ff4757;color:white;}
+.countdown-btns .reset{background:gray;color:white;}
+/* ========== زر السيرة الذاتية ========== */
+.cv-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 35px;background:linear-gradient(45deg,#00f5ff,#0066ff);
+    color:white;border:none;border-radius:30px;font-size:18px;
+    font-weight:bold;cursor:pointer;text-decoration:none;
+    transition:0.3s;box-shadow:0 0 25px rgba(0,245,255,0.5);
+}
+.cv-btn:hover{transform:translateY(-5px);box-shadow:0 0 40px rgba(0,245,255,0.8);}
+.cv-btn i{font-size:20px;}
+
+/* ========== الفوتر ========== */
+.footer{margin:40px 0;color:#00f5ff;font-weight:bold;padding:20px;opacity:0.9;}
+
+/* ========== عناصر التحكم الثابتة ========== */
+#themeToggle{
+    position:fixed;top:20px;left:20px;padding:10px 15px;
+    border:none;border-radius:20px;cursor:pointer;font-weight:bold;
+    z-index:999;background:rgba(0,0,0,0.5);color:white;
+}
+#clockBox{
+    position:fixed;top:20px;right:20px;background:rgba(0,0,0,0.7);
+    padding:10px 20px;border-radius:20px;font-weight:bold;
+    box-shadow:0 0 15px #00f5ff;z-index:999;
+}
+#topBtn{
+    display:none;position:fixed;bottom:20px;left:20px;
+    padding:12px 15px;border:none;border-radius:50%;
+    background:#00f5ff;cursor:pointer;font-size:18px;z-index:999;
+}
+#bgControlBtn{
+    position:fixed;bottom:20px;right:20px;padding:10px 15px;
+    border:none;border-radius:20px;background:#00f5ff;
+    cursor:pointer;font-weight:bold;z-index:999;
+}
+#bgPanel{
+    display:none;position:fixed;bottom:70px;right:20px;
+    background:#111;padding:15px;border-radius:15px;
+    box-shadow:0 0 15px #00f5ff;z-index:999;
 }
 
-.browser-box button{
-padding:15px 25px;
-border:none;
-background:#00f5ff;
-color:black;
-cursor:pointer;
-border-radius:0 30px 30px 0;
-font-weight:bold;
+/* ========== الوضع النهاري ========== */
+body.light-mode{
+    background:linear-gradient(-45deg,#ffecd2,#fcb69f,#fff5e6,#ffffff) !important;
+    color:#111 !important;
+}
+body.light-mode .card,
+body.light-mode .contact-form-container,
+body.light-mode .todo-container,
+body.light-mode .prayer-box,body.light-mode .quote-box,
+body.light-mode .weather-box,
+body.light-mode .notes-container,
+body.light-mode .countdown-box,
+body.light-mode .project-card{
+    background:rgba(255,255,255,0.9) !important;color:#111 !important;
+}
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select{
+    background:#eee !important;color:#000 !important;border-color:#ddd !important;
+}
+body.light-mode .section h2{color:#111 !important;text-shadow:none !important;}
+body.light-mode .quote-box::before{color:rgba(0,0,0,0.1) !important;}
+
+/* ========== الترحيب ========== */
+#welcomeBox{
+    position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+    background:rgba(0,0,0,0.85);color:white;padding:25px 40px;
+    border-radius:20px;box-shadow:0 0 30px #00f5ff;
+    text-align:center;font-size:18px;z-index:9999;opacity:0;transition:0.5s;
+}
+
+/* ========== شاشة القفل ========== */
+#lockScreen{
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:black;display:flex;justify-content:center;
+    align-items:center;flex-direction:column;z-index:99999;color:white;
+}
+#lockScreen input{
+    padding:12px;margin:15px;border-radius:10px;border:none;
+    text-align:center;width:250px;
+}
+#lockScreen button{
+    padding:12px 25px;border:none;border-radius:10px;
+    background:#00f5ff;font-weight:bold;cursor:pointer;
+}
+
+/* ========== التجاوب ========== */
+@media (max-width:600px){
+    h1{font-size:24px;}
+    .profile{width:140px;height:140px;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .prayer-times{grid-template-columns:repeat(3,1fr);}
+    .countdown-display{font-size:28px;}
 }
 </style>
 </head>
-
 <body>
-
 <canvas id="stars"></canvas>
 
+<!-- شاشة القفل -->
+<div id="lockScreen">
+    <h2 style="color:#00f5ff;">🔒 هذا الموقع خاص</h2>
+    <input type="password" id="passwordInput" placeholder="ادخل كلمة السر">
+    <button onclick="checkPassword()">دخول</button>
+</div>
+
+<!-- كارت الترحيب -->
+<div id="welcomeBox">👋 أهلاً بيك في موقعي!<br><br>استمتع بالأدوات والتطبيقات 🚀</div>
+
+<!-- عناصر التحكم -->
+<button id="themeToggle">🌙 وضع ليلي</button>
+<div id="clockBox"><span id="clock"></span></div>
+<button onclick="scrollToTop()" id="topBtn">⬆</button>
+<button onclick="toggleBgPanel()" id="bgControlBtn">🎨 الخلفية</button>
+
+<!-- لوحة الخلفية -->
+<div id="bgPanel">
+    <input type="color" id="colorPicker" title="اختر لون">
+    <br><br>
+    <input type="file" id="imagePicker" accept="image/*" title="اختر صورة">
+    <br><br>
+    <button onclick="resetBg()" style="padding:8px 15px;border:none;border-radius:10px;background:#00f5ff;cursor:pointer;">رجوع للأصل</button>
+</div>
+
+<!-- الهيدر -->
 <div class="header">
-<img src="عبدالرحمن.jpg" class="profile">
-<h1>AbdulrahmanAhmedBashir</h1>
-<div class="info">
-أنا طالب في الصف الأول الثانوي <br>
- بحب البرمجة وإنشاء المواقع وتطويرها <br>
-للتواصل:  <br>
-
+    <img src="عبدالرحمن.jpg" class="profile" onerror="this.src='https://via.placeholder.com/180?text=AB'">
+    <h1>Abdulrahman Ahmed Bashir</h1>
+    <div class="info">
+        طالب في الصف الأول الثانوي 💻<br>
+        بحب البرمجة وإنشاء المواقع وتطويرها 🚀<br>
+        <span style="color:#00f5ff;font-weight:bold;">مستقبلي في الكود ✨</span>
+    </div>
 </div>
-</div>
 
+<!-- ✅ التواصل عبر البريد -->
 <div class="section">
-<h2>📱 التواصل</h2>
-<div class="grid">
-<a class="card" href="https://www.facebook.com/share/1HriMHU17G/" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
-<a class="card" href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i>Twitter</a>
-<a class="card" href="https://youtube.com/@algamers-b7l?si=PA_cb863tyMvPeqe" target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
-<a class="card" href="https://vt.tiktok.com/ZS5DVkacM/" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
-<a class="card" href="https://www.instagram.com/abdulrahmanbashir781?igsh=MXBxamxrcXg0YmJ3bQ==" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
-<a class="card" href="https://wa.me/201025474780" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a>
-</div>
+    <h2>✉️ تواصل معي</h2>
+    <div class="contact-form-container">
+        <form action="https://formsubmit.co/abdulrahmanbashir573@gmail.com" method="POST" id="myContactForm">
+            <input type="hidden" name="_subject" value="📩 رسالة جديدة من موقعك!">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="name" placeholder="اسمك *" required>
+            <input type="email" name="email" placeholder="بريدك الإلكتروني *" required>
+            <textarea name="message" placeholder="رسالتك *" required></textarea>
+            <button type="submit">🚀 إرسال</button>        </form>
+        <div class="success-message" id="successMsg">✅ تم الإرسال! هرد عليك قريباً.</div>
+    </div>
 </div>
 
+<!-- 📱 التواصل الاجتماعي -->
 <div class="section">
-<h2>🎮 الألعاب</h2>
-<div class="grid">
-<a class="card" href="https://poki.com/en/g/subway-surfers" target="_blank">Subway Surfers</a>
-<a class="card" href="https://poki.com/en/g/magic-piano-tiles" target="_blank">Piano Tiles</a>
-<a class="card" href="https://poki.com/en/g/moto-x3m" target="_blank">Moto X3M</a>
-<a class="card" href="https://poki.com/en/g/penalty-shooters-2" target="_blank">لعبة كورة</a>
-</div>
+    <h2>📱 تابعني</h2>
+    <div class="grid">
+        <a class="card" href="https://www.facebook.com/share/1HriMHU17G/" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
+        <a class="card" href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i>Twitter</a>
+        <a class="card" href="https://youtube.com/@algamers-b7l?si=PA_cb863tyMvPeqe" target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
+        <a class="card" href="https://vt.tiktok.com/ZS5DVkacM/" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
+        <a class="card" href="https://www.instagram.com/abdulrahmanbashir781?igsh=MXBxamxrcXg0YmJ3bQ==" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+        <a class="card" href="https://wa.me/201025474780" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+    </div>
 </div>
 
+<!-- 🕌 مواقيت الصلاة -->
 <div class="section">
-<h2>📚 التعلم</h2>
-<div class="grid">
-<a class="card" href="https://quran.com" target="_blank">المصحف الشريف</a>
-<a class="card" href="https://islamweb.net/ar/article/13578" target="_blank">قصص الأنبياء</a>
-<a class="card" href="https://tajweed.me" target="_blank">تعلم تجويد القرآن</a>
-</div>
+    <h2>🕌 مواقيت الصلاة</h2>
+    <div class="prayer-box">
+        <div class="city-selector">
+            <select id="citySelect" onchange="fetchPrayerTimes()">
+                <option value="Cairo">القاهرة 🇪🇬</option>
+                <option value="Alexandria">الإسكندرية</option>
+                <option value="Giza">الجيزة</option>
+                <option value="Mecca">مكة المكرمة 🇸🇦</option>
+                <option value="Medina">المدينة المنورة</option>
+                <option value="Dubai">دبي 🇦🇪</option>
+                <option value="Riyadh">الرياض</option>
+            </select>
+        </div>
+        <div id="prayerDate" style="color:#00f5ff;font-weight:bold;margin-bottom:10px;"></div>
+        <div class="prayer-times" id="prayerTimes">
+            <div class="prayer-item"><div class="prayer-name">الفجر</div><div class="prayer-time" id="fajr">--:--</div></div>
+            <div class="prayer-item"><div class="prayer-name">الشروق</div><div class="prayer-time" id="sunrise">--:--</div></div>
+            <div class="prayer-item"><div class="prayer-name">الظهر</div><div class="prayer-time" id="dhuhr">--:--</div></div>
+            <div class="prayer-item"><div class="prayer-name">العصر</div><div class="prayer-time" id="asr">--:--</div></div>
+            <div class="prayer-item"><div class="prayer-name">المغرب</div><div class="prayer-time" id="maghrib">--:--</div></div>
+            <div class="prayer-item"><div class="prayer-name">العشاء</div><div class="prayer-time" id="isha">--:--</div></div>
+        </div>
+    </div>
 </div>
 
-<!-- قسم تطبيقاتي -->
-<!-- قسم تطبيقاتي -->
+<!-- 💭 اقتباسات ملهمة -->
+<div class="section">
+    <h2>💭 كلمة اليوم</h2>
+    <div class="quote-box">
+        <p class="quote-text" id="quoteText">"البرمجة ليست مجرد كود، بل هي طريقة للتفكير."</p>        <p class="quote-author" id="quoteAuthor">- مجهول</p>
+        <button class="quote-refresh" onclick="newQuote()">🔄 اقتباس جديد</button>
+    </div>
+</div>
+
+<!-- 🌤️ حالة الطقس -->
+<div class="section">
+    <h2>🌤️ الطقس</h2>
+    <div class="weather-box">
+        <input type="text" id="weatherCity" class="weather-input" placeholder="اسم المدينة" value="Cairo">
+        <button class="weather-btn" onclick="getWeather()">بحث</button>
+        <div id="weatherResult" style="margin-top:20px;">
+            <div style="font-size:50px;" id="weatherIcon">🌡️</div>
+            <div class="weather-main" id="weatherTemp">--°C</div>
+            <div class="weather-desc" id="weatherDesc">جاري التحميل...</div>
+            <div class="weather-details">
+                <span>💧 <span id="weatherHumidity">--%</span></span>
+                <span>💨 <span id="weatherWind">-- كم/س</span></span>
+            </div>
+        </div>
+        <p style="font-size:12px;opacity:0.7;margin-top:15px;">
+            ⚠️ للحصول على بيانات حقيقية، سجل في 
+            <a href="https://openweathermap.org/api" target="_blank" style="color:#00f5ff;">OpenWeatherMap</a>
+            وضع مفتاح API في الكود
+        </p>
+    </div>
+</div>
+
+<!-- 🎮 الألعاب -->
+<div class="section">
+    <h2>🎮 ألعاب</h2>
+    <div class="grid">
+        <a class="card" href="https://poki.com/en/g/subway-surfers" target="_blank">🏃 Subway Surfers</a>
+        <a class="card" href="https://poki.com/en/g/magic-piano-tiles" target="_blank">🎹 Piano Tiles</a>
+        <a class="card" href="https://poki.com/en/g/moto-x3m" target="_blank">🏍️ Moto X3M</a>
+        <a class="card" href="https://poki.com/en/g/penalty-shooters-2" target="_blank">⚽ Penalty Shooters</a>
+    </div>
+</div>
+
+<!-- 📚 التعلم -->
+<div class="section">
+    <h2>📚 مصادر تعليمية</h2>
+    <div class="grid">
+        <a class="card" href="https://quran.com" target="_blank">📖 المصحف الشريف</a>
+        <a class="card" href="https://islamweb.net/ar/article/13578" target="_blank">📜 قصص الأنبياء</a>
+        <a class="card" href="https://tajweed.me" target="_blank">🎙️ تعلم التجويد</a>
+        <a class="card" href="https://www.w3schools.com" target="_blank">💻 تعلم البرمجة</a>
+    </div>
+</div>
+<!-- ✅ قائمة المهام -->
+<div class="section">
+    <h2>✅ مهامي اليومية</h2>
+    <div class="todo-container">
+        <div class="todo-input-group">
+            <input type="text" id="todoInput" placeholder="أضف مهمة جديدة..." onkeypress="if(event.key==='Enter')addTodo()">
+            <button onclick="addTodo()">➕</button>
+        </div>
+        <ul class="todo-list" id="todoList"></ul>
+        <p id="todoCount" style="font-size:13px;opacity:0.8;margin-top:10px;"></p>
+    </div>
+</div>
+
+<!-- 💻 معرض المشاريع -->
+<div class="section">
+    <h2>💻 مشاريعي</h2>
+    <div class="projects-grid">
+        <div class="project-card">
+            <div class="project-img">🌐</div>
+            <div class="project-content">
+                <h3>موقعي الشخصي</h3>
+                <p>موقع تفاعلي يجمع أدواتي وروابطي في مكان واحد بتصميم عصري.</p>
+                <a href="https://abdulrahmanbashir573-del.github.io/My-website-/" target="_blank" class="project-link">عرض المشروع</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-img">🧮</div>
+            <div class="project-content">
+                <h3>آلة حاسبة متطورة</h3>
+                <p>آلة حاسبة بتصميم جميل تدعم العمليات الأساسية بواجهة سهلة.</p>
+                <a href="#" class="project-link">قريباً 🔜</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-img">⏱️</div>
+            <div class="project-content">
+                <h3>مؤقت بومودورو</h3>
+                <p>أداة لزيادة الإنتاجية باستخدام تقنية البومودورو مع تنبيهات صوتية.</p>
+                <a href="#" class="project-link">قريباً 🔜</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 📝 المفكرة السريعة -->
+<div class="section">
+    <h2>📝 مفكرتي</h2>
+    <div class="notes-container">
+        <textarea class="notes-textarea" id="quickNotes" placeholder="اكتب ملاحظاتك هنا... سيتم الحفظ تلقائياً ✨"></textarea>
+        <p class="notes-status" id="notesStatus">✅ تم الحفظ تلقائياً</p>    </div>
+</div>
+
+<!-- ⏳ العداد التنازلي -->
+<div class="section">
+    <h2>⏳ عداد الأهداف</h2>
+    <div class="countdown-box">
+        <p style="opacity:0.9;">حدد تاريخ هدفك (امتحان، عيد ميلاد، مشروع...)</p>
+        <div class="countdown-inputs">
+            <input type="date" id="countdownDate">
+        </div>
+        <div class="countdown-display">
+            <span id="cdDays">00</span>ي <span id="cdHours">00</span>س <span id="cdMinutes">00</span>د <span id="cdSeconds">00</span>ث
+        </div>
+        <div class="countdown-btns">
+            <button class="start" onclick="startCountdown()">▶ بدء</button>
+            <button class="stop" onclick="stopCountdown()">⏹ إيقاف</button>
+            <button class="reset" onclick="resetCountdown()">🔄 إعادة</button>
+        </div>
+    </div>
+</div>
+
+<!-- 📱 تطبيقاتي -->
 <div class="section" id="apps">
-<h2>📱 تطبيقاتي</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3 style="margin-bottom:15px;">Bashir X Calculator</h3>
-
-<div style="max-width:260px;margin:auto;">
-
-<input type="text" id="calcScreen" 
-style="width:100%;padding:15px;font-size:20px;
-border:none;border-radius:10px;margin-bottom:15px;
-text-align:right;" readonly>
-
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
-
-<button onclick="press('7')" class="calcBtn">7</button>
-<button onclick="press('8')" class="calcBtn">8</button>
-<button onclick="press('9')" class="calcBtn">9</button>
-<button onclick="press('/')" class="calcBtn">÷</button>
-
-<button onclick="press('4')" class="calcBtn">4</button>
-<button onclick="press('5')" class="calcBtn">5</button>
-<button onclick="press('6')" class="calcBtn">6</button>
-<button onclick="press('*')" class="calcBtn">×</button>
-
-<button onclick="press('1')" class="calcBtn">1</button>
-<button onclick="press('2')" class="calcBtn">2</button>
-<button onclick="press('3')" class="calcBtn">3</button>
-<button onclick="press('-')" class="calcBtn">-</button>
-
-<button onclick="press('0')" class="calcBtn">0</button>
-<button onclick="press('.')" class="calcBtn">.</button>
-<button onclick="calculate()" class="calcBtn">=</button>
-<button onclick="press('+')" class="calcBtn">+</button>
-
-<button onclick="clearScreen()" 
-style="grid-column:span 4;background:red;color:white;
-padding:10px;border:none;border-radius:10px;">
-مسح
-</button>
-
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<style>
-.calcBtn{
-padding:15px;
-font-size:18px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-background:#1f2a40;
-color:white;
-transition:0.3s;
-}
-.calcBtn:hover{
-background:#00f5ff;
-color:black;
-}
-</style>
-
-<script>
-function press(num){
-document.getElementById("calcScreen").value += num;
-}
-
-function calculate(){
-try{
-document.getElementById("calcScreen").value =
-eval(document.getElementById("calcScreen").value);
-}
-catch{
-alert("عملية غير صحيحة");
-}
-}
-
-function clearScreen(){
-document.getElementById("calcScreen").value = "";
-}
-</script>
-
-<div class="section">
-<h2>💻 بحث</h2>
-<div class="browser-box">
-<input type="text" id="searchBox" placeholder="ابحث في جوجل...">
-<button onclick="search()">بحث</button>
-</div>
-</div>
-
-<div class="footer">
-© 2026 Abdulrahman Ahmed Bashir شرفتنى بزيارة موقعى 
-</div>
-
-<script>
-function search(){
-let query = document.getElementById("searchBox").value;
-if(query.trim() !== ""){
-window.open("https://www.google.com/search?q=" + query, "_blank");
-}
-}
-
-/* النجوم */
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
-
-function resizeCanvas(){
-canvas.width = window.innerWidth;
-canvas.height = document.body.scrollHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-let stars=[];
-for(let i=0;i<300;i++){
-stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-radius:Math.random()*1.5,
-speed:Math.random()*0.5
-});
-}
-
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="white";
-stars.forEach(star=>{
-star.y+=star.speed;
-if(star.y>canvas.height) star.y=0;
-ctx.beginPath();
-ctx.arc(star.x,star.y,star.radius,0,Math.PI*2);
-ctx.fill();
-});
-requestAnimationFrame(animate);
-}
-animate();
-</script>
-<!-- زرار الوضع -->
-<button id="themeToggle"
-style="position:fixed;top:20px;left:20px;
-padding:10px 15px;
-border:none;
-border-radius:20px;
-cursor:pointer;
-font-weight:bold;
-z-index:999;">
-🌙 وضع ليلي
-</button>
-
-<style>
-body.light-mode{
-background:#f5f5f5 !important;
-color:#111 !important;
-}
-
-body.light-mode .card{
-background:#ffffff !important;
-color:#111 !important;
-box-shadow:0 0 15px rgba(0,0,0,0.1);
-}
-
-body.light-mode input{
-background:#eee !important;
-color:#000 !important;
-}
-
-body.light-mode .calcBtn{
-background:#ddd !important;
-color:#000 !important;
-}
-
-body.light-mode .calcBtn:hover{
-background:#bbb !important;
-}
-
-body.light-mode .section h2{
-color:#111 !important;
-text-shadow:none !important;
-}
-</style>
-
-<script>
-const toggleBtn = document.getElementById("themeToggle");
-
-toggleBtn.onclick = function(){
-document.body.classList.toggle("light-mode");
-
-if(document.body.classList.contains("light-mode")){
-toggleBtn.innerHTML = "☀️ وضع نهاري";
-localStorage.setItem("theme","light");
-}else{
-toggleBtn.innerHTML = "🌙 وضع ليلي";
-localStorage.setItem("theme","dark");
-}
-};
-
-if(localStorage.getItem("theme") === "light"){
-document.body.classList.add("light-mode");
-toggleBtn.innerHTML = "☀️ وضع نهاري";
-}
-</script>
-  <!-- الساعة -->
-<div id="clockBox" 
-style="position:fixed;top:20px;right:20px;
-background:#111;
-padding:10px 20px;
-border-radius:20px;
-font-weight:bold;
-box-shadow:0 0 15px #00f5ff;">
-<span id="clock"></span>
-</div>
-
-<script>
-function updateClock(){
-let now = new Date();
-let time = now.toLocaleTimeString();
-document.getElementById("clock").innerText = time;
-}
-setInterval(updateClock,1000);
-updateClock();
-</script>
-  <!-- زر التحكم -->
-<button onclick="toggleBgPanel()" 
-style="position:fixed;bottom:20px;right:20px;
-padding:10px 15px;
-border:none;
-border-radius:20px;
-background:#00f5ff;
-cursor:pointer;
-font-weight:bold;">
-🎨 الخلفية
-</button>
-
-<!-- لوحة التحكم -->
-<div id="bgPanel" 
-style="display:none;
-position:fixed;
-bottom:70px;
-right:20px;
-background:#111;
-padding:15px;
-border-radius:15px;
-box-shadow:0 0 15px #00f5ff;">
-
-<input type="color" id="colorPicker">
-
-<br><br>
-
-<input type="file" id="imagePicker" accept="image/*">
-
-<br><br>
-
-<button onclick="resetBg()">رجوع للأصل</button>
-
-</div>
-
-<script>
-function toggleBgPanel(){
-let panel = document.getElementById("bgPanel");
-panel.style.display = panel.style.display === "none" ? "block" : "none";
-}
-
-const colorPicker = document.getElementById("colorPicker");
-const imagePicker = document.getElementById("imagePicker");
-
-colorPicker.addEventListener("input", function(){
-document.body.style.backgroundImage = "none";
-document.body.style.backgroundColor = this.value;
-localStorage.setItem("bgColor", this.value);
-localStorage.removeItem("bgImage");
-});
-
-imagePicker.addEventListener("change", function(){
-let file = this.files[0];
-let reader = new FileReader();
-reader.onload = function(e){
-document.body.style.backgroundImage = `url(${e.target.result})`;
-document.body.style.backgroundSize = "cover";
-localStorage.setItem("bgImage", e.target.result);
-localStorage.removeItem("bgColor");
-}
-reader.readAsDataURL(file);
-});
-
-function resetBg(){
-document.body.style.background = "";
-localStorage.removeItem("bgColor");
-localStorage.removeItem("bgImage");
-}
-
-window.onload = function(){
-let savedColor = localStorage.getItem("bgColor");
-let savedImage = localStorage.getItem("bgImage");
-
-if(savedColor){
-document.body.style.backgroundColor = savedColor;
-}
-if(savedImage){
-document.body.style.backgroundImage = `url(${savedImage})`;
-document.body.style.backgroundSize = "cover";
-}
-}
-</script>
-  <button onclick="scrollToTop()" id="topBtn"
-style="display:none;position:fixed;bottom:20px;left:20px;
-padding:10px 15px;border:none;border-radius:50%;
-background:#00f5ff;cursor:pointer;font-size:18px;">
-⬆
-</button>
-
-<script>
-window.onscroll = function() {
-let btn = document.getElementById("topBtn");
-if (document.documentElement.scrollTop > 200) {
-btn.style.display = "block";
-} else {
-btn.style.display = "none";
-}
-};
-
-function scrollToTop() {
-window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-</script>
-  <!-- كارت الترحيب -->
-<div id="welcomeBox" style="
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:rgba(0,0,0,0.85);
-color:white;
-padding:25px 40px;
-border-radius:20px;
-box-shadow:0 0 30px #00f5ff;
-text-align:center;
-font-size:18px;
-z-index:9999;
-opacity:0;
-transition:0.5s;">
-👋 أهلاً بيك في موقعي  
-<br><br>
-استمتع بالأدوات والتطبيقات 🚀
-</div>
-
-<script>
-let box = document.getElementById("welcomeBox");
-
-setTimeout(()=>{
-box.style.opacity="1";
-},500);
-
-setTimeout(()=>{
-box.style.opacity="0";
-},4000);
-</script>
-  <div style="margin:25px;text-align:center;">
-  <div style="
-    display:inline-block;
-    background:linear-gradient(45deg,#00f5ff,#0066ff);
-    padding:15px 30px;
-    border-radius:15px;
-    color:white;
-    font-size:20px;
-    box-shadow:0 0 20px rgba(0,255,255,0.7);
-  ">
-    👀 عدد زوار الموقع: 
-    <span id="visits" style="font-weight:bold;">0</span>
-  </div>
-</div>
-
-<script>
-fetch("https://api.countapi.xyz/hit/bashir-unique-site-2026/visits")
-.then(res => res.json())
-.then(res => {
-  let count = res.value;
-  let current = 0;
-  let interval = setInterval(()=>{
-    if(current < count){
-      current++;
-      document.getElementById("visits").innerText = current;
-    } else {
-      clearInterval(interval);
-    }
-  },10);
-});
-</script>
-  <div style="margin-top:60px;text-align:center;">
-
-<h2 style="color:#00f5ff;text-shadow:0 0 15px #00f5ff;">⏳ مؤقت احترافي</h2>
-
-<div id="timerBox" style="
-font-size:50px;
-margin:25px 0;
-color:#00f5ff;
-text-shadow:0 0 20px #00f5ff;
-transition:0.3s;">
-<span id="minutes">00</span>:<span id="seconds">00</span>
-</div>
-
-<input type="number" id="timeInput" placeholder="اكتب الوقت بالدقائق"
-style="padding:12px;border-radius:15px;border:none;width:220px;text-align:center;font-size:16px;">
-
-<br><br>
-
-<button onclick="startTimer()" style="padding:12px 20px;border:none;border-radius:12px;background:#00f5ff;font-weight:bold;margin:5px;">ابدأ</button>
-
-<button onclick="stopTimer()" style="padding:12px 20px;border:none;border-radius:12px;background:#ff0033;color:white;font-weight:bold;margin:5px;">إيقاف</button>
-
-<button onclick="resetTimer()" style="padding:12px 20px;border:none;border-radius:12px;background:gray;color:white;font-weight:bold;margin:5px;">إعادة</button>
-
-<br><br>
-
-<button onclick="pomodoro()" style="padding:12px 25px;border:none;border-radius:15px;background:#ff00ff;color:white;font-weight:bold;">
-🍅 تشغيل بومودورو 25 دقيقة
-</button>
-
-</div>
-
-<audio id="alarmSound">
-<source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-let countdown;
-let totalSeconds = 0;
-
-function updateDisplay(){
-let minutes = Math.floor(totalSeconds / 60);
-let seconds = totalSeconds % 60;
-
-document.getElementById("minutes").innerText =
-minutes < 10 ? "0" + minutes : minutes;
-
-document.getElementById("seconds").innerText =
-seconds < 10 ? "0" + seconds : seconds;
-}
-
-function startTimer(){
-let input = document.getElementById("timeInput").value;
-if(input <= 0) return;
-
-totalSeconds = input * 60;
-clearInterval(countdown);
-
-countdown = setInterval(()=>{
-if(totalSeconds <= 0){
-clearInterval(countdown);
-finishTimer();
-return;
-}
-totalSeconds--;
-updateDisplay();
-},1000);
-}
-
-function stopTimer(){
-clearInterval(countdown);
-}
-
-function resetTimer(){
-clearInterval(countdown);
-totalSeconds = 0;
-updateDisplay();
-document.getElementById("timerBox").style.transform="scale(1)";
-}
-
-function pomodoro(){
-document.getElementById("timeInput").value = 25;
-startTimer();
-}
-
-function finishTimer(){
-document.getElementById("alarmSound").play();
-let box = document.getElementById("timerBox");
-
-box.style.transform="scale(1.2)";
-box.style.color="#ff0000";
-box.style.textShadow="0 0 25px red";
-
-setTimeout(()=>{
-box.style.transform="scale(1)";
-box.style.color="#00f5ff";
-box.style.textShadow="0 0 20px #00f5ff";
-},2000);
-}
-
-updateDisplay();
-</script>
-  <div id="lockScreen" style="
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:99999;
-color:white;">
-
-<h2 style="color:#00f5ff;">🔒 هذا الموقع خاص</h2>
-
-<input type="password" id="passwordInput"
-placeholder="ادخل كلمة السر"
-style="padding:10px;
-margin:15px;
-border-radius:10px;
-border:none;
-text-align:center;">
-
-<button onclick="checkPassword()"
-style="padding:10px 20px;
-border:none;
-border-radius:10px;
-background:#00f5ff;
-font-weight:bold;">
-دخول
-</button>
-
-</div>
-
-<script>
-function checkPassword(){
-let password = document.getElementById("passwordInput").value;
-
-// غير كلمة السر هنا 👇
-if(password === "1234"){
-document.getElementById("lockScreen").style.display = "none";
-}else{
-alert("كلمة السر غلط ❌");
-}
-}
-</script>
-  <script>
-let text = "Abdulrahman Ahmed Bashir 👑";
-let i = 0;
-
-function typeEffect(){
-  if(i < text.length){
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeEffect, 100);
-  }
-}
-
-typeEffect();
-  </script>
-</body>
-</html>
+    <h2>📱 أدواتي</h2>
+    <div class="grid">
+        <!-- الآلة الحاسبة -->
+        <div class="card">
+            <h3 style="margin-bottom:15px;color:#00f5ff;">🧮 Bashir Calc</h3>
+            <input type="text" id="calcScreen" style="width:100%;padding:12px;font-size:18px;border:none;border-radius:10px;margin-bottom:12px;text-align:right;background:rgba(255,255,255,0.1);color:white;" readonly>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+                <button onclick="press('7')" class="calcBtn">7</button>
+                <button onclick="press('8')" class="calcBtn">8</button>
+                <button onclick="press('9')" class="calcBtn">9</button>
+                <button onclick="press('/')" class="calcBtn">÷</button>
+                <button onclick="press('4')" class="calcBtn">4</button>
+                <button onclick="press('5')" class="calcBtn">5</button>
+                <button onclick="press('6')" class="calcBtn">6</button>
+                <button onclick="press('*')" class="calcBtn">×</button>
+                <button onclick="press('1')" class="calcBtn">1</button>
+                <button onclick="press('2')" class="calcBtn">2</button>
+                <button onclick="press('3')" class="calcBtn">3</button>
+                <button onclick="press('-')" class="calcBtn">-</button>
+                <button onclick="press('0')" class="calcBtn">0</button>
+                <button onclick="press('.')" class="calcBtn">.</button>
+                <button onclick="calculate()" class="calcBtn">=</button>
+                <button onclick="press('+')" class="calcBtn">+</button>
+                <button onclick="clearScreen()" style="grid-column:span 4;background:#ff4757;color:white;padding:10px;border:none;border-radius:10px;">مسح</button>
+            </div>
+        </div>        <!-- المؤقت -->
+        <div class="card">
+            <h3 style="margin-bottom:15px;color:#00f5ff;">⏲️ مؤقت</h3>
+            <div id="miniTimer" style="font-size:32px;font-weight:bold;color:#00f5ff;margin:10px 0;">00:0
