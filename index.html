@@ -1,767 +1,860 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdulrahman Ahmed Bashir | موقعي الشخصي</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-/* ========== الأساسيات ========== */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عبدالرحمن أحمد بشير | Start Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-body{
-    color:white;
-    text-align:center;
-    overflow-x:hidden;
-    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000000);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    min-height: 100vh;
-    padding-bottom: 50px;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #202124;
+            --search-bg: #ffffff;
+            --search-border: #dfe1e5;
+            --search-shadow: rgba(32,33,36,0.28);
+            --button-bg: #f8f9fa;
+            --button-hover: #f1f3f4;
+            --icon-color: #5f6368;
+            --icon-hover: #70757a;
+            --toast-bg: #323232;
+            --toast-text: #ffffff;
+        }
 
-#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
+        body.dark-mode {
+            --bg-color: #202124;
+            --text-color: #e8eaed;
+            --search-bg: #303134;
+            --search-border: #5f6368;
+            --search-shadow: rgba(0,0,0,0.5);
+            --button-bg: #3c4043;
+            --button-hover: #44474a;
+            --icon-color: #9aa0a6;
+            --icon-hover: #c4c7c5;
+            --toast-bg: #e8eaed;
+            --toast-text: #202124;
+        }
 
-/* ========== شاشة القفل ========== */
-#lockScreen{
-    position:fixed;top:0;left:0;width:100%;height:100%;
-    background:black;display:flex;justify-content:center;
-    align-items:center;flex-direction:column;z-index:99999;color:white;
-    transition: opacity 0.5s ease;
-}
-#lockScreen input{
-    padding:12px;margin:15px;border-radius:10px;border:none;
-    text-align:center;width:250px;font-size:16px;
-}
-#lockScreen button{
-    padding:12px 25px;border:none;border-radius:10px;
-    background:#00f5ff;font-weight:bold;cursor:pointer;
-    font-size:16px;transition:0.3s;
-}
-#lockScreen button:hover{background:#0066ff;transform:scale(1.05);}
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            overflow-x: hidden; /* ✅ إصلاح: السماح بالسكرول الرأسي */
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-/* ========== الهيدر ========== */
-.header{padding:60px 20px 30px;}
-.profile{
-    width:180px;height:180px;border-radius:50%;object-fit:cover;
-    border:4px solid #00f5ff;
-    box-shadow:0 0 50px #00f5ff, 0 0 100px #ff00ff;
-    transition:0.3s;
-}
-.profile:hover{transform:scale(1.05);box-shadow:0 0 70px #00f5ff, 0 0 120px #ff00ff;}
+        /* ✅ إشعار التوست */        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--toast-bg);
+            color: var(--toast-text);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            z-index: 2000;
+            opacity: 0;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
 
-h1{margin-top:20px;font-size:32px;letter-spacing:2px;text-shadow:0 0 15px #00f5ff;}
+        /* الهيدر */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            height: 60px;
+        }
 
-.info{margin-top:15px;line-height:1.9;font-size:18px;opacity:0.9;}
+        .header-right, .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-/* ========== الأقسام ========== */
-.section{margin:50px 20px;padding:20px;}
-.section h2{
-    margin-bottom:25px;font-size:26px;color:#00f5ff;
-    text-shadow:0 0 15px #00f5ff;position:relative;display:inline-block;
-}
-.section h2::after{
-    content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
-    width:60px;height:3px;background:#00f5ff;border-radius:2px;
-}
+        .icon-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--icon-color);
+        }
 
-/* ========== الشبكة والبطاقات ========== */
-.grid{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:20px;max-width:1000px;margin:auto;padding:0 10px;
-}
+        .icon-button:hover {            background: var(--button-hover);
+            color: var(--icon-hover);
+        }
 
-.card{
-    background:rgba(15,20,35,0.7);padding:20px;border-radius:20px;
-    text-decoration:none;color:white;transition:0.4s;
-    border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    min-height:100px;cursor:pointer;
-}
-.card i{font-size:26px;margin-bottom:10px;display:block;}
-.card:hover{
-    background:#00f5ff;color:black;transform:translateY(-8px) scale(1.05);
-    box-shadow:0 0 30px #00f5ff;
-}
+        .icon-button svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
 
-/* ========== نموذج التواصل ========== */
-.contact-form-container{
-    max-width:500px;margin:0 auto;background:rgba(15,20,35,0.8);
-    padding:25px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
-    backdrop-filter:blur(10px);
-}
-.contact-form-container input,.contact-form-container textarea{
-    width:100%;padding:12px;margin:8px 0;border:1px solid rgba(255,255,255,0.2);
-    border-radius:10px;background:rgba(255,255,255,0.1);color:white;
-    font-size:15px;outline:none;transition:0.3s;
-}
-.contact-form-container input:focus,
-.contact-form-container textarea:focus{
-    border-color:#00f5ff;box-shadow:0 0 10px rgba(0,245,255,0.5);
-}
-.contact-form-container textarea{min-height:100px;resize:vertical;}
-.contact-form-container button{
-    background:linear-gradient(45deg,#00f5ff,#0066ff);color:white;
-    padding:12px 30px;border:none;border-radius:25px;font-size:16px;
-    font-weight:bold;cursor:pointer;margin-top:10px;width:100%;
-    transition:0.3s;
-}
-.contact-form-container button:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(0,245,255,0.7);}
-.success-message{
-    display:none;background:#00ff88;color:#000;padding:12px;
-    border-radius:10px;margin-top:12px;font-weight:bold;animation:fadeIn 0.5s;
-}
-@keyframes fadeIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            user-select: none;
+        }
 
-/* ========== مواقيت الصلاة ========== */
-.prayer-box{
-    background:rgba(15,20,35,0.8);padding:20px;border-radius:20px;
-    max-width:600px;margin:auto;border:1px solid rgba(0,245,255,0.3);
-}
-.prayer-times{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:10px;margin-top:15px;}
-.prayer-item{
-    background:rgba(255,255,255,0.1);padding:12px 8px;border-radius:12px;
-    transition:0.3s;
-}
-.prayer-item.active{background:#00f5ff;color:black;font-weight:bold;transform:scale(1.05);}
-.prayer-name{font-size:13px;margin-bottom:5px;}
-.prayer-time{font-size:16px;font-weight:bold;}
-.city-selector{margin:15px 0;}
-.city-selector select{
-    padding:10px 15px;border-radius:20px;border:none;background:rgba(255,255,255,0.2);
-    color:white;font-size:15px;cursor:pointer;outline:none;
-}
+        .avatar:hover {
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+        }
 
-/* ========== قائمة المهام ========== */
-.todo-container{
-    max-width:500px;margin:auto;background:rgba(15,20,35,0.8);
-    padding:20px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
-}
-.todo-input-group{display:flex;gap:10px;margin-bottom:15px;}
-.todo-input-group input{
-    flex:1;padding:12px;border-radius:20px;border:none;    background:rgba(255,255,255,0.1);color:white;outline:none;
-}
-.todo-input-group button{
-    padding:12px 20px;border:none;border-radius:20px;
-    background:#00f5ff;color:black;font-weight:bold;cursor:pointer;
-}
-.todo-list{list-style:none;text-align:right;}
-.todo-item{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:12px;margin:8px 0;background:rgba(255,255,255,0.1);
-    border-radius:12px;transition:0.3s;
-}
-.todo-item.completed span{text-decoration:line-through;opacity:0.6;}
-.todo-checkbox{
-    width:20px;height:20px;margin-left:10px;cursor:pointer;accent-color:#00f5ff;
-}
-.todo-delete{
-    background:#ff4757;color:white;border:none;width:28px;height:28px;
-    border-radius:50%;cursor:pointer;font-size:14px;transition:0.3s;
-}
-.todo-delete:hover{background:#ff0000;transform:scale(1.1);}
+        .clock {
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--text-color);
+            padding: 8px 12px;
+            background: var(--button-bg);
+            border-radius: 20px;
+            min-width: 70px;
+            text-align: center;
+            user-select: none;
+        }
 
-/* ========== معرض المشاريع ========== */
-.projects-grid{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;max-width:1000px;margin:auto;
-}
-.project-card{
-    background:rgba(15,20,35,0.9);border-radius:20px;overflow:hidden;
-    border:1px solid rgba(255,255,255,0.1);transition:0.4s;
-}
-.project-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,245,255,0.3);}
-.project-img{
-    width:100%;height:150px;background:linear-gradient(45deg,#00f5ff,#0066ff);
-    display:flex;align-items:center;justify-content:center;font-size:40px;
-}
-.project-content{padding:20px;text-align:right;}
-.project-content h3{color:#00f5ff;margin-bottom:8px;}
-.project-content p{font-size:14px;opacity:0.9;margin-bottom:12px;}
-.project-link{
-    display:inline-block;padding:8px 20px;background:#00f5ff;color:black;
-    border-radius:15px;text-decoration:none;font-weight:bold;font-size:14px;
-    transition:0.3s;
-}
-.project-link:hover{background:#0066ff;color:white;}
+        /* المحتوى الرئيسي */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 120px);            padding: 20px;
+        }
 
-/* ========== الاقتباسات ========== */
-.quote-box{
-    max-width:600px;margin:auto;background:rgba(15,20,35,0.8);
-    padding:30px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);    position:relative;
-}
-.quote-box::before{
-    content:'"';position:absolute;top:10px;right:20px;font-size:80px;
-    color:rgba(0,245,255,0.2);font-family:serif;
-}
-.quote-text{font-size:18px;font-style:italic;line-height:1.8;margin-bottom:15px;}
-.quote-author{color:#00f5ff;font-weight:bold;}
-.quote-refresh{
-    margin-top:15px;padding:8px 20px;background:transparent;
-    border:2px solid #00f5ff;color:#00f5ff;border-radius:20px;
-    cursor:pointer;transition:0.3s;font-weight:bold;
-}
-.quote-refresh:hover{background:#00f5ff;color:black;}
+        .logo {
+            font-size: 90px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            user-select: none;
+        }
 
-/* ========== الطقس ========== */
-.weather-box{
-    max-width:400px;margin:auto;background:rgba(15,20,35,0.8);
-    padding:25px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
-}
-.weather-main{font-size:48px;font-weight:bold;color:#00f5ff;margin:10px 0;}
-.weather-desc{font-size:18px;opacity:0.9;margin-bottom:15px;}
-.weather-details{display:flex;justify-content:center;gap:20px;font-size:14px;}
-.weather-input{
-    padding:10px 15px;border-radius:20px;border:none;
-    background:rgba(255,255,255,0.1);color:white;width:150px;
-    text-align:center;margin:10px 0;
-}
-.weather-btn{
-    padding:10px 20px;border:none;border-radius:20px;
-    background:#00f5ff;color:black;font-weight:bold;cursor:pointer;
-}
+        .logo span:nth-child(1) { color: #4285f4; }
+        .logo span:nth-child(2) { color: #ea4335; }
+        .logo span:nth-child(3) { color: #fbbc05; }
+        .logo span:nth-child(4) { color: #4285f4; }
+        .logo span:nth-child(5) { color: #34a853; }
+        .logo span:nth-child(6) { color: #ea4335; }
 
-/* ========== المفكرة ========== */
-.notes-container{
-    max-width:600px;margin:auto;background:rgba(15,20,35,0.8);
-    padding:20px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
-}
-.notes-textarea{
-    width:100%;min-height:150px;padding:15px;border-radius:15px;
-    border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);
-    color:white;font-size:16px;outline:none;resize:vertical;
-}
-.notes-status{margin-top:10px;font-size:14px;opacity:0.8;}
+        .search-container {
+            width: 100%;
+            max-width: 584px;
+            position: relative;
+        }
 
-/* ========== العداد التنازلي ========== */
-.countdown-box{
-    max-width:500px;margin:auto;background:rgba(15,20,35,0.8);
-    padding:25px;border-radius:20px;border:1px solid rgba(0,245,255,0.3);
-}.countdown-inputs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:15px 0;}
-.countdown-inputs input{
-    width:80px;padding:10px;border-radius:10px;border:none;
-    background:rgba(255,255,255,0.1);color:white;text-align:center;
-}
-.countdown-display{
-    font-size:36px;font-weight:bold;color:#00f5ff;margin:20px 0;
-    text-shadow:0 0 20px rgba(0,245,255,0.5);
-}
-.countdown-display span{margin:0 5px;}
-.countdown-btns button{
-    padding:10px 20px;border:none;border-radius:15px;margin:5px;
-    font-weight:bold;cursor:pointer;transition:0.3s;
-}
-.countdown-btns .start{background:#00ff88;color:black;}
-.countdown-btns .stop{background:#ff4757;color:white;}
-.countdown-btns .reset{background:gray;color:white;}
+        .search-box {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background: var(--search-bg);
+            border: 1px solid var(--search-border);
+            border-radius: 24px;
+            padding: 12px 20px;
+            transition: all 0.2s;
+        }
 
-/* ========== زر السيرة الذاتية ========== */
-.cv-btn{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:15px 35px;background:linear-gradient(45deg,#00f5ff,#0066ff);
-    color:white;border:none;border-radius:30px;font-size:18px;
-    font-weight:bold;cursor:pointer;text-decoration:none;
-    transition:0.3s;box-shadow:0 0 25px rgba(0,245,255,0.5);
-}
-.cv-btn:hover{transform:translateY(-5px);box-shadow:0 0 40px rgba(0,245,255,0.8);}
-.cv-btn i{font-size:20px;}
+        .search-box:hover, .search-box:focus-within {
+            box-shadow: 0 1px 6px var(--search-shadow);
+            border-color: transparent;
+        }
 
-/* ========== الفوتر ========== */
-.footer{margin:40px 0;color:#00f5ff;font-weight:bold;padding:20px;opacity:0.9;}
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--icon-color);
+            margin-left: 12px;
+        }
 
-/* ========== عناصر التحكم الثابتة ========== */
-#themeToggle{
-    position:fixed;top:20px;left:20px;padding:10px 15px;
-    border:none;border-radius:20px;cursor:pointer;font-weight:bold;
-    z-index:999;background:rgba(0,0,0,0.5);color:white;
-}
-#clockBox{
-    position:fixed;top:20px;right:20px;background:rgba(0,0,0,0.7);
-    padding:10px 20px;border-radius:20px;font-weight:bold;
-    box-shadow:0 0 15px #00f5ff;z-index:999;
-}
-#topBtn{
-    display:none;position:fixed;bottom:20px;left:20px;
-    padding:12px 15px;border:none;border-radius:50%;
-    background:#00f5ff;cursor:pointer;font-size:18px;z-index:999;
-}
-#bgControlBtn{
-    position:fixed;bottom:20px;right:20px;padding:10px 15px;    border:none;border-radius:20px;background:#00f5ff;
-    cursor:pointer;font-weight:bold;z-index:999;
-}
-#bgPanel{
-    display:none;position:fixed;bottom:70px;right:20px;
-    background:#111;padding:15px;border-radius:15px;
-    box-shadow:0 0 15px #00f5ff;z-index:999;
-}
+        .search-input {
+            flex: 1;
+            border: none;            background: transparent;
+            font-size: 16px;
+            color: var(--text-color);
+            outline: none;
+            font-family: 'Roboto', sans-serif;
+        }
 
-/* ========== الوضع النهاري ========== */
-body.light-mode{
-    background:linear-gradient(-45deg,#ffecd2,#fcb69f,#fff5e6,#ffffff) !important;
-    color:#111 !important;
-}
-body.light-mode .card,
-body.light-mode .contact-form-container,
-body.light-mode .todo-container,
-body.light-mode .prayer-box,
-body.light-mode .quote-box,
-body.light-mode .weather-box,
-body.light-mode .notes-container,
-body.light-mode .countdown-box,
-body.light-mode .project-card{
-    background:rgba(255,255,255,0.9) !important;color:#111 !important;
-}
-body.light-mode input,
-body.light-mode textarea,
-body.light-mode select{
-    background:#eee !important;color:#000 !important;border-color:#ddd !important;
-}
-body.light-mode .section h2{color:#111 !important;text-shadow:none !important;}
-body.light-mode .quote-box::before{color:rgba(0,0,0,0.1) !important;}
+        .search-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-/* ========== الترحيب ========== */
-#welcomeBox{
-    position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-    background:rgba(0,0,0,0.85);color:white;padding:25px 40px;
-    border-radius:20px;box-shadow:0 0 30px #00f5ff;
-    text-align:center;font-size:18px;z-index:9999;opacity:0;transition:0.5s;
-    pointer-events: none;
-}
+        .btn {
+            background: var(--button-bg);
+            border: 1px solid transparent;
+            color: var(--text-color);
+            padding: 10px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.2s;
+            user-select: none;
+        }
 
-/* ========== التجاوب ========== */
-@media (max-width:600px){
-    h1{font-size:24px;}
-    .profile{width:140px;height:140px;}
-    .grid{grid-template-columns:repeat(2,1fr);}
-    .prayer-times{grid-template-columns:repeat(3,1fr);}
-    .countdown-display{font-size:28px;}
-}</style>
+        .btn:hover {
+            background: var(--button-hover);
+            border-color: #dadce0;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+
+        /* الفوتر */
+        .footer {
+            background: var(--button-bg);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--icon-color);
+            border-top: 1px solid var(--search-border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-right, .footer-left {
+            display: flex;            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer a {
+            color: var(--icon-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .footer a:hover { text-decoration: underline; }
+
+        /* شاشة تسجيل الدخول */
+        .login-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .login-box {
+            background: var(--bg-color);
+            border: 1px solid var(--search-border);
+            border-radius: 8px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 20px;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            font-size: 16px;
+            color: var(--text-color);
+            margin-bottom: 40px;
+        }
+
+        .login-subtitle span { color: #1a73e8; font-weight: 500; }
+        .input-field {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid var(--search-border);
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #1a73e8;
+            border-width: 2px;
+            padding: 12px 14px;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 10px 24px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .login-button:hover {
+            background: #1557b0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .skip-login {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .skip-login a {
+            color: #1a73e8;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .skip-login a:hover { text-decoration: underline; }
+
+        /* قائمة الإعدادات */
+        .settings-menu {
+            position: fixed;
+            top: 65px;
+            right: 20px;
+            background: var(--bg-color);
+            border: 1px solid var(--search-border);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 10px 0;
+            min-width: 280px;
+            display: none;
+            z-index: 100;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .settings-menu.active { display: block; }
+
+        .settings-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .settings-item:hover { background: var(--button-hover); }
+
+        .settings-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--icon-color);
+            margin-left: 12px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 36px;
+            height: 20px;
+        }
+
+        .toggle input { opacity: 0; width: 0; height: 0; }
+
+        .toggle-slider {            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #dadce0;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider { background-color: #1a73e8; }
+        input:checked + .toggle-slider:before { transform: translateX(16px); }
+
+        .settings-divider {
+            height: 1px;
+            background: var(--search-border);
+            margin: 8px 0;
+        }
+
+        .settings-header {
+            padding: 8px 20px;
+            font-size: 12px;
+            color: var(--icon-color);
+            font-weight: 500;
+        }
+
+        /* ✅ ألوان الخلفيات الجاهزة */
+        .bg-options {
+            display: flex;
+            gap: 8px;
+            padding: 12px 20px;
+            flex-wrap: wrap;
+        }
+
+        .bg-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;            transition: all 0.2s;
+        }
+
+        .bg-option:hover, .bg-option.active {
+            border-color: var(--text-color);
+            transform: scale(1.1);
+        }
+
+        .bg-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .bg-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .bg-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .bg-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .bg-5 { background: #202124; }
+        .bg-default { background: var(--bg-color); border: 2px solid var(--search-border); }
+
+        .hidden { display: none !important; }
+
+        /* ✅ تحسينات الموبايل */
+        @media (max-width: 600px) {
+            .logo { font-size: 60px; }
+            .header { padding: 10px 15px; }
+            .search-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 200px; }
+            .footer { flex-direction: column; text-align: center; }
+            .footer-right, .footer-left { justify-content: center; }
+            .settings-menu { right: 10px; left: 10px; min-width: auto; }
+        }
+    </style>
 </head>
 <body>
 
-<canvas id="stars"></canvas>
-
-<!-- 🔒 شاشة القفل -->
-<div id="lockScreen">
-    <h2 style="color:#00f5ff; margin-bottom: 20px;">🔒 هذا الموقع خاص</h2>
-    <input type="password" id="passwordInput" placeholder="ادخل كلمة السر (1234)">
-    <button onclick="checkPassword()">دخول</button>
-    <p id="lockMsg" style="margin-top:10px; color:#ff4757; font-size:14px;"></p>
-</div>
-
-<!-- كارت الترحيب -->
-<div id="welcomeBox">👋 أهلاً بيك في موقعي!<br><br>استمتع بالأدوات والتطبيقات 🚀</div>
-
-<!-- عناصر التحكم -->
-<button id="themeToggle">🌙 وضع ليلي</button>
-<div id="clockBox"><span id="clock"></span></div>
-<button onclick="scrollToTop()" id="topBtn">⬆</button>
-<button onclick="toggleBgPanel()" id="bgControlBtn">🎨 الخلفية</button>
-
-<!-- لوحة الخلفية -->
-<div id="bgPanel">
-    <input type="color" id="colorPicker" title="اختر لون">
-    <br><br>
-    <input type="file" id="imagePicker" accept="image/*" title="اختر صورة">
-    <br><br>
-    <button onclick="resetBg()" style="padding:8px 15px;border:none;border-radius:10px;background:#00f5ff;cursor:pointer;">رجوع للأصل</button>
-</div>
-
-<!-- الهيدر -->
-<div class="header">
-    <img src="عبدالرحمن.jpg" class="profile" onerror="this.src='https://via.placeholder.com/180?text=AB'">
-    <h1>Abdulrahman Ahmed Bashir</h1>
-    <div class="info">
-        طالب في الصف الأول الثانوي 💻<br>
-        بحب البرمجة وإنشاء المواقع وتطويرها 🚀<br>
-        <span style="color:#00f5ff;font-weight:bold;">مستقبلي في الكود ✨</span>
-    </div>
-</div>
-
-<!-- ✅ التواصل عبر البريد -->
-<div class="section">
-    <h2>✉️ تواصل معي</h2>
-    <div class="contact-form-container">
-        <form action="https://formsubmit.co/abdulrahmanbashir573@gmail.com" method="POST" id="myContactForm">
-            <input type="hidden" name="_subject" value="📩 رسالة جديدة من موقعك!">
-            <input type="hidden" name="_captcha" value="false">            <input type="hidden" name="_template" value="table">
-            <input type="text" name="name" placeholder="اسمك *" required>
-            <input type="email" name="email" placeholder="بريدك الإلكتروني *" required>
-            <textarea name="message" placeholder="رسالتك *" required></textarea>
-            <button type="submit">🚀 إرسال</button>
-        </form>
-        <div class="success-message" id="successMsg">✅ تم الإرسال! هرد عليك قريباً.</div>
-    </div>
-</div>
-
-<!-- 📱 التواصل الاجتماعي -->
-<div class="section">
-    <h2>📱 تابعني</h2>
-    <div class="grid">
-        <a class="card" href="https://www.facebook.com/share/1HriMHU17G/" target="_blank"><i class="fab fa-facebook"></i>Facebook</a>
-        <a class="card" href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i>Twitter</a>
-        <a class="card" href="https://youtube.com/@algamers-b7l?si=PA_cb863tyMvPeqe" target="_blank"><i class="fab fa-youtube"></i>YouTube</a>
-        <a class="card" href="https://vt.tiktok.com/ZS5DVkacM/" target="_blank"><i class="fab fa-tiktok"></i>TikTok</a>
-        <a class="card" href="https://www.instagram.com/abdulrahmanbashir781?igsh=MXBxamxrcXg0YmJ3bQ==" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
-        <a class="card" href="https://wa.me/201025474780" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a>
-    </div>
-</div>
-
-<!-- 🕌 مواقيت الصلاة -->
-<div class="section">
-    <h2>🕌 مواقيت الصلاة</h2>
-    <div class="prayer-box">
-        <div class="city-selector">
-            <select id="citySelect" onchange="fetchPrayerTimes()">
-                <option value="Cairo">القاهرة 🇪🇬</option>
-                <option value="Alexandria">الإسكندرية</option>
-                <option value="Giza">الجيزة</option>
-                <option value="Mecca">مكة المكرمة 🇸🇦</option>
-                <option value="Medina">المدينة المنورة</option>
-                <option value="Dubai">دبي 🇦🇪</option>
-                <option value="Riyadh">الرياض</option>
-            </select>
-        </div>
-        <div id="prayerDate" style="color:#00f5ff;font-weight:bold;margin-bottom:10px;"></div>
-        <div class="prayer-times" id="prayerTimes">
-            <div class="prayer-item"><div class="prayer-name">الفجر</div><div class="prayer-time" id="fajr">--:--</div></div>
-            <div class="prayer-item"><div class="prayer-name">الشروق</div><div class="prayer-time" id="sunrise">--:--</div></div>
-            <div class="prayer-item"><div class="prayer-name">الظهر</div><div class="prayer-time" id="dhuhr">--:--</div></div>
-            <div class="prayer-item"><div class="prayer-name">العصر</div><div class="prayer-time" id="asr">--:--</div></div>
-            <div class="prayer-item"><div class="prayer-name">المغرب</div><div class="prayer-time" id="maghrib">--:--</div></div>
-            <div class="prayer-item"><div class="prayer-name">العشاء</div><div class="prayer-time" id="isha">--:--</div></div>
-        </div>
-    </div>
-</div>
-<!-- 💭 اقتباسات ملهمة -->
-<div class="section">
-    <h2>💭 كلمة اليوم</h2>
-    <div class="quote-box">
-        <p class="quote-text" id="quoteText">"البرمجة ليست مجرد كود، بل هي طريقة للتفكير."</p>
-        <p class="quote-author" id="quoteAuthor">- مجهول</p>
-        <button class="quote-refresh" onclick="newQuote()">🔄 اقتباس جديد</button>
-    </div>
-</div>
-
-<!-- 🌤️ حالة الطقس -->
-<div class="section">
-    <h2>🌤️ الطقس</h2>
-    <div class="weather-box">
-        <input type="text" id="weatherCity" class="weather-input" placeholder="اسم المدينة" value="Cairo">
-        <button class="weather-btn" onclick="getWeather()">بحث</button>
-        <div id="weatherResult" style="margin-top:20px;">
-            <div style="font-size:50px;" id="weatherIcon">🌡️</div>
-            <div class="weather-main" id="weatherTemp">--°C</div>
-            <div class="weather-desc" id="weatherDesc">جاري التحميل...</div>
-            <div class="weather-details">
-                <span>💧 <span id="weatherHumidity">--%</span></span>
-                <span>💨 <span id="weatherWind">-- كم/س</span></span>
-            </div>
-        </div>
-        <p style="font-size:12px;opacity:0.7;margin-top:15px;">
-            ⚠️ للحصول على بيانات حقيقية، سجل في 
-            <a href="https://openweathermap.org/api" target="_blank" style="color:#00f5ff;">OpenWeatherMap</a>
-            وضع مفتاح API في الكود
-        </p>
-    </div>
-</div>
-
-<!-- 🎮 الألعاب -->
-<div class="section">
-    <h2>🎮 ألعاب</h2>
-    <div class="grid">
-        <a class="card" href="https://poki.com/en/g/subway-surfers" target="_blank">🏃 Subway Surfers</a>
-        <a class="card" href="https://poki.com/en/g/magic-piano-tiles" target="_blank">🎹 Piano Tiles</a>
-        <a class="card" href="https://poki.com/en/g/moto-x3m" target="_blank">🏍️ Moto X3M</a>
-        <a class="card" href="https://poki.com/en/g/penalty-shooters-2" target="_blank">⚽ Penalty Shooters</a>
-    </div>
-</div>
-
-<!-- 📚 التعلم -->
-<div class="section">
-    <h2>📚 مصادر تعليمية</h2>
-    <div class="grid">
-        <a class="card" href="https://quran.com" target="_blank">📖 المصحف الشريف</a>
-        <a class="card" href="https://islamweb.net/ar/article/13578" target="_blank">📜 قصص الأنبياء</a>        <a class="card" href="https://tajweed.me" target="_blank">🎙️ تعلم التجويد</a>
-        <a class="card" href="https://www.w3schools.com" target="_blank">💻 تعلم البرمجة</a>
-    </div>
-</div>
-
-<!-- ✅ قائمة المهام -->
-<div class="section">
-    <h2>✅ مهامي اليومية</h2>
-    <div class="todo-container">
-        <div class="todo-input-group">
-            <input type="text" id="todoInput" placeholder="أضف مهمة جديدة..." onkeypress="if(event.key==='Enter')addTodo()">
-            <button onclick="addTodo()">➕</button>
-        </div>
-        <ul class="todo-list" id="todoList"></ul>
-        <p id="todoCount" style="font-size:13px;opacity:0.8;margin-top:10px;"></p>
-    </div>
-</div>
-
-<!-- 💻 معرض المشاريع -->
-<div class="section">
-    <h2>💻 مشاريعي</h2>
-    <div class="projects-grid">
-        <div class="project-card">
-            <div class="project-img">🌐</div>
-            <div class="project-content">
-                <h3>موقعي الشخصي</h3>
-                <p>موقع تفاعلي يجمع أدواتي وروابطي في مكان واحد بتصميم عصري.</p>
-                <a href="https://abdulrahmanbashir573-del.github.io/My-website-/" target="_blank" class="project-link">عرض المشروع</a>
-            </div>
-        </div>
-        <div class="project-card">
-            <div class="project-img">🧮</div>
-            <div class="project-content">
-                <h3>آلة حاسبة متطورة</h3>
-                <p>آلة حاسبة بتصميم جميل تدعم العمليات الأساسية بواجهة سهلة.</p>
-                <a href="#" class="project-link">قريباً 🔜</a>
-            </div>
-        </div>
-        <div class="project-card">
-            <div class="project-img">⏱️</div>
-            <div class="project-content">
-                <h3>مؤقت بومودورو</h3>
-                <p>أداة لزيادة الإنتاجية باستخدام تقنية البومودورو مع تنبيهات صوتية.</p>
-                <a href="#" class="project-link">قريباً 🔜</a>
+    <!-- شاشة تسجيل الدخول -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <h1 class="login-title">تسجيل الدخول</h1>
+            <p class="login-subtitle">استخدم حساب <span>Google</span> الخاص بك</p>
+            <input type="email" class="input-field" id="loginEmail" placeholder="البريد الإلكتروني أو الهاتف">
+            <button class="login-button" id="loginBtn">التالي</button>
+            <div class="skip-login">
+                <a id="skipLogin">متابعة بدون حساب</a>
             </div>
         </div>
     </div>
-</div>
 
-<!-- 📝 المفكرة السريعة --><div class="section">
-    <h2>📝 مفكرتي</h2>
-    <div class="notes-container">
-        <textarea class="notes-textarea" id="quickNotes" placeholder="اكتب ملاحظاتك هنا... سيتم الحفظ تلقائياً ✨"></textarea>
-        <p class="notes-status" id="notesStatus">✅ تم الحفظ تلقائياً</p>
-    </div>
-</div>
+    <!-- المحتوى الرئيسي -->
+    <div id="mainContent" class="hidden">
+        <!-- الهيدر -->
+        <header class="header">
+            <div class="header-right">
+                <button class="icon-button" id="settingsBtn" title="الإعدادات" aria-label="الإعدادات">                    <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+                </button>
+                <div class="clock" id="clock" aria-label="الساعة">--:--</div>
+                <div class="avatar" id="userAvatar" title="تسجيل الخروج">ع</div>
+            </div>
+        </header>
 
-<!-- ⏳ العداد التنازلي -->
-<div class="section">
-    <h2>⏳ عداد الأهداف</h2>
-    <div class="countdown-box">
-        <p style="opacity:0.9;">حدد تاريخ هدفك (امتحان، عيد ميلاد، مشروع...)</p>
-        <div class="countdown-inputs">
-            <input type="date" id="countdownDate">
-        </div>
-        <div class="countdown-display">
-            <span id="cdDays">00</span>ي <span id="cdHours">00</span>س <span id="cdMinutes">00</span>د <span id="cdSeconds">00</span>ث
-        </div>
-        <div class="countdown-btns">
-            <button class="start" onclick="startCountdown()">▶ بدء</button>
-            <button class="stop" onclick="stopCountdown()">⏹ إيقاف</button>
-            <button class="reset" onclick="resetCountdown()">🔄 إعادة</button>
-        </div>
-    </div>
-</div>
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <div class="logo" aria-hidden="true">
+                <span>A</span><span>b</span><span>d</span><span>u</span><span>l</span><span>r</span><span>a</span><span>h</span><span>m</span><span>a</span><span>n</span>
+            </div>
 
-<!-- 📱 تطبيقاتي -->
-<div class="section" id="apps">
-    <h2>📱 أدواتي</h2>
-    <div class="grid">
-        <!-- الآلة الحاسبة -->
-        <div class="card">
-            <h3 style="margin-bottom:15px;color:#00f5ff;">🧮 Bashir Calc</h3>
-            <input type="text" id="calcScreen" style="width:100%;padding:12px;font-size:18px;border:none;border-radius:10px;margin-bottom:12px;text-align:right;background:rgba(255,255,255,0.1);color:white;" readonly>
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
-                <button onclick="press('7')" class="calcBtn">7</button>
-                <button onclick="press('8')" class="calcBtn">8</button>
-                <button onclick="press('9')" class="calcBtn">9</button>
-                <button onclick="press('/')" class="calcBtn">÷</button>
-                <button onclick="press('4')" class="calcBtn">4</button>
-                <button onclick="press('5')" class="calcBtn">5</button>
-                <button onclick="press('6')" class="calcBtn">6</button>
-                <button onclick="press('*')" class="calcBtn">×</button>
-                <button onclick="press('1')" class="calcBtn">1</button>
-                <button onclick="press('2')" class="calcBtn">2</button>
-                <button onclick="press('3')" class="calcBtn">3</button>
-                <button onclick="press('-')" class="calcBtn">-</button>
-                <button onclick="press('0')" class="calcBtn">0</button>
-                <button onclick="press('.')" class="calcBtn">.</button>                <button onclick="calculate()" class="calcBtn">=</button>
-                <button onclick="press('+')" class="calcBtn">+</button>
-                <button onclick="clearScreen()" style="grid-column:span 4;background:#ff4757;color:white;padding:10px;border:none;border-radius:10px;">مسح</button>
+            <div class="search-container">
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <input type="text" class="search-input" id="searchInput" placeholder="ابحث في Google أو اكتب عنوان موقع إلكتروني" aria-label="حقل البحث">
+                </div>
+                
+                <div class="search-buttons">
+                    <button class="btn" id="searchBtn">بحث Google</button>
+                    <button class="btn" id="luckyBtn">ضربة حظ</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- الفوتر -->
+        <footer class="footer">
+            <div class="footer-right">
+                <span id="locationText">مصر</span>
+            </div>
+            <div class="footer-left">
+                <a id="aboutLink">حول</a>
+                <a id="adsLink">الإعلانات</a>
+                <a id="businessLink">الأعمال</a>
+                <a id="privacyLink">الخصوصية</a>
+                <a id="termsLink">الشروط</a>
+                <a id="settingsLink">الإعدادات</a>
+            </div>
+        </footer>
+
+        <!-- قائمة الإعدادات -->
+        <div class="settings-menu" id="settingsMenu">
+            <div class="settings-header">الإعدادات</div>
+            <div class="settings-divider"></div>
+            
+            <div class="settings-item">
+                <span id="darkModeText">الوضع الداكن</span>
+                <label class="toggle">
+                    <input type="checkbox" id="darkModeToggle">                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="settings-item" id="langBtn">
+                <span id="langText">اللغة: العربية</span>
+                <svg viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+            </div>
+
+            <div class="settings-divider"></div>
+            <div class="settings-header">الخلفية</div>
+            
+            <div class="bg-options">
+                <div class="bg-option bg-default" data-bg="default" title="افتراضي"></div>
+                <div class="bg-option bg-1" data-bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)" title="بنفسجي"></div>
+                <div class="bg-option bg-2" data-bg="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" title="وردي"></div>
+                <div class="bg-option bg-3" data-bg="linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" title="أزرق"></div>
+                <div class="bg-option bg-4" data-bg="linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)" title="أخضر"></div>
+                <div class="bg-option bg-5" data-bg="#202124" title="داكن"></div>
+            </div>
+            
+            <div class="settings-item" id="customBgBtn">
+                <span>خلفية مخصصة</span>
+                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            </div>
+
+            <div class="settings-divider"></div>
+            
+            <div class="settings-item" id="logoutBtn">
+                <span>تسجيل الخروج</span>
+                <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
             </div>
         </div>
-        <!-- المؤقت -->
-        <div class="card">
-            <h3 style="margin-bottom:15px;color:#00f5ff;">⏲️ مؤقت</h3>
-            <div id="miniTimer" style="font-size:32px;font-weight:bold;color:#00f5ff;margin:10px 0;">00:00</div>
-            <input type="number" id="miniTimerInput" placeholder="دقائق" style="width:80px;padding:8px;border-radius:10px;border:none;text-align:center;">
-            <br><br>
-            <button onclick="startMiniTimer()" style="padding:8px 15px;border:none;border-radius:10px;background:#00f5ff;color:black;font-weight:bold;cursor:pointer;">ابدأ</button>
-            <button onclick="stopMiniTimer()" style="padding:8px 15px;border:none;border-radius:10px;background:#ff4757;color:white;font-weight:bold;cursor:pointer;margin-right:5px;">إيقاف</button>
-        </div>
     </div>
-</div>
 
-<!-- 💻 بحث -->
-<div class="section">
-    <h2>🔍 بحث سريع</h2>
-    <div style="display:flex;justify-content:center;gap:0;max-width:400px;margin:auto;">
-        <input type="text" id="searchBox" placeholder="ابحث في جوجل..." style="flex:1;padding:15px;border:none;border-radius:30px 0 0 30px;outline:none;font-size:16px;background:rgba(255,255,255,0.1);color:white;">
-        <button onclick="search()" style="padding:15px 25px;border:none;background:#00f5ff;color:black;cursor:pointer;border-radius:0 30px 30px 0;font-weight:bold;">بحث</button>
-    </div>
-</div>
+    <!-- ✅ إشعار التوست -->
+    <div class="toast" id="toast">تم الحفظ ✓</div>
 
-<!-- 📄 تحميل السيرة الذاتية -->
-<div class="section">
-    <h2>📄 سيرتي الذاتية</h2>
-    <a href="CV.pdf" download class="cv-btn" onclick="if(!confirm('هل تريد تحميل السيرة الذاتية؟'))return false;">
-        <i class="fas fa-download"></i> تحميل CV
-    </a>
-    <p style="margin-top:15px;font-size:14px;opacity:0.8;">📄 ملف PDF • محدث 2026</p>
-</div>
+    <script>
+        // ✅ المتغيرات والعناصر
+        const elements = {
+            loginOverlay: document.getElementById('loginOverlay'),
+            mainContent: document.getElementById('mainContent'),
+            loginEmail: document.getElementById('loginEmail'),
+            loginBtn: document.getElementById('loginBtn'),
+            skipLogin: document.getElementById('skipLogin'),
+            userAvatar: document.getElementById('userAvatar'),
+            clock: document.getElementById('clock'),
+            searchInput: document.getElementById('searchInput'),
+            searchBtn: document.getElementById('searchBtn'),            luckyBtn: document.getElementById('luckyBtn'),
+            settingsBtn: document.getElementById('settingsBtn'),
+            settingsMenu: document.getElementById('settingsMenu'),
+            settingsLink: document.getElementById('settingsLink'),
+            darkModeToggle: document.getElementById('darkModeToggle'),
+            langBtn: document.getElementById('langBtn'),
+            customBgBtn: document.getElementById('customBgBtn'),
+            bgOptions: document.querySelectorAll('.bg-option'),
+            logoutBtn: document.getElementById('logoutBtn'),
+            toast: document.getElementById('toast'),
+            locationText: document.getElementById('locationText'),
+            langText: document.getElementById('langText'),
+            darkModeText: document.getElementById('darkModeText')
+        };
 
-<!-- عداد الزوار -->
-<div style="margin:30px;text-align:center;">
-    <div style="display:inline-block;background:linear-gradient(45deg,#00f5ff,#0066ff);padding:12px 25px;border-radius:15px;color:white;font-size:18px;box-shadow:0 0 20px rgba(0,255,255,0.7);">
-        👀 زوار الموقع: <span id="visits" style="font-weight:bold;">0</span>
-    </div>
-</div>
+        let currentLang = 'ar';
+        let currentBg = '';
 
-<!-- الفوتر -->
-<div class="footer">
-    © 2026 Abdulrahman Ahmed Bashir 💙<br>
-    شرفتنى بزيارة موقعي 🚀
-</div>
+        // ✅ عند تحميل الصفحة
+        window.addEventListener('load', () => {
+            loadSettings();
+            updateClock();
+            setInterval(updateClock, 1000);
+            setupEventListeners();
+        });
 
-<!-- ==================== JavaScript ==================== -->
-<script>/* ========== شاشة القفل (مضمونة) ========== */
-function checkPassword(){
-    var input = document.getElementById("passwordInput");
-    var msg = document.getElementById("lockMsg");
-    var screen = document.getElementById("lockScreen");
-    
-    if(input.value === "1234"){
-        screen.style.opacity = "0";
-        setTimeout(function(){
-            screen.style.display = "none";
-        }, 500);
-        localStorage.setItem("siteUnlocked", "true");
-        msg.innerText = "";
-    } else {
-        msg.innerText = "❌ كلمة السر غلط، حاول تاني";
-        input.value = "";
-        input.focus();
-    }
-}
+        // ✅ إعداد مستمعات الأحداث (بدلاً من onclick)
+        function setupEventListeners() {
+            // تسجيل الدخول
+            elements.loginBtn.addEventListener('click', handleLogin);
+            elements.loginEmail?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleLogin();
+            });
+            elements.skipLogin.addEventListener('click', () => {
+                localStorage.setItem('ab_guest', 'true');
+                showMainInterface('ضيف');
+            });
 
-// لو فتح الموقع قبل كده ودخل الباسورد
-window.onload = function(){
-    if(localStorage.getItem("siteUnlocked") === "true"){
-        document.getElementById("lockScreen").style.display = "none";
-    }
-    // باقي دوال التحميل
-    initSite();
-};
+            // البحث
+            elements.searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+            elements.searchBtn.addEventListener('click', performSearch);
+            elements.luckyBtn.addEventListener('click', luckySearch);
 
-// دعم زر Enter في شاشة القفل
-document.getElementById("passwordInput").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        checkPassword();
-    }
-});
+            // الإعدادات
+            elements.settingsBtn.addEventListener('click', toggleSettings);
+            elements.settingsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleSettings();            });
 
-/* ========== باقي وظائف الموقع ========== */
-function initSite(){
-    /* النجوم الخلفية */
-    const canvas = document.getElementById("stars");
-    const ctx = canvas.getContext("2d");
-    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=document.body.scrollHeight;}
-    resizeCanvas();window.addEventListener("resize",resizeCanvas);
-    let stars=[];
-    for(let i=0;i<200;i++){stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,radius:Math.random()*1.5,speed:Math.random()*0.5});}
-    function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle="rgba(255,255,255,0.7)";stars.forEach(star=>{star.y+=star.speed;if(star.y>canvas.height)star.y=0;ctx.beginPath();ctx.arc(star.x,star.y,star.radius,0,Math.PI*2);ctx.fill();});requestAnimationFrame(animate);}
-    animate();
+            // إغلاق القائمة عند الضغط خارجها
+            document.addEventListener('click', (e) => {
+                if (!elements.settingsBtn.contains(e.target) && 
+                    !elements.settingsMenu.contains(e.target) &&
+                    !elements.settingsLink.contains(e.target)) {
+                    elements.settingsMenu.classList.remove('active');
+                }
+            });
 
-    /* الساعة */
-    function updateClock(){document.getElementById("clock").innerText=new Date().toLocaleTimeString('ar-EG');}    setInterval(updateClock,1000);updateClock();
+            // إغلاق القائمة بزر Esc
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    elements.settingsMenu.classList.remove('active');
+                }
+            });
 
-    /* الوضع الليلي */
-    const toggleBtn=document.getElementById("themeToggle");
-    toggleBtn.onclick=function(){document.body.classList.toggle("light-mode");if(document.body.classList.contains("light-mode")){toggleBtn.innerHTML="☀️ وضع نهاري";localStorage.setItem("theme","light");}else{toggleBtn.innerHTML="🌙 وضع ليلي";localStorage.setItem("theme","dark");}};
-    if(localStorage.getItem("theme")==="light"){document.body.classList.add("light-mode");toggleBtn.innerHTML="☀️ وضع نهاري";}
+            // الوضع الداكن
+            elements.darkModeToggle.addEventListener('change', toggleTheme);
 
-    /* الخلفية */
-    function toggleBgPanel(){let p=document.getElementById("bgPanel");p.style.display=p.style.display==="none"?"block":"none";}
-    document.getElementById("colorPicker").addEventListener("input",function(){document.body.style.backgroundImage="none";document.body.style.backgroundColor=this.value;document.body.style.animation="none";localStorage.setItem("bgColor",this.value);localStorage.removeItem("bgImage");});
-    document.getElementById("imagePicker").addEventListener("change",function(){let file=this.files[0],reader=new FileReader();reader.onload=function(e){document.body.style.backgroundImage=`url(${e.target.result})`;document.body.style.backgroundSize="cover";document.body.style.animation="none";localStorage.setItem("bgImage",e.target.result);localStorage.removeItem("bgColor");};reader.readAsDataURL(file);});
-    function resetBg(){document.body.style.background="";document.body.style.animation="gradientBG 15s ease infinite";localStorage.removeItem("bgColor");localStorage.removeItem("bgImage");}
-    if(localStorage.getItem("bgColor")){document.body.style.backgroundColor=localStorage.getItem("bgColor");document.body.style.backgroundImage="none";document.body.style.animation="none";}
-    if(localStorage.getItem("bgImage")){document.body.style.backgroundImage=`url(${localStorage.getItem("bgImage")})`;document.body.style.backgroundSize="cover";document.body.style.animation="none";}
+            // اللغة
+            elements.langBtn.addEventListener('click', changeLanguage);
 
-    /* زر الصعود للأعلى */
-    window.onscroll=function(){let b=document.getElementById("topBtn");if(document.documentElement.scrollTop>200){b.style.display="block";}else{b.style.display="none";}};
-    function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+            // الخلفيات الجاهزة
+            elements.bgOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const bg = option.dataset.bg;
+                    applyBackground(bg === 'default' ? '' : bg);
+                    elements.bgOptions.forEach(o => o.classList.remove('active'));
+                    option.classList.add('active');
+                    showToast('تم تغيير الخلفية ✓');
+                });
+            });
 
-    /* الترحيب */
-    let welcomeBox=document.getElementById("welcomeBox");
-    setTimeout(()=>{welcomeBox.style.opacity="1";},500);
-    setTimeout(()=>{welcomeBox.style.opacity="0";},4000);
+            // خلفية مخصصة
+            elements.customBgBtn.addEventListener('click', () => {
+                const url = prompt('أدخل رابط الصورة (مثال: https://example.com/image.jpg):', currentBg);
+                if (url && url.trim()) {
+                    applyBackground(`url('${url.trim()}') center/cover no-repeat`);
+                    localStorage.setItem('ab_bg_custom', url.trim());
+                    localStorage.removeItem('ab_bg');
+                    showToast('تم حفظ الخلفية ✓');
+                }
+            });
 
-    /* عداد الزوار */
-    fetch("https://api.countapi.xyz/hit/bashir-unique-site-2026/visits").then(r=>r.json()).then(r=>{let c=r.value,current=0;let interval=setInterval(()=>{if(current<c){current++;document.getElementById("visits").innerText=current;}else{clearInterval(interval);}},10);});
+            // تسجيل الخروج
+            elements.logoutBtn.addEventListener('click', logout);
+            elements.userAvatar.addEventListener('click', logout);
+            // روابط الفوتر
+            ['aboutLink', 'adsLink', 'businessLink', 'privacyLink', 'termsLink'].forEach(id => {
+                document.getElementById(id)?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showToast('هذه الميزة قريباً 🚀');
+                });
+            });
+        }
 
-    /* البحث */
-    function search(){let q=document.getElementById("searchBox").value;if(q.trim()!==""){window.open("https://www.google.com/search?q="+q,"_blank");}}
+        // ✅ وظائف تسجيل الدخول
+        function handleLogin() {
+            const email = elements.loginEmail?.value.trim();
+            if (email && email.includes('@')) {
+                localStorage.setItem('ab_user', email);
+                localStorage.removeItem('ab_guest');
+                showMainInterface(email);
+                showToast('أهلاً بك يا ' + email.split('@')[0] + ' 👋');
+            } else {
+                showToast('الرجاء إدخال بريد إلكتروني صحيح ⚠️', 3000, '#ea4335');
+            }
+        }
 
-    /* الآلة الحاسبة */
-    function press(n){document.getElementById("calcScreen").value+=n;}
-    function calculate(){try{document.getElementById("calcScreen").value=eval(document.getElementById("calcScreen").value);}catch{alert("عملية غير صحيحة");}}
-    function clearScreen(){document.getElementById("calcScreen").value="";}
+        function showMainInterface(name) {
+            elements.loginOverlay?.classList.add('hidden');
+            elements.mainContent?.classList.remove('hidden');
+            if (elements.userAvatar) {
+                elements.userAvatar.textContent = name.charAt(0).toUpperCase();
+                elements.userAvatar.title = name;
+            }
+        }
 
-    /* المؤقت الصغير */
-    let miniInterval,miniSeconds=0;
-    function startMiniTimer(){let input=document.getElementById("miniTimerInput").value;if(input<=0)return;miniSeconds=input*60;clearInterval(miniInterval);miniInterval=setInterval(()=>{if(miniSeconds<=0){clearInterval(miniInterval);alert("⏰ انتهى الوقت!");return;}miniSeconds--;let m=Math.floor(miniSeconds/60),s=miniSeconds%60;document.getElementById("miniTimer").innerText=(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);},1000);}
-    function stopMiniTimer(){clearInterval(miniInterval);}
+        function logout() {
+            if (confirm('هل تريد تسجيل الخروج؟')) {
+                localStorage.removeItem('ab_user');
+                localStorage.removeItem('ab_guest');
+                location.reload();
+            }
+        }
 
-    /* نموذج التواصل */
-    document.getElementById('myContactForm').addEventListener('submit',function(e){e.preventDefault();const form=e.target;fetch(form.action,{method:form.method,body:new FormData(form),headers:{'Accept':'application/json'}}).then(r=>{if(r.ok){document.getElementById('successMsg').style.display='block';form.reset();setTimeout(()=>{document.getElementById('successMsg').style.display='none';},5000);}else{alert('حدث خطأ، حاول مرة أخرى');}}).catch(()=>alert('حدث خطأ، حاول مرة أخرى'));});
+        // ✅ الساعة
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            if (elements.clock) {
+                elements.clock.textContent = `${h}:${m}`;
+            }
+        }
 
-    /* مواقيت الصلاة */
-    async function fetchPrayerTimes(){const city=document.getElementById("citySelect").value;const date=new Date();const dateStr=`${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;document.getElementById("prayerDate").innerText=`📅 ${date.toLocaleDateString('ar-EG')}`;try{const res=await fetch(`https://api.aladhan.com/v1/timingsByCity/${dateStr}?city=${city}&country=Egypt&method=5`);const data=await res.json();const t=data.data.timings;document.getElementById("fajr").innerText=t.Fajr;document.getElementById("sunrise").innerText=t.Sunrise;document.getElementById("dhuhr").innerText=t.Dhuhr;document.getElementById("asr").innerText=t.Asr;document.getElementById("maghrib").innerText=t.Maghrib;document.getElementById("isha").innerText=t.Isha;highlightNextPrayer(t);}catch(err){console.error(err);}}
-    function highlightNextPrayer(t){const now=new Date();const currentMinutes=now.getHours()*60+now.getMinutes();const prayers=[{name:"fajr",time:t.Fajr},{name:"sunrise",time:t.Sunrise},{name:"dhuhr",time:t.Dhuhr},{name:"asr",time:t.Asr},{name:"maghrib",time:t.Maghrib},{name:"isha",time:t.Isha}];let next=null;for(let p of prayers){let [h,m]=p.time.split(":").map(Number);let pm=h*60+m;if(pm>currentMinutes){next=p.name;break;}}if(next){document.querySelectorAll(".prayer-item").forEach(el=>el.classList.remove("active"));document.getElementById(next).closest(".prayer-item").classList.add("active");}}
-    fetchPrayerTimes();setInterval(fetchPrayerTimes,60000);
+        // ✅ البحث        function performSearch() {
+            const query = elements.searchInput?.value.trim();
+            if (query) {
+                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}&hl=${currentLang}`;
+            }
+        }
 
-    /* الاقتباسات */
-    const quotes=[{t:"البرمجة ليست مجرد كود، بل هي طريقة للتفكير.",a:"مجهول"},{t:"أفضل وقت لزراعة شجرة كان قبل 20 سنة، ثاني أفضل وقت هو الآن.",a:"مثل صيني"},{t:"لا تقلق إذا واجهت مشاكل، استمتع بالرحلة وتعلم منها.",a:"مجهول"},{t:"النجاح ليس مفتاح السعادة، لكن السعادة هي مفتاح النجاح.",a:"ألبيرت شفايتزر"},{t:"ابدأ من حيث أنت، استخدم ما تملك، افعل ما تستطيع.",a:"آرثر آش"},{t:"التعلم هو كنز يتبع صاحبه أينما ذهب.",a:"مثل عربي"},{t:"لا تؤجل عمل اليوم إلى الغد، خاصة لو كان كود! 😄",a:"مطور محترف"}];    function newQuote(){const q=quotes[Math.floor(Math.random()*quotes.length)];document.getElementById("quoteText").innerText=`"${q.t}"`;document.getElementById("quoteAuthor").innerText=`- ${q.a}`;}
-    newQuote();
+        function luckySearch() {
+            const query = elements.searchInput?.value.trim();
+            if (query) {
+                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}&btnI=1&hl=${currentLang}`;
+            }
+        }
 
-    /* الطقس */
-    async function getWeather(){const city=document.getElementById("weatherCity").value;if(!city)return;document.getElementById("weatherDesc").innerText="جاري التحميل...";try{const API_KEY="YOUR_API_KEY";const res=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=ar`);if(!res.ok){document.getElementById("weatherDesc").innerText="❌ المدينة غير موجودة";return;}const data=await res.json();document.getElementById("weatherTemp").innerText=Math.round(data.main.temp)+"°C";document.getElementById("weatherDesc").innerText=data.weather[0].description;document.getElementById("weatherHumidity").innerText=data.main.humidity+"%";document.getElementById("weatherWind").innerText=data.wind.speed+" كم/س";const icons={"Clear":"☀️","Clouds":"☁️","Rain":"🌧️","Drizzle":"🌦️","Thunderstorm":"⛈️","Snow":"❄️","Mist":"🌫️"};document.getElementById("weatherIcon").innerText=icons[data.weather[0].main]||"🌡️";}catch(e){document.getElementById("weatherDesc").innerText="⚠️ تحقق من مفتاح API أو الاتصال";console.log("Weather error:",e);}}
+        // ✅ الإعدادات
+        function toggleSettings() {
+            elements.settingsMenu?.classList.toggle('active');
+        }
 
-    /* قائمة المهام */
-    let todos=JSON.parse(localStorage.getItem("todos"))||[];
-    function renderTodos(){const list=document.getElementById("todoList");list.innerHTML="";todos.forEach((todo,i)=>{const li=document.createElement("li");li.className="todo-item"+(todo.done?" completed":"");li.innerHTML=`<input type="checkbox" class="todo-checkbox" ${todo.done?"checked":""} onchange="toggleTodo(${i})"><span>${todo.text}</span><button class="todo-delete" onclick="deleteTodo(${i})">✕</button>`;list.appendChild(li);});document.getElementById("todoCount").innerText=`📋 ${todos.filter(t=>!t.done).length} مهام متبقية`;localStorage.setItem("todos",JSON.stringify(todos));}
-    function addTodo(){const input=document.getElementById("todoInput");const text=input.value.trim();if(text){todos.push({text,done:false});input.value="";renderTodos();}}
-    function toggleTodo(i){todos[i].done=!todos[i].done;renderTodos();}
-    function deleteTodo(i){todos.splice(i,1);renderTodos();}
-    renderTodos();
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('ab_theme', isDark ? 'dark' : 'light');
+            showToast(isDark ? 'تم تفعيل الوضع الداكن 🌙' : 'تم تفعيل الوضع الفاتح ☀️');
+        }
 
-    /* المفكرة */
-    const notesArea=document.getElementById("quickNotes");const notesStatus=document.getElementById("notesStatus");
-    notesArea.value=localStorage.getItem("quickNotes")||"";let notesTimeout;
-    notesArea.addEventListener("input",function(){clearTimeout(notesTimeout);notesStatus.innerText="⏳ جاري الحفظ...";notesTimeout=setTimeout(()=>{localStorage.setItem("quickNotes",notesArea.value);notesStatus.innerText="✅ تم الحفظ تلقائياً";},1000);});
+        function changeLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('ab_lang', currentLang);
+            updateLanguage();
+            showToast(currentLang === 'ar' ? 'تم تغيير اللغة للعربية 🇪🇬' : 'Language changed to English 🇺🇸');
+        }
 
-    /* العداد التنازلي */
-    let countdownInterval;
-    function startCountdown(){const dateInput=document.getElementById("countdownDate").value;if(!dateInput){alert("اختر تاريخ أولاً!");return;}const target=new Date(dateInput).getTime();countdownInterval=setInterval(()=>{const now=Date.now();const diff=target-now;if(diff<=0){clearInterval(countdownInterval);document.querySelector(".countdown-display").innerHTML="🎉 وصلنا!";return;}const days=Math.floor(diff/(1000*60*60*24));const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));const minutes=Math.floor((diff%(1000*60*60))/(1000*60));const seconds=Math.floor((diff%(1000*60))/1000);document.getElementById("cdDays").innerText=String(days).padStart(2,"0");document.getElementById("cdHours").innerText=String(hours).padStart(2,"0");document.getElementById("cdMinutes").innerText=String(minutes).padStart(2,"0");document.getElementById("cdSeconds").innerText=String(seconds).padStart(2,"0");},1000);}
-    function stopCountdown(){clearInterval(countdownInterval);}
-    function resetCountdown(){stopCountdown();document.getElementById("cdDays").innerText="00";document.getElementById("cdHours").innerText="00";document.getElementById("cdMinutes").innerText="00";document.getElementById("cdSeconds").innerText="00";document.querySelector(".countdown-display").innerHTML='<span id="cdDays">00</span>ي <span id="cdHours">00</span>س <span id="cdMinutes">00</span>د <span id="cdSeconds">00</span>ث';}
+        function updateLanguage() {
+            const texts = {
+                ar: {
+                    lang: 'اللغة: العربية',
+                    dark: 'الوضع الداكن',
+                    location: 'مصر',
+                    search: 'ابحث في Google أو اكتب عنوان موقع إلكتروني',
+                    btn1: 'بحث Google',
+                    btn2: 'ضربة حظ'
+                },
+                en: {
+                    lang: 'Language: English',
+                    dark: 'Dark Mode',
+                    location: 'Egypt',
+                    search: 'Search Google or type a URL',
+                    btn1: 'Google Search',
+                    btn2: "I'm Feeling Lucky"                }
+            };
+            const t = texts[currentLang];
+            
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            
+            if (elements.langText) elements.langText.textContent = t.lang;
+            if (elements.darkModeText) elements.darkModeText.textContent = t.dark;
+            if (elements.locationText) elements.locationText.textContent = t.location;
+            if (elements.searchInput) elements.searchInput.placeholder = t.search;
+            if (elements.searchBtn) elements.searchBtn.textContent = t.btn1;
+            if (elements.luckyBtn) elements.luckyBtn.textContent = t.btn2;
+        }
 
-    /* تحسينات إضافية */
-    document.addEventListener("click",function(e){const panel=document.getElementById("bgPanel");const btn=document.getElementById("bgControlBtn");if(panel.style.display==="block"&&!panel.contains(e.target)&&!btn.contains(e.target)){panel.style.display="none";}});
-    document.querySelectorAll(".card, .project-card").forEach(el=>{el.addEventListener("mouseenter",function(){this.style.zIndex="10";});el.addEventListener("mouseleave",function(){this.style.zIndex="1";});});
-}
-</script>
+        // ✅ الخلفية
+        function applyBackground(bg) {
+            currentBg = bg;
+            document.body.style.background = bg ? bg : 'var(--bg-color)';
+            document.body.style.backgroundSize = bg ? 'cover' : 'auto';
+            document.body.style.backgroundPosition = 'center';
+            if (bg && bg !== 'default') {
+                localStorage.setItem('ab_bg', bg);
+                localStorage.removeItem('ab_bg_custom');
+            }
+        }
+
+        // ✅ تحميل الإعدادات المحفوظة
+        function loadSettings() {
+            const savedUser = localStorage.getItem('ab_user');
+            const savedGuest = localStorage.getItem('ab_guest');
+            const savedTheme = localStorage.getItem('ab_theme');
+            const savedLang = localStorage.getItem('ab_lang');
+            const savedBg = localStorage.getItem('ab_bg');
+            const savedCustomBg = localStorage.getItem('ab_bg_custom');
+
+            if (savedUser || savedGuest) {
+                showMainInterface(savedUser || 'ضيف');
+            }
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                elements.darkModeToggle.checked = true;
+            }
+            
+            if (savedLang === 'en') {
+                currentLang = 'en';
+                updateLanguage();
+            }
+                        if (savedCustomBg) {
+                applyBackground(`url('${savedCustomBg}') center/cover no-repeat`);
+            } else if (savedBg) {
+                applyBackground(savedBg);
+                elements.bgOptions.forEach(o => {
+                    if (o.dataset.bg === savedBg) o.classList.add('active');
+                });
+            }
+        }
+
+        // ✅ إشعار التوست
+        function showToast(message, duration = 2000, bgColor = null) {
+            if (!elements.toast) return;
+            elements.toast.textContent = message;
+            if (bgColor) elements.toast.style.background = bgColor;
+            elements.toast.classList.add('show');
+            
+            setTimeout(() => {
+                elements.toast.classList.remove('show');
+            }, duration);
+        }
+
+        // ✅ منع إغلاق القائمة عند النقر داخلها
+        elements.settingsMenu?.addEventListener('click', (e) => e.stopPropagation());
+    </script>
 </body>
-            </html>
+</html>
