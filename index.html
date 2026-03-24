@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulrahman AlGamers - الموقع الشخصي</title>
+    <title>RGP - الموقع الشخصي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -18,7 +18,6 @@
             --bg-color: #0a0a0a;
             --card-bg: #1a1a1a;
             --text-color: #ffffff;
-            --rpg-border: #ffd700;
         }
 
         [data-theme="light"] {
@@ -33,12 +32,9 @@
             color: var(--text-color);
             min-height: 100vh;
             transition: all 0.3s ease;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%);
         }
 
-        /* Header & Weather */
+        /* Header */
         .top-bar {
             position: fixed;
             top: 0;
@@ -47,12 +43,11 @@
             background: rgba(26, 26, 26, 0.95);
             backdrop-filter: blur(10px);
             padding: 10px 20px;
-            display: flex;            justify-content: space-between;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border-bottom: 2px solid var(--primary-color);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-        }
+            border-bottom: 2px solid var(--primary-color);        }
 
         .weather-time {
             display: flex;
@@ -96,14 +91,12 @@
         .cover-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;            /* هنا حط صورة الغلاف الكبيرة */
-            background: linear-gradient(45deg, #00d4ff, #ff6b00);
+            object-fit: cover;
         }
 
         .profile-section {
             position: absolute;
-            bottom: -75px;
-            left: 50%;
+            bottom: -75px;            left: 50%;
             transform: translateX(-50%);
             text-align: center;
         }
@@ -112,20 +105,18 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 4px solid var(--rpg-border);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            border: 3px solid var(--primary-color);
             object-fit: cover;
-            /* هنا حط صورتك الشخصية الصغيرة */
-            background: #333;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
         }
 
         .profile-name {
             margin-top: 10px;
-            font-size: 2em;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            letter-spacing: 3px;
         }
 
         /* Main Container */
@@ -135,48 +126,35 @@
             padding: 100px 20px 50px;
         }
 
-        /* RPG Effects */
-        .rpg-card {
+        /* Cards */
+        .card {
             background: var(--card-bg);
-            border: 2px solid var(--rpg-border);
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px;
             margin-bottom: 30px;
-            box-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.2),
-                inset 0 0 20px rgba(255, 215, 0, 0.05);
-            position: relative;            overflow: hidden;
-        }
-
-        .rpg-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--rpg-border), var(--primary-color), var(--secondary-color));
-            z-index: -1;
-            border-radius: 15px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .rpg-card:hover::before {
-            opacity: 1;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .section-title {
             font-size: 2em;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary-color);
             position: relative;
+            padding-bottom: 10px;
         }
 
-        /* Social Media */
+        .section-title::after {
+            content: '';            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        /* Social Media - Modern Design */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -184,50 +162,70 @@
         }
 
         .social-card {
-            background: var(--card-bg);
-            padding: 20px;
+            background: linear-gradient(135deg, var(--card-bg), #2a2a2a);
+            padding: 25px;
             border-radius: 15px;
             text-align: center;
-            border: 2px solid transparent;
             transition: all 0.3s;
             cursor: pointer;
+            text-decoration: none;
+            color: var(--text-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
-        .social-card::after {
+
+        .social-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .social-card:hover::after {
-            left: 100%;
+        .social-card:hover::before {
+            opacity: 1;
         }
 
         .social-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.3);
         }
-
         .social-icon {
-            font-size: 3em;
-            margin-bottom: 10px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2em;
+            color: white;
         }
 
-        .tiktok { color: #ff0050; }
-        .whatsapp { color: #25d366; }
-        .twitter { color: #1da1f2; }
-        .instagram { color: #e4405f; }
-        .youtube { color: #ff0000; }
-        .facebook { color: #1877f2; }
+        .tiktok { background: linear-gradient(135deg, #ff0050, #00f2ea); }
+        .whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); }
+        .twitter { background: linear-gradient(135deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(135deg, #e4405f, #f56040); }
+        .youtube { background: linear-gradient(135deg, #ff0000, #cc0000); }
+        .facebook { background: linear-gradient(135deg, #1877f2, #0d5cb6); }
+        .telegram { background: linear-gradient(135deg, #0088cc, #006699); }
 
-        /* Games Section */
+        .social-card h3 {
+            margin: 10px 0 5px;
+            font-size: 1.3em;
+        }
+
+        .social-card p {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        /* Games Grid */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -239,21 +237,21 @@
             padding: 30px;
             border-radius: 15px;
             text-align: center;
-            border: 2px solid var(--primary-color);
+            border: 1px solid var(--primary-color);
             transition: all 0.3s;
-            cursor: pointer;
         }
+
         .game-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-        }
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);        }
 
         .game-icon {
-            font-size: 4em;
-            margin-bottom: 10px;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
 
-        /* Interactive Games */
+        /* Games Container */
         .games-container {
             display: grid;
             gap: 30px;
@@ -262,19 +260,24 @@
         .game-frame {
             width: 100%;
             height: 500px;
-            border: 3px solid var(--primary-color);
+            border: 2px solid var(--primary-color);
             border-radius: 15px;
             background: #000;
         }
 
         /* Piano */
+        .piano-container {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            overflow-x: auto;
+        }
+
         .piano {
             display: flex;
             justify-content: center;
-            gap: 5px;
-            padding: 20px;
-            background: #222;
-            border-radius: 10px;
+            gap: 3px;
+            min-width: 600px;
         }
 
         .key {
@@ -289,10 +292,11 @@
 
         .key.black {
             background: #000;
-            height: 120px;
-            margin: 0 -15px;
+            height: 120px;            margin: 0 -17px;
             z-index: 1;
+            position: relative;
         }
+
         .key:active, .key.active {
             background: var(--primary-color);
             transform: scale(0.95);
@@ -309,7 +313,7 @@
             background: var(--card-bg);
             padding: 20px;
             border-radius: 15px;
-            border: 2px solid var(--secondary-color);
+            border: 1px solid var(--secondary-color);
         }
 
         /* Calculator */
@@ -337,11 +341,11 @@
             border: none;
             border-radius: 10px;
             background: var(--primary-color);
-            color: #000;
-            font-size: 1.2em;
+            color: #000;            font-size: 1.2em;
             cursor: pointer;
             transition: transform 0.1s;
         }
+
         .calc-btn:hover {
             transform: scale(1.05);
         }
@@ -386,11 +390,11 @@
             background: var(--primary-color);
             border: none;
             border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
+            cursor: pointer;            font-weight: bold;
         }
 
-        /* Contact Form */        .contact-form {
+        /* Contact Form */
+        .contact-form {
             max-width: 600px;
             margin: 0 auto;
         }
@@ -435,11 +439,11 @@
         }
 
         /* Floating WhatsApp */
-        .whatsapp-float {
-            position: fixed;
+        .whatsapp-float {            position: fixed;
             bottom: 30px;
             left: 30px;
-            background: #25d366;            color: white;
+            background: #25d366;
+            color: white;
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -464,17 +468,14 @@
             text-align: center;
             padding: 30px;
             background: rgba(0, 0, 0, 0.5);
-            border-top: 2px solid var(--rpg-border);
+            border-top: 2px solid var(--primary-color);
             margin-top: 50px;
         }
 
         .developer-credit {
             font-size: 1.3em;
-            background: linear-gradient(45deg, #ffd700, #ff6b00, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary-color);
             font-weight: bold;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
         /* Background Selector */
@@ -496,6 +497,7 @@
             cursor: pointer;
             border: 3px solid transparent;
             transition: transform 0.3s;
+            display: inline-block;
         }
 
         .bg-option:hover, .bg-option.active {
@@ -515,20 +517,16 @@
             .tools-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .piano {
-                overflow-x: auto;
-            }
         }
 
-        /* Animations */
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.8); }
-        }
-
-        .glow-effect {
-            animation: glow 2s infinite;
+        /* Snake Game */
+        #snakeCanvas {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -537,9 +535,9 @@
     <div class="top-bar">
         <div class="weather-time">
             <div class="clock">
-                <i class="fas fa-clock"></i>                <span id="clock-time">00:00:00</span>
-            </div>
-            <div class="weather">
+                <i class="fas fa-clock"></i>
+                <span id="clock-time">00:00:00</span>
+            </div>            <div class="weather">
                 <i class="fas fa-cloud-sun"></i>
                 <span id="weather-info">جاري التحميل...</span>
             </div>
@@ -560,69 +558,84 @@
 
     <!-- Cover Section -->
     <div class="cover-section">
-        <div class="cover-image" id="coverImage"></div>
+        <img src="https://i.imgur.com/your-cover-image.jpg" alt="Cover" class="cover-image" onerror="this.style.background='linear-gradient(45deg, #00d4ff, #ff6b00)'">
         <div class="profile-section">
-            <img src="" alt="Profile" class="profile-image" id="profileImage">
-            <h1 class="profile-name">Abdulrahman AlGamers</h1>
+            <img src="https://i.imgur.com/your-profile-image.jpg" alt="Profile" class="profile-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjIwIiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+UkdQPC90ZXh0Pjwvc3ZnPg=='">
+            <h1 class="profile-name">RGP</h1>
         </div>
     </div>
 
     <div class="container">
         <!-- Social Media Section -->
-        <section class="rpg-card">
+        <section class="card">
             <h2 class="section-title"><i class="fas fa-share-alt"></i> تواصل معي</h2>
             <div class="social-grid">
                 <a href="https://tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-card">
-                    <i class="fab fa-tiktok social-icon tiktok"></i>
+                    <div class="social-icon tiktok">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
                     <h3>TikTok</h3>
                     <p>@abdulrahmanbashir523</p>
                 </a>
                 
                 <a href="https://www.instagram.com/abdulrahmanbashir781" target="_blank" class="social-card">
-                    <i class="fab fa-instagram social-icon instagram"></i>
+                    <div class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </div>
                     <h3>Instagram</h3>
                     <p>@abdulrahmanbashir781</p>
                 </a>
                 
-                <a href="https://x.com/body16603" target="_blank" class="social-card">
-                    <i class="fab fa-twitter social-icon twitter"></i>
-                    <h3>Twitter / X</h3>                    <p>@body16603</p>
+                <a href="https://x.com/body16603" target="_blank" class="social-card">                    <div class="social-icon twitter">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Twitter / X</h3>
+                    <p>@body16603</p>
                 </a>
                 
                 <a href="https://youtube.com/@algamers-b7l" target="_blank" class="social-card">
-                    <i class="fab fa-youtube social-icon youtube"></i>
+                    <div class="social-icon youtube">
+                        <i class="fab fa-youtube"></i>
+                    </div>
                     <h3>YouTube</h3>
                     <p>@algamers-b7l</p>
                 </a>
                 
                 <a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-card">
-                    <i class="fab fa-facebook social-icon facebook"></i>
+                    <div class="social-icon facebook">
+                        <i class="fab fa-facebook"></i>
+                    </div>
                     <h3>Facebook</h3>
                     <p>Abdulrahman Bashir</p>
                 </a>
                 
                 <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-card">
-                    <i class="fab fa-whatsapp social-icon whatsapp"></i>
+                    <div class="social-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
                     <h3>WhatsApp Channel</h3>
                     <p>انضم للقناة</p>
                 </a>
                 
                 <a href="https://wa.me/201025474780" target="_blank" class="social-card">
-                    <i class="fab fa-whatsapp social-icon whatsapp"></i>
+                    <div class="social-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
                     <h3>واتساب 1</h3>
                     <p>01025474780</p>
                 </a>
                 
                 <a href="https://wa.me/201505299711" target="_blank" class="social-card">
-                    <i class="fab fa-whatsapp social-icon whatsapp"></i>
+                    <div class="social-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
                     <h3>واتساب 2</h3>
                     <p>01505299711</p>
                 </a>
             </div>
         </section>
 
-        <!-- Favorite Games Section -->
-        <section class="rpg-card">
+        <!-- Favorite Games Section -->        <section class="card">
             <h2 class="section-title"><i class="fas fa-gamepad"></i> ألعابي المفضلة</h2>
             <div class="games-grid">
                 <div class="game-card">
@@ -635,7 +648,8 @@
                     <i class="fas fa-car game-icon"></i>
                     <h3>GTA</h3>
                     <p>جراند ثفت أوتو</p>
-                </div>                
+                </div>
+                
                 <div class="game-card">
                     <i class="fas fa-truck game-icon"></i>
                     <h3>Truck Simulator</h3>
@@ -651,50 +665,47 @@
         </section>
 
         <!-- Interactive Games Section -->
-        <section class="rpg-card">
+        <section class="card">
             <h2 class="section-title"><i class="fas fa-play-circle"></i> العب الآن</h2>
             <div class="games-container">
                 <!-- Piano -->
                 <div class="tool-card">
                     <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-music"></i> البيانو</h3>
-                    <div class="piano" id="piano">
-                        <div class="key" data-note="C4"></div>
-                        <div class="key black" data-note="C#4"></div>
-                        <div class="key" data-note="D4"></div>
-                        <div class="key black" data-note="D#4"></div>
-                        <div class="key" data-note="E4"></div>
-                        <div class="key" data-note="F4"></div>
-                        <div class="key black" data-note="F#4"></div>
-                        <div class="key" data-note="G4"></div>
-                        <div class="key black" data-note="G#4"></div>
-                        <div class="key" data-note="A4"></div>
-                        <div class="key black" data-note="A#4"></div>
-                        <div class="key" data-note="B4"></div>
-                        <div class="key" data-note="C5"></div>
+                    <div class="piano-container">
+                        <div class="piano" id="piano">
+                            <div class="key" data-note="C4"></div>
+                            <div class="key black" data-note="C#4"></div>
+                            <div class="key" data-note="D4"></div>
+                            <div class="key black" data-note="D#4"></div>
+                            <div class="key" data-note="E4"></div>
+                            <div class="key" data-note="F4"></div>
+                            <div class="key black" data-note="F#4"></div>
+                            <div class="key" data-note="G4"></div>
+                            <div class="key black" data-note="G#4"></div>
+                            <div class="key" data-note="A4"></div>
+                            <div class="key black" data-note="A#4"></div>
+                            <div class="key" data-note="B4"></div>                            <div class="key" data-note="C5"></div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Subway Surfers -->
+                <!-- Snake Game -->
                 <div>
-                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-running"></i> Subway Surfers</h3>
-                    <iframe class="game-frame" src="https://html5.gamedistribution.com/rvvASMiM/3b192d58f75a4f5b8dc47e2fdc9800b4/index.html" frameborder="0"></iframe>
+                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-snake"></i> Snake Game</h3>
+                    <canvas id="snakeCanvas" width="600" height="400"></canvas>
+                    <p style="text-align: center; margin-top: 10px;">استخدم الأسهم للتحكم ←↑↓→</p>
                 </div>
 
-                <!-- Game 2 - 2048 -->
+                <!-- 2048 Game -->
                 <div>
                     <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-th"></i> 2048</h3>
                     <iframe class="game-frame" src="https://play2048.co/" frameborder="0"></iframe>
-                </div>
-                <!-- Game 3 - Snake -->
-                <div>
-                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-snake"></i> Snake Game</h3>
-                    <canvas id="snakeCanvas" width="800" height="400" style="width: 100%; background: #000; border: 3px solid var(--primary-color); border-radius: 10px;"></canvas>
                 </div>
             </div>
         </section>
 
         <!-- Learning Section -->
-        <section class="rpg-card">
+        <section class="card">
             <h2 class="section-title"><i class="fas fa-graduation-cap"></i> تعلّم</h2>
             <div class="tools-grid">
                 <div class="tool-card">
@@ -721,19 +732,16 @@
                         <a href="https://www.islamway.net/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
                             <i class="fas fa-external-link-alt"></i> Islamway
                         </a>
-                        <a href="https://www.youtube.com/results?search_query=تعلم+التجويد" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
-                            <i class="fab fa-youtube"></i> دروس على يوتيوب
-                        </a>
                     </div>
-                </div>
-            </div>
+                </div>            </div>
         </section>
 
         <!-- Tools Section -->
-        <section class="rpg-card">
+        <section class="card">
             <h2 class="section-title"><i class="fas fa-tools"></i> الأدوات</h2>
             <div class="tools-grid">
-                <!-- Calculator -->                <div class="tool-card">
+                <!-- Calculator -->
+                <div class="tool-card">
                     <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-calculator"></i> الحاسبة</h3>
                     <div class="calculator">
                         <div class="calc-display" id="calcDisplay">0</div>
@@ -774,7 +782,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Alarm & Timer -->
                 <div class="tool-card">
                     <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-clock"></i> المنبه & المؤقت</h3>
@@ -782,7 +789,8 @@
                         <h4>المنبه</h4>
                         <input type="time" id="alarmTime" style="padding: 8px; margin: 5px; border-radius: 5px; border: 1px solid var(--primary-color); background: var(--bg-color); color: var(--text-color);">
                         <button onclick="setAlarm()" style="padding: 8px 15px; background: var(--primary-color); border: none; border-radius: 5px; cursor: pointer;">ضبط المنبه</button>
-                    </div>                    <div>
+                    </div>
+                    <div>
                         <h4>المؤقت</h4>
                         <input type="number" id="timerMinutes" placeholder="الدقائق" style="padding: 8px; margin: 5px; width: 100px; border-radius: 5px; border: 1px solid var(--primary-color); background: var(--bg-color); color: var(--text-color);">
                         <button onclick="startTimer()" style="padding: 8px 15px; background: var(--secondary-color); border: none; border-radius: 5px; cursor: pointer; color: white;">ابدأ</button>
@@ -800,7 +808,7 @@
         </section>
 
         <!-- Contact Form -->
-        <section class="rpg-card">
+        <section class="card">
             <h2 class="section-title"><i class="fas fa-envelope"></i> تواصل عبر البريد</h2>
             <form class="contact-form" onsubmit="sendEmail(event)">
                 <div class="form-group">
@@ -823,15 +831,15 @@
     </div>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/201025474780" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://wa.me/201025474780" class="whatsapp-float" target="_blank">        <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Footer -->
     <footer>
         <p class="developer-credit">
             <i class="fas fa-code"></i>
-            هذا الموقع من برمجة وتطوير Abdulrahman Ahmed Bashir            <i class="fas fa-code"></i>
+            هذا الموقع من برمجة وتطوير Abdulrahman Ahmed Bashir
+            <i class="fas fa-code"></i>
         </p>
         <p style="margin-top: 10px; color: var(--primary-color);">© 2026 جميع الحقوق محفوظة</p>
     </footer>
@@ -846,15 +854,9 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Weather (Simple simulation)
-        async function getWeather() {
-            try {
-                // You can add a real weather API here
-                const weatherInfo = document.getElementById('weather-info');
-                weatherInfo.textContent = '☀️ 25°C - Cairo';
-            } catch (error) {
-                document.getElementById('weather-info').textContent = '⛅ Weather';
-            }
+        // Weather
+        function getWeather() {
+            document.getElementById('weather-info').textContent = '☀️ 25°C - Cairo';
         }
         getWeather();
 
@@ -878,9 +880,9 @@
             element.classList.add('active');
             
             const backgrounds = {
-                gradient1: 'linear-gradient(45deg, #0a0a0a, #1a1a1a)',
-                gradient2: 'linear-gradient(45deg, #1a0033, #001a33)',
-                gradient3: 'linear-gradient(45deg, #00331a, #003333)',                gradient4: 'linear-gradient(45deg, #331a00, #33001a)'
+                gradient1: 'linear-gradient(45deg, #0a0a0a, #1a1a1a)',                gradient2: 'linear-gradient(45deg, #1a0033, #001a33)',
+                gradient3: 'linear-gradient(45deg, #00331a, #003333)',
+                gradient4: 'linear-gradient(45deg, #331a00, #33001a)'
             };
             
             document.body.style.background = backgrounds[type];
@@ -895,7 +897,9 @@
         };
 
         document.querySelectorAll('.key').forEach(key => {
-            key.addEventListener('click', () => playNote(key.dataset.note));
+            key.addEventListener('click', function() {
+                playNote(this.dataset.note);
+            });
         });
 
         function playNote(note) {
@@ -921,26 +925,45 @@
         // Snake Game
         const canvas = document.getElementById('snakeCanvas');
         const ctx = canvas.getContext('2d');
-        let snake = [{x: 10, y: 10}];
-        let food = {x: 15, y: 15};
+        const gridSize = 20;
+        const tileCountX = canvas.width / gridSize;
+        const tileCountY = canvas.height / gridSize;
+
+        let snake = [{x: 10, y: 10}];        let food = {x: 15, y: 15};
         let dx = 0;
         let dy = 0;
-        let gameLoop;
+        let gameRunning = true;
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowUp' && dy === 0) { dx = 0; dy = -1; }
-            if (e.key === 'ArrowDown' && dy === 0) { dx = 0; dy = 1; }            if (e.key === 'ArrowLeft' && dx === 0) { dx = -1; dy = 0; }
-            if (e.key === 'ArrowRight' && dx === 0) { dx = 1; dy = 0; }
+            if (e.key === 'ArrowUp' && dy === 0) { dx = 0; dy = -1; gameRunning = true; }
+            if (e.key === 'ArrowDown' && dy === 0) { dx = 0; dy = 1; gameRunning = true; }
+            if (e.key === 'ArrowLeft' && dx === 0) { dx = -1; dy = 0; gameRunning = true; }
+            if (e.key === 'ArrowRight' && dx === 0) { dx = 1; dy = 0; gameRunning = true; }
         });
 
         function updateSnake() {
+            if (!gameRunning) return;
+            
             const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+            
+            if (head.x < 0 || head.x >= tileCountX || head.y < 0 || head.y >= tileCountY) {
+                resetSnake();
+                return;
+            }
+            
+            for (let segment of snake) {
+                if (head.x === segment.x && head.y === segment.y) {
+                    resetSnake();
+                    return;
+                }
+            }
+            
             snake.unshift(head);
             
             if (head.x === food.x && head.y === food.y) {
                 food = {
-                    x: Math.floor(Math.random() * 39),
-                    y: Math.floor(Math.random() * 19)
+                    x: Math.floor(Math.random() * tileCountX),
+                    y: Math.floor(Math.random() * tileCountY)
                 };
             } else {
                 snake.pop();
@@ -949,20 +972,28 @@
             drawSnake();
         }
 
+        function resetSnake() {
+            snake = [{x: 10, y: 10}];
+            dx = 0;
+            dy = 0;
+            gameRunning = false;
+            setTimeout(() => { gameRunning = true; }, 1000);
+        }
         function drawSnake() {
             ctx.fillStyle = '#000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             ctx.fillStyle = '#00d4ff';
             snake.forEach(segment => {
-                ctx.fillRect(segment.x * 20, segment.y * 20, 18, 18);
+                ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
             });
             
             ctx.fillStyle = '#ff6b00';
-            ctx.fillRect(food.x * 20, food.y * 20, 18, 18);
+            ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
         }
 
-        setInterval(() => { if (dx !== 0 || dy !== 0) updateSnake(); }, 100);
+        setInterval(() => updateSnake(), 100);
+        drawSnake();
 
         // Calculator
         let calcExpression = '';
@@ -978,7 +1009,8 @@
         }
         
         function calculate() {
-            try {                const result = eval(calcExpression);
+            try {
+                const result = eval(calcExpression);
                 document.getElementById('calcDisplay').textContent = result;
                 calcExpression = result.toString();
             } catch {
@@ -987,7 +1019,7 @@
             }
         }
 
-        // AI Chat (Simple responses)
+        // AI Chat
         function sendMessage() {
             const input = document.getElementById('chatInput');
             const message = input.value.trim();
@@ -995,21 +1027,18 @@
             
             const messagesDiv = document.getElementById('chatMessages');
             
-            // User message
-            messagesDiv.innerHTML += `
-                <div style="padding: 10px; background: rgba(255, 107, 0, 0.2); border-radius: 10px; margin-bottom: 10px; text-align: left;">
+            messagesDiv.innerHTML += `                <div style="padding: 10px; background: rgba(255, 107, 0, 0.2); border-radius: 10px; margin-bottom: 10px; text-align: left;">
                     <strong>أنت:</strong> ${message}
                 </div>
             `;
             
-            // AI Response (Simple logic)
-            let response = 'أنا ذكاء اصطناعي بسيط. جرب أن تسألني عن: الألعاب، البرمجة، أو أي سؤال عام!';
+            let response = 'أنا ذكاء اصطناعي بسيط. اسألني عن الألعاب أو البرمجة!';
             
             const lowerMsg = message.toLowerCase();
             if (lowerMsg.includes('ببجي') || lowerMsg.includes('pubg')) {
-                response = 'ببجي لعبة رائعة! أنا بحبها جداً. بتلعبها كام ساعة في اليوم؟';
+                response = 'ببجي لعبة رائعة! بتلعبها كام ساعة في اليوم؟';
             } else if (lowerMsg.includes('برمجة') || lowerMsg.includes('code')) {
-                response = 'البرمجة مجال رائع! أنصحك تبدأ بـ Python أو JavaScript. محتاج مساعدة؟';
+                response = 'البرمجة مجال رائع! أنصحك تبدأ بـ Python أو JavaScript.';
             } else if (lowerMsg.includes('سلام') || lowerMsg.includes('هلا')) {
                 response = 'وعليكم السلام! أهلاً بك في موقعي 😊';
             } else if (lowerMsg.includes('شكراً')) {
@@ -1028,6 +1057,7 @@
             input.value = '';
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
+
         // Alarm
         let alarmInterval;
         function setAlarm() {
@@ -1035,6 +1065,8 @@
             if (!alarmTime) return;
             
             alert(`تم ضبط المنبه على ${alarmTime}`);
+            
+            if (alarmInterval) clearInterval(alarmInterval);
             
             alarmInterval = setInterval(() => {
                 const now = new Date();
@@ -1044,8 +1076,7 @@
                     alert('⏰ وقت المنبه!');
                     clearInterval(alarmInterval);
                 }
-            }, 1000);
-        }
+            }, 1000);        }
 
         // Timer
         let timerInterval;
@@ -1055,6 +1086,8 @@
             
             let seconds = minutes * 60;
             const display = document.getElementById('timerDisplay');
+            
+            if (timerInterval) clearInterval(timerInterval);
             
             timerInterval = setInterval(() => {
                 const mins = Math.floor(seconds / 60);
@@ -1076,7 +1109,7 @@
             localStorage.setItem('notepad', text);
             alert('✅ تم الحفظ!');
         }
-                // Load notepad
+        
         window.onload = () => {
             const saved = localStorage.getItem('notepad');
             if (saved) {
@@ -1092,17 +1125,9 @@
             const subject = document.getElementById('emailSubject').value;
             const message = document.getElementById('emailMessage').value;
             
-            // Using mailto (you can integrate with EmailJS or Formspree for better functionality)
-            const mailtoLink = `mailto:abdulrahmanbashir573@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${senderEmail}\n\n${message}`)}`;
-            
+            const mailtoLink = `mailto:abdulrahmanbashir573@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${senderEmail}\n\n${message}`)}`;            
             window.location.href = mailtoLink;
-            alert('✅ سيتم فتح برنامج البريد الإلكتروني لإرسال الرسالة');
         }
-
-        // Add images when ready
-        // Replace these with your actual image paths
-        document.getElementById('coverImage').style.backgroundImage = "url('your-cover-image.jpg')";
-        document.getElementById('profileImage').src = 'your-profile-image.jpg';
     </script>
 </body>
-                </html>
+</html>
