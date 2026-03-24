@@ -3,635 +3,1106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عبدالرحمن أحمد بشير</title>
+    <title>Abdulrahman AlGamers - الموقع الشخصي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #202124;
-            --search-bg: #ffffff;
-            --search-border: #dfe1e5;
-            --search-shadow: rgba(32,33,36,0.28);
-            --button-bg: #f8f9fa;
-            --button-hover: #f1f3f4;
-            --icon-color: #5f6368;
-            --icon-hover: #70757a;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        body.dark-mode {
-            --bg-color: #202124;
-            --text-color: #e8eaed;
-            --search-bg: #303134;
-            --search-border: #5f6368;
-            --search-shadow: rgba(0,0,0,0.5);
-            --button-bg: #303134;
-            --button-hover: #3c4043;
-            --icon-color: #9aa0a6;
-            --icon-hover: #c4c7c5;
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #ff6b00;
+            --bg-color: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-color: #ffffff;
+            --rpg-border: #ffd700;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f0f0f0;
+            --card-bg: #ffffff;
+            --text-color: #1a1a1a;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--bg-color);
             color: var(--text-color);
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
             transition: all 0.3s ease;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%);
         }
 
-        /* الهيدر */
-        .header {
-            display: flex;
-            justify-content: space-between;
+        /* Header & Weather */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;            justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;            height: 60px;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
         }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .icon-button {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            color: var(--icon-color);
-        }
-
-        .icon-button:hover {
-            background: var(--button-hover);
-            color: var(--icon-hover);
-        }
-
-        .icon-button svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 500;            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-        }
-
-        .avatar:hover {
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
-        }
-
-        /* الساعة */
-        .clock {
-            font-weight: 500;
-            font-size: 15px;
-            color: var(--text-color);
-            padding: 8px 12px;
-            background: var(--button-bg);
-            border-radius: 20px;
-            min-width: 70px;
-            text-align: center;
-        }
-
-        /* المحتوى الرئيسي */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: calc(100vh - 120px);
-            padding: 20px;
-        }
-
-        .logo {
-            font-size: 90px;
-            font-weight: 500;
-            margin-bottom: 30px;
-            letter-spacing: -2px;
-        }
-
-        .logo span:nth-child(1) { color: #4285f4; }
-        .logo span:nth-child(2) { color: #ea4335; }
-        .logo span:nth-child(3) { color: #fbbc05; }
-        .logo span:nth-child(4) { color: #4285f4; }
-        .logo span:nth-child(5) { color: #34a853; }
-        .logo span:nth-child(6) { color: #ea4335; }
-
-        .search-container {
-            width: 100%;
-            max-width: 584px;
-            position: relative;        }
-
-        .search-box {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            background: var(--search-bg);
-            border: 1px solid var(--search-border);
-            border-radius: 24px;
-            padding: 12px 20px;
-            transition: all 0.2s;
-        }
-
-        .search-box:hover, .search-box:focus-within {
-            box-shadow: 0 1px 6px var(--search-shadow);
-            border-color: transparent;
-        }
-
-        .search-icon {
-            width: 20px;
-            height: 20px;
-            fill: var(--icon-color);
-            margin-left: 12px;
-        }
-
-        .search-input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            font-size: 16px;
-            color: var(--text-color);
-            outline: none;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .search-buttons {
-            margin-top: 30px;
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .btn {
-            background: var(--button-bg);
-            border: 1px solid transparent;
-            color: var(--text-color);
-            padding: 10px 16px;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;            font-family: 'Roboto', sans-serif;
-            transition: all 0.2s;
-        }
-
-        .btn:hover {
-            background: var(--button-hover);
-            border-color: #dadce0;
-            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-        }
-
-        /* الفوتر */
-        .footer {
-            background: var(--button-bg);
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            color: var(--icon-color);
-            border-top: 1px solid var(--search-border);
-        }
-
-        .footer-right, .footer-left {
+        .weather-time {
             display: flex;
             gap: 20px;
             align-items: center;
         }
 
-        .footer a {
-            color: var(--icon-color);
-            text-decoration: none;
-            cursor: pointer;
+        .clock, .weather {
+            background: var(--card-bg);
+            padding: 8px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .footer a:hover { text-decoration: underline; }
+        .theme-toggle {
+            background: var(--primary-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            color: #000;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
 
-        /* شاشة تسجيل الدخول */
-        .login-overlay {
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Cover Section */
+        .cover-section {
+            margin-top: 60px;
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;            /* هنا حط صورة الغلاف الكبيرة */
+            background: linear-gradient(45deg, #00d4ff, #ff6b00);
+        }
+
+        .profile-section {
+            position: absolute;
+            bottom: -75px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--rpg-border);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            object-fit: cover;
+            /* هنا حط صورتك الشخصية الصغيرة */
+            background: #333;
+        }
+
+        .profile-name {
+            margin-top: 10px;
+            font-size: 2em;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+        }
+
+        /* RPG Effects */
+        .rpg-card {
+            background: var(--card-bg);
+            border: 2px solid var(--rpg-border);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.2),
+                inset 0 0 20px rgba(255, 215, 0, 0.05);
+            position: relative;            overflow: hidden;
+        }
+
+        .rpg-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--rpg-border), var(--primary-color), var(--secondary-color));
+            z-index: -1;
+            border-radius: 15px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .rpg-card:hover::before {
+            opacity: 1;
+        }
+
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        /* Social Media */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .social-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .social-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-card:hover::after {
+            left: 100%;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .social-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .tiktok { color: #ff0050; }
+        .whatsapp { color: #25d366; }
+        .twitter { color: #1da1f2; }
+        .instagram { color: #e4405f; }
+        .youtube { color: #ff0000; }
+        .facebook { color: #1877f2; }
+
+        /* Games Section */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .game-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .game-icon {
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+
+        /* Interactive Games */
+        .games-container {
+            display: grid;
+            gap: 30px;
+        }
+
+        .game-frame {
+            width: 100%;
+            height: 500px;
+            border: 3px solid var(--primary-color);
+            border-radius: 15px;
+            background: #000;
+        }
+
+        /* Piano */
+        .piano {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding: 20px;
+            background: #222;
+            border-radius: 10px;
+        }
+
+        .key {
+            width: 50px;
+            height: 200px;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 0 0 5px 5px;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .key.black {
+            background: #000;
+            height: 120px;
+            margin: 0 -15px;
+            z-index: 1;
+        }
+        .key:active, .key.active {
+            background: var(--primary-color);
+            transform: scale(0.95);
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid var(--secondary-color);
+        }
+
+        /* Calculator */
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .calc-display {
+            grid-column: 1 / -1;
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            font-size: 1.5em;
+            text-align: right;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .calc-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: var(--primary-color);
+            color: #000;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .calc-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .calc-btn.operator {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* AI Chat */
+        .chat-container {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .chat-input button {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Contact Form */        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: var(--bg-color);
+            bottom: 30px;
+            left: 30px;
+            background: #25d366;            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
-        }
-
-        .login-box {
-            background: var(--bg-color);            border: 1px solid var(--search-border);
-            border-radius: 8px;
-            padding: 48px 40px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .login-title {
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--text-color);
-            margin-bottom: 8px;
-        }
-
-        .login-subtitle {
-            font-size: 16px;
-            color: var(--text-color);
-            margin-bottom: 40px;
-        }
-
-        .login-subtitle span { color: #1a73e8; font-weight: 500; }
-
-        .input-field {
-            width: 100%;
-            padding: 13px 15px;
-            border: 1px solid var(--search-border);
-            border-radius: 4px;
-            font-size: 16px;
-            margin-bottom: 10px;
-            font-family: 'Roboto', sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: #1a73e8;
-            border-width: 2px;
-            padding: 12px 14px;
-        }
-
-        .login-button {
-            width: 100%;
-            padding: 10px 24px;
-            background: #1a73e8;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;            font-weight: 500;
+            font-size: 2em;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
             cursor: pointer;
-            margin-top: 20px;
-            font-family: 'Roboto', sans-serif;
+            z-index: 999;
+            animation: pulse 2s infinite;
+            text-decoration: none;
         }
 
-        .login-button:hover {
-            background: #1557b0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        /* قائمة الإعدادات */
-        .settings-menu {
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 2px solid var(--rpg-border);
+            margin-top: 50px;
+        }
+
+        .developer-credit {
+            font-size: 1.3em;
+            background: linear-gradient(45deg, #ffd700, #ff6b00, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Background Selector */
+        .bg-selector {
             position: fixed;
-            top: 65px;
+            top: 100px;
             right: 20px;
-            background: var(--bg-color);
-            border: 1px solid var(--search-border);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            padding: 10px 0;
-            min-width: 280px;
-            display: none;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid var(--primary-color);
             z-index: 100;
         }
-
-        .settings-menu.active { display: block; }
-
-        .settings-item {
-            padding: 12px 20px;
+        .bg-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            margin: 5px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: var(--text-color);
-            font-size: 14px;
+            border: 3px solid transparent;
+            transition: transform 0.3s;
         }
 
-        .settings-item:hover { background: var(--button-hover); }
-
-        .settings-item svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--icon-color);
-            margin-left: 12px;
+        .bg-option:hover, .bg-option.active {
+            transform: scale(1.2);
+            border-color: var(--primary-color);
         }
 
-        .toggle {
-            position: relative;
-            width: 36px;            height: 20px;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .social-grid,
+            .games-grid,
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .piano {
+                overflow-x: auto;
+            }
         }
 
-        .toggle input { opacity: 0; width: 0; height: 0; }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #dadce0;
-            transition: 0.3s;
-            border-radius: 20px;
+        /* Animations */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.8); }
         }
 
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 2px;
-            bottom: 2px;
-            background-color: white;
-            transition: 0.3s;
-            border-radius: 50%;
+        .glow-effect {
+            animation: glow 2s infinite;
         }
-
-        input:checked + .toggle-slider { background-color: #1a73e8; }
-        input:checked + .toggle-slider:before { transform: translateX(16px); }
-
-        .settings-divider {
-            height: 1px;
-            background: var(--search-border);
-            margin: 8px 0;
-        }
-
-        .settings-header {
-            padding: 8px 20px;
-            font-size: 12px;
-            color: var(--icon-color);
-            font-weight: 500;
-        }
-
-        .hidden { display: none !important; }
     </style>
 </head>
 <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="weather-time">
+            <div class="clock">
+                <i class="fas fa-clock"></i>                <span id="clock-time">00:00:00</span>
+            </div>
+            <div class="weather">
+                <i class="fas fa-cloud-sun"></i>
+                <span id="weather-info">جاري التحميل...</span>
+            </div>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-moon"></i> الوضع الداكن
+        </button>
+    </div>
 
-    <!-- شاشة تسجيل الدخول -->
-    <div class="login-overlay" id="loginOverlay">
-        <div class="login-box">            <h1 class="login-title">تسجيل الدخول</h1>
-            <p class="login-subtitle">استخدم حساب <span>Google</span> الخاص بك</p>
-            <input type="email" class="input-field" id="loginEmail" placeholder="البريد الإلكتروني أو الهاتف" onkeypress="handleLoginKeyPress(event)">
-            <button class="login-button" onclick="handleLogin()">التالي</button>
+    <!-- Background Selector -->
+    <div class="bg-selector">
+        <h4 style="margin-bottom: 10px;">الخلفيات</h4>
+        <div class="bg-option active" style="background: linear-gradient(45deg, #0a0a0a, #1a1a1a)" onclick="changeBackground(this, 'gradient1')"></div>
+        <div class="bg-option" style="background: linear-gradient(45deg, #1a0033, #001a33)" onclick="changeBackground(this, 'gradient2')"></div>
+        <div class="bg-option" style="background: linear-gradient(45deg, #00331a, #003333)" onclick="changeBackground(this, 'gradient3')"></div>
+        <div class="bg-option" style="background: linear-gradient(45deg, #331a00, #33001a)" onclick="changeBackground(this, 'gradient4')"></div>
+    </div>
+
+    <!-- Cover Section -->
+    <div class="cover-section">
+        <div class="cover-image" id="coverImage"></div>
+        <div class="profile-section">
+            <img src="" alt="Profile" class="profile-image" id="profileImage">
+            <h1 class="profile-name">Abdulrahman AlGamers</h1>
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي -->
-    <div id="mainContent" class="hidden">
-        <!-- الهيدر -->
-        <header class="header">
-            <!-- اليمين: الإعدادات + الساعة + الأيقونة -->
-            <div class="header-right">
-                <!-- زر الإعدادات -->
-                <button class="icon-button" onclick="toggleSettings()" title="الإعدادات">
-                    <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+    <div class="container">
+        <!-- Social Media Section -->
+        <section class="rpg-card">
+            <h2 class="section-title"><i class="fas fa-share-alt"></i> تواصل معي</h2>
+            <div class="social-grid">
+                <a href="https://tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-card">
+                    <i class="fab fa-tiktok social-icon tiktok"></i>
+                    <h3>TikTok</h3>
+                    <p>@abdulrahmanbashir523</p>
+                </a>
+                
+                <a href="https://www.instagram.com/abdulrahmanbashir781" target="_blank" class="social-card">
+                    <i class="fab fa-instagram social-icon instagram"></i>
+                    <h3>Instagram</h3>
+                    <p>@abdulrahmanbashir781</p>
+                </a>
+                
+                <a href="https://x.com/body16603" target="_blank" class="social-card">
+                    <i class="fab fa-twitter social-icon twitter"></i>
+                    <h3>Twitter / X</h3>                    <p>@body16603</p>
+                </a>
+                
+                <a href="https://youtube.com/@algamers-b7l" target="_blank" class="social-card">
+                    <i class="fab fa-youtube social-icon youtube"></i>
+                    <h3>YouTube</h3>
+                    <p>@algamers-b7l</p>
+                </a>
+                
+                <a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-card">
+                    <i class="fab fa-facebook social-icon facebook"></i>
+                    <h3>Facebook</h3>
+                    <p>Abdulrahman Bashir</p>
+                </a>
+                
+                <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-card">
+                    <i class="fab fa-whatsapp social-icon whatsapp"></i>
+                    <h3>WhatsApp Channel</h3>
+                    <p>انضم للقناة</p>
+                </a>
+                
+                <a href="https://wa.me/201025474780" target="_blank" class="social-card">
+                    <i class="fab fa-whatsapp social-icon whatsapp"></i>
+                    <h3>واتساب 1</h3>
+                    <p>01025474780</p>
+                </a>
+                
+                <a href="https://wa.me/201505299711" target="_blank" class="social-card">
+                    <i class="fab fa-whatsapp social-icon whatsapp"></i>
+                    <h3>واتساب 2</h3>
+                    <p>01505299711</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Favorite Games Section -->
+        <section class="rpg-card">
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> ألعابي المفضلة</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <i class="fas fa-parachute-box game-icon"></i>
+                    <h3>PUBG Mobile</h3>
+                    <p>ببجي موبايل</p>
+                </div>
+                
+                <div class="game-card">
+                    <i class="fas fa-car game-icon"></i>
+                    <h3>GTA</h3>
+                    <p>جراند ثفت أوتو</p>
+                </div>                
+                <div class="game-card">
+                    <i class="fas fa-truck game-icon"></i>
+                    <h3>Truck Simulator</h3>
+                    <p>محاكي الشاحنات</p>
+                </div>
+                
+                <div class="game-card">
+                    <i class="fas fa-shield-alt game-icon"></i>
+                    <h3>Fortnite</h3>
+                    <p>فورتنايت</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Games Section -->
+        <section class="rpg-card">
+            <h2 class="section-title"><i class="fas fa-play-circle"></i> العب الآن</h2>
+            <div class="games-container">
+                <!-- Piano -->
+                <div class="tool-card">
+                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-music"></i> البيانو</h3>
+                    <div class="piano" id="piano">
+                        <div class="key" data-note="C4"></div>
+                        <div class="key black" data-note="C#4"></div>
+                        <div class="key" data-note="D4"></div>
+                        <div class="key black" data-note="D#4"></div>
+                        <div class="key" data-note="E4"></div>
+                        <div class="key" data-note="F4"></div>
+                        <div class="key black" data-note="F#4"></div>
+                        <div class="key" data-note="G4"></div>
+                        <div class="key black" data-note="G#4"></div>
+                        <div class="key" data-note="A4"></div>
+                        <div class="key black" data-note="A#4"></div>
+                        <div class="key" data-note="B4"></div>
+                        <div class="key" data-note="C5"></div>
+                    </div>
+                </div>
+
+                <!-- Subway Surfers -->
+                <div>
+                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-running"></i> Subway Surfers</h3>
+                    <iframe class="game-frame" src="https://html5.gamedistribution.com/rvvASMiM/3b192d58f75a4f5b8dc47e2fdc9800b4/index.html" frameborder="0"></iframe>
+                </div>
+
+                <!-- Game 2 - 2048 -->
+                <div>
+                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-th"></i> 2048</h3>
+                    <iframe class="game-frame" src="https://play2048.co/" frameborder="0"></iframe>
+                </div>
+                <!-- Game 3 - Snake -->
+                <div>
+                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-snake"></i> Snake Game</h3>
+                    <canvas id="snakeCanvas" width="800" height="400" style="width: 100%; background: #000; border: 3px solid var(--primary-color); border-radius: 10px;"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Section -->
+        <section class="rpg-card">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> تعلّم</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3><i class="fas fa-code"></i> لغات البرمجة</h3>
+                    <div style="margin-top: 15px;">
+                        <a href="https://www.codecademy.com/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
+                            <i class="fas fa-external-link-alt"></i> Codecademy
+                        </a>
+                        <a href="https://www.freecodecamp.org/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
+                            <i class="fas fa-external-link-alt"></i> freeCodeCamp
+                        </a>
+                        <a href="https://www.w3schools.com/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
+                            <i class="fas fa-external-link-alt"></i> W3Schools
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <h3><i class="fas fa-quran"></i> التجويد</h3>
+                    <div style="margin-top: 15px;">
+                        <a href="https://quran.com/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
+                            <i class="fas fa-external-link-alt"></i> Quran.com
+                        </a>
+                        <a href="https://www.islamway.net/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
+                            <i class="fas fa-external-link-alt"></i> Islamway
+                        </a>
+                        <a href="https://www.youtube.com/results?search_query=تعلم+التجويد" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
+                            <i class="fab fa-youtube"></i> دروس على يوتيوب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section class="rpg-card">
+            <h2 class="section-title"><i class="fas fa-tools"></i> الأدوات</h2>
+            <div class="tools-grid">
+                <!-- Calculator -->                <div class="tool-card">
+                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-calculator"></i> الحاسبة</h3>
+                    <div class="calculator">
+                        <div class="calc-display" id="calcDisplay">0</div>
+                        <button class="calc-btn" onclick="clearCalc()">C</button>
+                        <button class="calc-btn" onclick="appendToCalc('(')">(</button>
+                        <button class="calc-btn" onclick="appendToCalc(')')">)</button>
+                        <button class="calc-btn operator" onclick="appendToCalc('/')">÷</button>
+                        <button class="calc-btn" onclick="appendToCalc('7')">7</button>
+                        <button class="calc-btn" onclick="appendToCalc('8')">8</button>
+                        <button class="calc-btn" onclick="appendToCalc('9')">9</button>
+                        <button class="calc-btn operator" onclick="appendToCalc('*')">×</button>
+                        <button class="calc-btn" onclick="appendToCalc('4')">4</button>
+                        <button class="calc-btn" onclick="appendToCalc('5')">5</button>
+                        <button class="calc-btn" onclick="appendToCalc('6')">6</button>
+                        <button class="calc-btn operator" onclick="appendToCalc('-')">-</button>
+                        <button class="calc-btn" onclick="appendToCalc('1')">1</button>
+                        <button class="calc-btn" onclick="appendToCalc('2')">2</button>
+                        <button class="calc-btn" onclick="appendToCalc('3')">3</button>
+                        <button class="calc-btn operator" onclick="appendToCalc('+')">+</button>
+                        <button class="calc-btn" onclick="appendToCalc('0')">0</button>
+                        <button class="calc-btn" onclick="appendToCalc('.')">.</button>
+                        <button class="calc-btn operator" onclick="calculate()">=</button>
+                    </div>
+                </div>
+
+                <!-- AI Chat -->
+                <div class="tool-card">
+                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-robot"></i> الذكاء الاصطناعي</h3>
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div style="padding: 10px; background: rgba(0, 212, 255, 0.2); border-radius: 10px; margin-bottom: 10px;">
+                                <strong>AI:</strong> أهلاً بك! أنا هنا لمساعدتك. اسألني أي سؤال!
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا..." onkeypress="if(event.key==='Enter')sendMessage()">
+                            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alarm & Timer -->
+                <div class="tool-card">
+                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-clock"></i> المنبه & المؤقت</h3>
+                    <div style="margin-bottom: 20px;">
+                        <h4>المنبه</h4>
+                        <input type="time" id="alarmTime" style="padding: 8px; margin: 5px; border-radius: 5px; border: 1px solid var(--primary-color); background: var(--bg-color); color: var(--text-color);">
+                        <button onclick="setAlarm()" style="padding: 8px 15px; background: var(--primary-color); border: none; border-radius: 5px; cursor: pointer;">ضبط المنبه</button>
+                    </div>                    <div>
+                        <h4>المؤقت</h4>
+                        <input type="number" id="timerMinutes" placeholder="الدقائق" style="padding: 8px; margin: 5px; width: 100px; border-radius: 5px; border: 1px solid var(--primary-color); background: var(--bg-color); color: var(--text-color);">
+                        <button onclick="startTimer()" style="padding: 8px 15px; background: var(--secondary-color); border: none; border-radius: 5px; cursor: pointer; color: white;">ابدأ</button>
+                        <div id="timerDisplay" style="margin-top: 10px; font-size: 1.5em; color: var(--primary-color);"></div>
+                    </div>
+                </div>
+
+                <!-- Notepad -->
+                <div class="tool-card">
+                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-sticky-note"></i> المفكرة</h3>
+                    <textarea id="notepad" rows="10" style="width: 100%; padding: 10px; border: 2px solid var(--primary-color); border-radius: 10px; background: var(--bg-color); color: var(--text-color); resize: vertical;" placeholder="اكتب ملاحظاتك هنا..."></textarea>
+                    <button onclick="saveNotepad()" style="margin-top: 10px; padding: 10px 20px; background: var(--primary-color); border: none; border-radius: 5px; cursor: pointer; width: 100%;">حفظ</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="rpg-card">
+            <h2 class="section-title"><i class="fas fa-envelope"></i> تواصل عبر البريد</h2>
+            <form class="contact-form" onsubmit="sendEmail(event)">
+                <div class="form-group">
+                    <label>بريدك الإلكتروني</label>
+                    <input type="email" id="senderEmail" required placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label>الموضوع</label>
+                    <input type="text" id="emailSubject" required placeholder="موضوع الرسالة">
+                </div>
+                <div class="form-group">
+                    <label>الرسالة</label>
+                    <textarea id="emailMessage" rows="5" required placeholder="اكتب رسالتك هنا..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> إرسال الرسالة
                 </button>
-                
-                <!-- الساعة -->
-                <div class="clock" id="clock">--:--</div>
-                
-                <!-- أيقونة المستخدم -->
-                <div class="avatar" id="userAvatar" onclick="logout()" title="تسجيل الخروج">ع</div>
-            </div>
-        </header>
-
-        <!-- المحتوى الرئيسي -->
-        <main class="main-content">
-            <div class="logo">
-                <span>A</span><span>b</span><span>d</span><span>u</span><span>l</span><span>r</span><span>a</span><span>h</span><span>m</span><span>a</span><span>n</span>
-            </div>
-
-            <div class="search-container">
-                <div class="search-box">
-                    <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                    <input type="text" class="search-input" id="searchInput" placeholder="ابحث في Google أو اكتب عنوان موقع إلكتروني" onkeypress="handleEnter(event)">
-                </div>
-                
-                <div class="search-buttons">
-                    <button class="btn" onclick="performSearch()">بحث Google</button>
-                    <button class="btn" onclick="luckySearch()">ضربة حظ</button>
-                </div>
-            </div>
-        </main>
-
-        <!-- الفوتر -->
-        <footer class="footer">
-            <div class="footer-right">
-                <span id="locationText">مصر</span>
-            </div>            <div class="footer-left">
-                <a onclick="alert('قريباً')">حول</a>
-                <a onclick="alert('قريباً')">الإعلانات</a>
-                <a onclick="alert('قريباً')">الأعمال</a>
-                <a onclick="alert('قريباً')">الخصوصية</a>
-                <a onclick="alert('قريباً')">الشروط</a>
-                <a onclick="toggleSettings()">الإعدادات</a>
-            </div>
-        </footer>
-
-        <!-- قائمة الإعدادات -->
-        <div class="settings-menu" id="settingsMenu">
-            <div class="settings-header">الإعدادات</div>
-            <div class="settings-divider"></div>
-            
-            <!-- الوضع الداكن -->
-            <div class="settings-item">
-                <span id="darkModeText">الوضع الداكن</span>
-                <label class="toggle">
-                    <input type="checkbox" id="darkModeToggle" onchange="toggleTheme()">
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-
-            <!-- تغيير اللغة -->
-            <div class="settings-item" onclick="changeLanguage()">
-                <span id="langText">اللغة: العربية</span>
-                <svg viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
-            </div>
-
-            <!-- تغيير الخلفية -->
-            <div class="settings-item" onclick="changeBackground()">
-                <span>تغيير الخلفية</span>
-                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-            </div>
-
-            <div class="settings-divider"></div>
-            
-            <!-- تسجيل الخروج -->
-            <div class="settings-item" onclick="logout()">
-                <span>تسجيل الخروج</span>
-                <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
-            </div>
-        </div>
+            </form>
+        </section>
     </div>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/201025474780" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p class="developer-credit">
+            <i class="fas fa-code"></i>
+            هذا الموقع من برمجة وتطوير Abdulrahman Ahmed Bashir            <i class="fas fa-code"></i>
+        </p>
+        <p style="margin-top: 10px; color: var(--primary-color);">© 2026 جميع الحقوق محفوظة</p>
+    </footer>
 
     <script>
-        let currentLang = 'ar';
-        let currentBg = '';
-        window.onload = function() {
-            const savedUser = localStorage.getItem('ab_user');
-            const savedTheme = localStorage.getItem('ab_theme');
-            const savedLang = localStorage.getItem('ab_lang');
-            const savedBg = localStorage.getItem('ab_bg');
-
-            if (savedUser) { showMainInterface(savedUser); }
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-                document.getElementById('darkModeToggle').checked = true;
-            }
-            if (savedLang === 'en') { currentLang = 'en'; updateLanguage(); }
-            if (savedBg) {
-                currentBg = savedBg;
-                document.body.style.background = `url('${savedBg}') center/cover no-repeat`;
-            }
-
-            updateClock();
-            setInterval(updateClock, 1000);
-        };
-
-        function handleLogin() {
-            const email = document.getElementById('loginEmail').value.trim();
-            if (email && email.includes('@')) {
-                localStorage.setItem('ab_user', email);
-                showMainInterface(email);
-            } else {
-                alert('الرجاء إدخال بريد إلكتروني صحيح');
-            }
-        }
-
-        function handleLoginKeyPress(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                handleLogin();
-            }
-        }
-
-        function showMainInterface(email) {
-            document.getElementById('loginOverlay').classList.add('hidden');
-            document.getElementById('mainContent').classList.remove('hidden');
-            const avatar = document.getElementById('userAvatar');
-            avatar.textContent = email.charAt(0).toUpperCase();
-            avatar.title = email;
-        }
-
-        function logout() {
-            if (confirm('هل تريد تسجيل الخروج؟')) {
-                localStorage.removeItem('ab_user');
-                location.reload();            }
-        }
-
-        function handleEnter(e) {
-            if (e.key === 'Enter') { performSearch(); }
-        }
-
-        function performSearch() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) {
-                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-            }
-        }
-
-        function luckySearch() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) {
-                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}&btnI=1`;
-            }
-        }
-
-        function toggleSettings() {
-            const menu = document.getElementById('settingsMenu');
-            menu.classList.toggle('active');
-        }
-
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('settingsMenu');
-            const btn = e.target.closest('.icon-button');
-            if (!btn && !e.target.closest('.settings-menu')) {
-                menu.classList.remove('active');
-            }
-        });
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('ab_theme', isDark ? 'dark' : 'light');
-        }
-
-        function changeLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            localStorage.setItem('ab_lang', currentLang);
-            updateLanguage();
-        }
-
-        function updateLanguage() {
-            const texts = {
-                ar: {
-                    lang: 'اللغة: العربية',                    dark: 'الوضع الداكن',
-                    location: 'مصر',
-                    search: 'ابحث في Google أو اكتب عنوان موقع إلكتروني',
-                    btn1: 'بحث Google',
-                    btn2: 'ضربة حظ'
-                },
-                en: {
-                    lang: 'Language: English',
-                    dark: 'Dark Mode',
-                    location: 'Egypt',
-                    search: 'Search Google or type a URL',
-                    btn1: 'Google Search',
-                    btn2: "I'm Feeling Lucky"
-                }
-            };
-            const t = texts[currentLang];
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langText').textContent = t.lang;
-            document.getElementById('darkModeText').textContent = t.dark;
-            document.getElementById('locationText').textContent = t.location;
-            document.querySelector('.search-input').placeholder = t.search;
-            const btns = document.querySelectorAll('.search-buttons .btn');
-            btns[0].textContent = t.btn1;
-            btns[1].textContent = t.btn2;
-        }
-
-        function changeBackground() {
-            const url = prompt('أدخل رابط الصورة:', currentBg);
-            if (url) {
-                currentBg = url;
-                document.body.style.background = `url('${url}') center/cover no-repeat`;
-                localStorage.setItem('ab_bg', url);
-            }
-        }
-
+        // Clock
         function updateClock() {
             const now = new Date();
-            const h = String(now.getHours()).padStart(2, '0');
-            const m = String(now.getMinutes()).padStart(2, '0');
-            document.getElementById('clock').textContent = `${h}:${m}`;
+            const timeString = now.toLocaleTimeString('ar-EG');
+            document.getElementById('clock-time').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Weather (Simple simulation)
+        async function getWeather() {
+            try {
+                // You can add a real weather API here
+                const weatherInfo = document.getElementById('weather-info');
+                weatherInfo.textContent = '☀️ 25°C - Cairo';
+            } catch (error) {
+                document.getElementById('weather-info').textContent = '⛅ Weather';
+            }
+        }
+        getWeather();
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
+                btn.innerHTML = '<i class="fas fa-moon"></i> الوضع الداكن';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                btn.innerHTML = '<i class="fas fa-sun"></i> الوضع الفاتح';
+            }
         }
 
-        document.querySelector('.settings-menu').addEventListener('click', function(e) {
-            e.stopPropagation();
+        // Background Changer
+        function changeBackground(element, type) {
+            document.querySelectorAll('.bg-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+            
+            const backgrounds = {
+                gradient1: 'linear-gradient(45deg, #0a0a0a, #1a1a1a)',
+                gradient2: 'linear-gradient(45deg, #1a0033, #001a33)',
+                gradient3: 'linear-gradient(45deg, #00331a, #003333)',                gradient4: 'linear-gradient(45deg, #331a00, #33001a)'
+            };
+            
+            document.body.style.background = backgrounds[type];
+        }
+
+        // Piano
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const notes = {
+            'C4': 261.63, 'C#4': 277.18, 'D4': 293.66, 'D#4': 311.13,
+            'E4': 329.63, 'F4': 349.23, 'F#4': 369.99, 'G4': 392.00,
+            'G#4': 415.30, 'A4': 440.00, 'A#4': 466.16, 'B4': 493.88, 'C5': 523.25
+        };
+
+        document.querySelectorAll('.key').forEach(key => {
+            key.addEventListener('click', () => playNote(key.dataset.note));
         });
+
+        function playNote(note) {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = notes[note];
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+            
+            event.target.classList.add('active');
+            setTimeout(() => event.target.classList.remove('active'), 200);
+        }
+
+        // Snake Game
+        const canvas = document.getElementById('snakeCanvas');
+        const ctx = canvas.getContext('2d');
+        let snake = [{x: 10, y: 10}];
+        let food = {x: 15, y: 15};
+        let dx = 0;
+        let dy = 0;
+        let gameLoop;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp' && dy === 0) { dx = 0; dy = -1; }
+            if (e.key === 'ArrowDown' && dy === 0) { dx = 0; dy = 1; }            if (e.key === 'ArrowLeft' && dx === 0) { dx = -1; dy = 0; }
+            if (e.key === 'ArrowRight' && dx === 0) { dx = 1; dy = 0; }
+        });
+
+        function updateSnake() {
+            const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+            snake.unshift(head);
+            
+            if (head.x === food.x && head.y === food.y) {
+                food = {
+                    x: Math.floor(Math.random() * 39),
+                    y: Math.floor(Math.random() * 19)
+                };
+            } else {
+                snake.pop();
+            }
+            
+            drawSnake();
+        }
+
+        function drawSnake() {
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00d4ff';
+            snake.forEach(segment => {
+                ctx.fillRect(segment.x * 20, segment.y * 20, 18, 18);
+            });
+            
+            ctx.fillStyle = '#ff6b00';
+            ctx.fillRect(food.x * 20, food.y * 20, 18, 18);
+        }
+
+        setInterval(() => { if (dx !== 0 || dy !== 0) updateSnake(); }, 100);
+
+        // Calculator
+        let calcExpression = '';
+        
+        function appendToCalc(value) {
+            calcExpression += value;
+            document.getElementById('calcDisplay').textContent = calcExpression;
+        }
+        
+        function clearCalc() {
+            calcExpression = '';
+            document.getElementById('calcDisplay').textContent = '0';
+        }
+        
+        function calculate() {
+            try {                const result = eval(calcExpression);
+                document.getElementById('calcDisplay').textContent = result;
+                calcExpression = result.toString();
+            } catch {
+                document.getElementById('calcDisplay').textContent = 'Error';
+                calcExpression = '';
+            }
+        }
+
+        // AI Chat (Simple responses)
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            const messagesDiv = document.getElementById('chatMessages');
+            
+            // User message
+            messagesDiv.innerHTML += `
+                <div style="padding: 10px; background: rgba(255, 107, 0, 0.2); border-radius: 10px; margin-bottom: 10px; text-align: left;">
+                    <strong>أنت:</strong> ${message}
+                </div>
+            `;
+            
+            // AI Response (Simple logic)
+            let response = 'أنا ذكاء اصطناعي بسيط. جرب أن تسألني عن: الألعاب، البرمجة، أو أي سؤال عام!';
+            
+            const lowerMsg = message.toLowerCase();
+            if (lowerMsg.includes('ببجي') || lowerMsg.includes('pubg')) {
+                response = 'ببجي لعبة رائعة! أنا بحبها جداً. بتلعبها كام ساعة في اليوم؟';
+            } else if (lowerMsg.includes('برمجة') || lowerMsg.includes('code')) {
+                response = 'البرمجة مجال رائع! أنصحك تبدأ بـ Python أو JavaScript. محتاج مساعدة؟';
+            } else if (lowerMsg.includes('سلام') || lowerMsg.includes('هلا')) {
+                response = 'وعليكم السلام! أهلاً بك في موقعي 😊';
+            } else if (lowerMsg.includes('شكراً')) {
+                response = 'عفواً! أنا هنا دائماً لمساعدتك 🎮';
+            }
+            
+            setTimeout(() => {
+                messagesDiv.innerHTML += `
+                    <div style="padding: 10px; background: rgba(0, 212, 255, 0.2); border-radius: 10px; margin-bottom: 10px;">
+                        <strong>AI:</strong> ${response}
+                    </div>
+                `;
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, 500);
+            
+            input.value = '';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        // Alarm
+        let alarmInterval;
+        function setAlarm() {
+            const alarmTime = document.getElementById('alarmTime').value;
+            if (!alarmTime) return;
+            
+            alert(`تم ضبط المنبه على ${alarmTime}`);
+            
+            alarmInterval = setInterval(() => {
+                const now = new Date();
+                const currentTime = now.toLocaleTimeString('ar-EG', {hour: '2-digit', minute: '2-digit'});
+                
+                if (currentTime === alarmTime) {
+                    alert('⏰ وقت المنبه!');
+                    clearInterval(alarmInterval);
+                }
+            }, 1000);
+        }
+
+        // Timer
+        let timerInterval;
+        function startTimer() {
+            const minutes = parseInt(document.getElementById('timerMinutes').value);
+            if (!minutes) return;
+            
+            let seconds = minutes * 60;
+            const display = document.getElementById('timerDisplay');
+            
+            timerInterval = setInterval(() => {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                display.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                
+                if (seconds <= 0) {
+                    clearInterval(timerInterval);
+                    alert('⏰ انتهى الوقت!');
+                    display.textContent = '';
+                }
+                seconds--;
+            }, 1000);
+        }
+
+        // Notepad
+        function saveNotepad() {
+            const text = document.getElementById('notepad').value;
+            localStorage.setItem('notepad', text);
+            alert('✅ تم الحفظ!');
+        }
+                // Load notepad
+        window.onload = () => {
+            const saved = localStorage.getItem('notepad');
+            if (saved) {
+                document.getElementById('notepad').value = saved;
+            }
+        };
+
+        // Contact Form
+        function sendEmail(e) {
+            e.preventDefault();
+            
+            const senderEmail = document.getElementById('senderEmail').value;
+            const subject = document.getElementById('emailSubject').value;
+            const message = document.getElementById('emailMessage').value;
+            
+            // Using mailto (you can integrate with EmailJS or Formspree for better functionality)
+            const mailtoLink = `mailto:abdulrahmanbashir573@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${senderEmail}\n\n${message}`)}`;
+            
+            window.location.href = mailtoLink;
+            alert('✅ سيتم فتح برنامج البريد الإلكتروني لإرسال الرسالة');
+        }
+
+        // Add images when ready
+        // Replace these with your actual image paths
+        document.getElementById('coverImage').style.backgroundImage = "url('your-cover-image.jpg')";
+        document.getElementById('profileImage').src = 'your-profile-image.jpg';
     </script>
 </body>
-</html>
+                </html>
