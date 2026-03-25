@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RGP AbdulrahmanAhmedBashir </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>موقعي الشخصي | أحمد</title>
     <style>
         * {
             margin: 0;
@@ -12,1122 +11,650 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #00d4ff;
-            --secondary-color: #ff6b00;
-            --bg-color: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --text-color: #ffffff;
-        }
-
-        [data-theme="light"] {
-            --bg-color: #f0f0f0;
-            --card-bg: #ffffff;
-            --text-color: #1a1a1a;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Tahoma', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            transition: all 0.3s ease;
+            color: #333;
         }
 
-        /* Header */
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(26, 26, 26, 0.95);
+        /* header and navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 10px 20px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            border-bottom: 2px solid var(--primary-color);        }
-
-        .weather-time {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .clock, .weather {
-            background: var(--card-bg);
-            padding: 8px 15px;
-            border-radius: 10px;
-            border: 1px solid var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .theme-toggle {
-            background: var(--primary-color);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            color: #000;
-            font-weight: bold;
-            transition: transform 0.3s;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        /* Cover Section */
-        .cover-section {
-            margin-top: 60px;
-            position: relative;
-            height: 400px;
-            overflow: hidden;
-        }
-
-        .cover-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-section {
-            position: absolute;
-            bottom: -75px;            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--primary-color);
-            object-fit: cover;
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
-        }
-
-        .profile-name {
-            margin-top: 10px;
-            font-size: 2.5em;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-            letter-spacing: 3px;
-        }
-
-        /* Main Container */
-        .container {
+            width: 90%;
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px 50px;
+            margin: auto;
+            padding: 1rem 0;
         }
 
-        /* Cards */
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .section-title {
-            font-size: 2em;
-            margin-bottom: 25px;
-            text-align: center;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 10px;
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
         }
 
-        .section-title::after {
-            content: '';            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        }
-
-        /* Social Media - Modern Design */
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .social-card {
-            background: linear-gradient(135deg, var(--card-bg), #2a2a2a);
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s;
+        .nav-links button {
+            background: none;
+            border: none;
+            font-size: 1rem;
             cursor: pointer;
-            text-decoration: none;
-            color: var(--text-color);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .social-card:hover::before {
-            opacity: 1;
-        }
-
-        .social-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.3);
-        }
-        .social-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 2em;
-            color: white;
-        }
-
-        .tiktok { background: linear-gradient(135deg, #ff0050, #00f2ea); }
-        .whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); }
-        .twitter { background: linear-gradient(135deg, #1da1f2, #0d8bd9); }
-        .instagram { background: linear-gradient(135deg, #e4405f, #f56040); }
-        .youtube { background: linear-gradient(135deg, #ff0000, #cc0000); }
-        .facebook { background: linear-gradient(135deg, #1877f2, #0d5cb6); }
-        .telegram { background: linear-gradient(135deg, #0088cc, #006699); }
-
-        .social-card h3 {
-            margin: 10px 0 5px;
-            font-size: 1.3em;
-        }
-
-        .social-card p {
-            color: #888;
-            font-size: 0.9em;
-        }
-
-        /* Games Grid */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .game-card {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1rem;
             transition: all 0.3s;
+            color: #555;
+            font-weight: 500;
         }
 
-        .game-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);        }
-
-        .game-icon {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            color: var(--primary-color);
+        .nav-links button:hover {
+            color: #667eea;
+            transform: translateY(-2px);
         }
 
-        /* Games Container */
-        .games-container {
-            display: grid;
-            gap: 30px;
+        .nav-links button.active {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
         }
 
-        .game-frame {
-            width: 100%;
-            height: 500px;
-            border: 2px solid var(--primary-color);
-            border-radius: 15px;
-            background: #000;
+        /* main content */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            min-height: 70vh;
         }
 
-        /* Piano */
-        .piano-container {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            overflow-x: auto;
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
         }
 
-        .piano {
-            display: flex;
-            justify-content: center;
-            gap: 3px;
-            min-width: 600px;
+        .page.active-page {
+            display: block;
         }
 
-        .key {
-            width: 50px;
-            height: 200px;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* hero section */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
             background: white;
-            border: 2px solid #333;
-            border-radius: 0 0 5px 5px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero span {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
             cursor: pointer;
-            transition: all 0.1s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1rem;
         }
 
-        .key.black {
-            background: #000;
-            height: 120px;            margin: 0 -17px;
-            z-index: 1;
-            position: relative;
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
 
-        .key:active, .key.active {
-            background: var(--primary-color);
-            transform: scale(0.95);
+        /* cards */
+        .services, .blog-posts {
+            margin-top: 2rem;
         }
 
-        /* Tools Grid */
-        .tools-grid {
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card, article {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover, article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .card h3, article h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* about page */
+        .about-page, .contact-page {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-page h1, .contact-page h1, .blog-page h1 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .about-page p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .skills {
+            margin-top: 2rem;
+        }
+
+        .skills h2 {
+            margin-bottom: 1rem;
+        }
+
+        .skills ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skills li {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* blog posts */
+        .blog-posts {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 1.5rem;
         }
 
-        .tool-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid var(--secondary-color);
+        article p {
+            margin: 0.5rem 0;
+            color: #666;
         }
 
-        /* Calculator */
-        .calculator {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            max-width: 300px;
-            margin: 0 auto;
+        article a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 0.5rem;
         }
 
-        .calc-display {
-            grid-column: 1 / -1;
-            background: #000;
-            color: #0f0;
-            padding: 15px;
-            font-size: 1.5em;
-            text-align: right;
-            border-radius: 10px;
-            margin-bottom: 10px;
+        article a:hover {
+            text-decoration: underline;
         }
 
-        .calc-btn {
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: var(--primary-color);
-            color: #000;            font-size: 1.2em;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
-
-        .calc-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .calc-btn.operator {
-            background: var(--secondary-color);
-            color: white;
-        }
-
-        /* AI Chat */
-        .chat-container {
-            height: 400px;
+        /* contact form */
+        .contact-form {
             display: flex;
             flex-direction: column;
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .chat-input {
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid var(--primary-color);
-            border-radius: 20px;
-            background: var(--card-bg);
-            color: var(--text-color);
-        }
-
-        .chat-input button {
-            padding: 10px 20px;
-            background: var(--primary-color);
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;            font-weight: bold;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
+            gap: 1rem;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--primary-color);
+            font-weight: bold;
+            color: #555;
         }
 
         .form-group input,
         .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid var(--primary-color);
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
-            background: var(--card-bg);
-            color: var(--text-color);
+            font-size: 1rem;
             font-family: inherit;
+            transition: border-color 0.3s;
         }
 
-        .submit-btn {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: #000;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s;
-            display: block;
-            margin: 0 auto;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
         }
 
-        .submit-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* Floating WhatsApp */
-        .whatsapp-float {            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: #25d366;
+        button[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            z-index: 999;
-            animation: pulse 2s infinite;
-            text-decoration: none;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.5);
-            border-top: 2px solid var(--primary-color);
-            margin-top: 50px;
-        }
-
-        .developer-credit {
-            font-size: 1.3em;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        /* Background Selector */
-        .bg-selector {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 15px;
-            border: 2px solid var(--primary-color);
-            z-index: 100;
-        }
-        .bg-option {
-            width: 40px;
-            height: 40px;
+            padding: 0.8rem;
+            border: none;
             border-radius: 10px;
-            margin: 5px;
+            font-size: 1rem;
             cursor: pointer;
-            border: 3px solid transparent;
             transition: transform 0.3s;
-            display: inline-block;
         }
 
-        .bg-option:hover, .bg-option.active {
-            transform: scale(1.2);
-            border-color: var(--primary-color);
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
         }
 
-        /* Responsive */
+        .social-links {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .social-links h3 {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* footer */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            color: #666;
+        }
+
+        /* responsive */
         @media (max-width: 768px) {
-            .top-bar {
+            nav {
                 flex-direction: column;
-                gap: 10px;
+                gap: 1rem;
             }
-            
-            .social-grid,
-            .games-grid,
-            .tools-grid {
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .cards, .blog-posts {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Snake Game */
-        #snakeCanvas {
-            width: 100%;
-            max-width: 600px;
-            display: block;
-            margin: 0 auto;
-            background: #000;
+        /* message popup */
+        .message-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 1rem 1.5rem;
             border-radius: 10px;
+            z-index: 2000;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="weather-time">
-            <div class="clock">
-                <i class="fas fa-clock"></i>
-                <span id="clock-time">00:00:00</span>
-            </div>            <div class="weather">
-                <i class="fas fa-cloud-sun"></i>
-                <span id="weather-info">جاري التحميل...</span>
-            </div>
-        </div>
-        <button class="theme-toggle" onclick="toggleTheme()">
-            <i class="fas fa-moon"></i> الوضع الداكن
-        </button>
-    </div>
 
-    <!-- Background Selector -->
-    <div class="bg-selector">
-        <h4 style="margin-bottom: 10px;">الخلفيات</h4>
-        <div class="bg-option active" style="background: linear-gradient(45deg, #0a0a0a, #1a1a1a)" onclick="changeBackground(this, 'gradient1')"></div>
-        <div class="bg-option" style="background: linear-gradient(45deg, #1a0033, #001a33)" onclick="changeBackground(this, 'gradient2')"></div>
-        <div class="bg-option" style="background: linear-gradient(45deg, #00331a, #003333)" onclick="changeBackground(this, 'gradient3')"></div>
-        <div class="bg-option" style="background: linear-gradient(45deg, #331a00, #33001a)" onclick="changeBackground(this, 'gradient4')"></div>
-    </div>
-
-    <!-- Cover Section -->
-    <div class="cover-section">
-        <img src="https://i.imgur.com/your-cover-image.jpg" alt="Cover" class="cover-image" onerror="this.style.background='linear-gradient(45deg, #00d4ff, #ff6b00)'">
-        <div class="profile-section">
-            <img src="https://i.imgur.com/your-profile-image.jpg" alt="Profile" class="profile-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iIzMzMyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjIwIiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+UkdQPC90ZXh0Pjwvc3ZnPg=='">
-            <h1 class="profile-name">Abdulrahman Bashir</h1>
-        </div>
-    </div>
+    <header>
+        <nav>
+            <div class="logo">أحمد</div>
+            <ul class="nav-links">
+                <li><button class="nav-btn active" data-page="home">الرئيسية</button></li>
+                <li><button class="nav-btn" data-page="about">عني</button></li>
+                <li><button class="nav-btn" data-page="blog">المدونة</button></li>
+                <li><button class="nav-btn" data-page="contact">تواصل</button></li>
+            </ul>
+        </nav>
+    </header>
 
     <div class="container">
-        <!-- Social Media Section -->
-        <section class="card">
-            <h2 class="section-title"><i class="fas fa-share-alt"></i> تواصل معي</h2>
-            <div class="social-grid">
-                <a href="https://tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-card">
-                    <div class="social-icon tiktok">
-                        <i class="fab fa-tiktok"></i>
-                    </div>
-                    <h3>TikTok</h3>
-                    <p>@abdulrahmanbashir523</p>
-                </a>
-                
-                <a href="https://www.instagram.com/abdulrahmanbashir781" target="_blank" class="social-card">
-                    <div class="social-icon instagram">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <h3>Instagram</h3>
-                    <p>@abdulrahmanbashir781</p>
-                </a>
-                
-                <a href="https://x.com/body16603" target="_blank" class="social-card">                    <div class="social-icon twitter">
-                        <i class="fab fa-twitter"></i>
-                    </div>
-                    <h3>Twitter / X</h3>
-                    <p>@body16603</p>
-                </a>
-                
-                <a href="https://youtube.com/@algamers-b7l" target="_blank" class="social-card">
-                    <div class="social-icon youtube">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <h3>YouTube</h3>
-                    <p>@algamers-b7l</p>
-                </a>
-                
-                <a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-card">
-                    <div class="social-icon facebook">
-                        <i class="fab fa-facebook"></i>
-                    </div>
-                    <h3>Facebook</h3>
-                    <p>Abdulrahman Bashir</p>
-                </a>
-                
-                <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-card">
-                    <div class="social-icon whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h3>WhatsApp Channel</h3>
-                    <p>انضم للقناة</p>
-                </a>
-                
-                <a href="https://wa.me/201025474780" target="_blank" class="social-card">
-                    <div class="social-icon whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h3>واتساب 1</h3>
-                    <p>01025474780</p>
-                </a>
-                
-                <a href="https://wa.me/201505299711" target="_blank" class="social-card">
-                    <div class="social-icon whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <h3>واتساب 2</h3>
-                    <p>01505299711</p>
-                </a>
+        <!-- Home Page -->
+        <div id="home" class="page active-page">
+            <div class="hero">
+                <h1>مرحباً، أنا <span>أحمد</span></h1>
+                <p>مطور ويب ومصمم إبداعي. أساعد في تحويل الأفكار إلى واقع رقمي.</p>
+                <button class="btn" onclick="showPage('contact')">تواصل معي</button>
             </div>
-        </section>
 
-        <!-- Favorite Games Section -->        <section class="card">
-            <h2 class="section-title"><i class="fas fa-gamepad"></i> ألعابي المفضلة</h2>
-            <div class="games-grid">
-                <div class="game-card">
-                    <i class="fas fa-parachute-box game-icon"></i>
-                    <h3>PUBG Mobile</h3>
-                    <p>ببجي موبايل</p>
-                </div>
-                
-                <div class="game-card">
-                    <i class="fas fa-car game-icon"></i>
-                    <h3>GTA</h3>
-                    <p>جراند ثفت أوتو</p>
-                </div>
-                
-                <div class="game-card">
-                    <i class="fas fa-truck game-icon"></i>
-                    <h3>Truck Simulator</h3>
-                    <p>محاكي الشاحنات</p>
-                </div>
-                
-                <div class="game-card">
-                    <i class="fas fa-shield-alt game-icon"></i>
-                    <h3>Fortnite</h3>
-                    <p>فورتنايت</p>
+            <div class="services">
+                <h2 style="text-align: center; margin-bottom: 1rem;">ماذا أقدم؟</h2>
+                <div class="cards">
+                    <div class="card">
+                        <h3>🎨 تصميم مواقع</h3>
+                        <p>تصاميم عصرية ومتوافقة مع جميع الأجهزة باستخدام أحدث التقنيات.</p>
+                    </div>
+                    <div class="card">
+                        <h3>💻 تطوير ويب</h3>
+                        <p>مواقع تفاعلية وسريعة باستخدام HTML, CSS, JavaScript والفرام وركس الحديثة.</p>
+                    </div>
+                    <div class="card">
+                        <h3>📱 تطبيقات الجوال</h3>
+                        <p>تطبيقات متوافقة مع نظامي Android و iOS باستخدام تقنيات跨平台.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🔧 استشارات تقنية</h3>
+                        <p>نصائح وحلول لمشاريعك الرقمية وتحسين أداء المواقع.</p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Interactive Games Section -->
-        <section class="card">
-            <h2 class="section-title"><i class="fas fa-play-circle"></i> العب الآن</h2>
-            <div class="games-container">
-                <!-- Piano -->
-                <div class="tool-card">
-                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-music"></i> البيانو</h3>
-                    <div class="piano-container">
-                        <div class="piano" id="piano">
-                            <div class="key" data-note="C4"></div>
-                            <div class="key black" data-note="C#4"></div>
-                            <div class="key" data-note="D4"></div>
-                            <div class="key black" data-note="D#4"></div>
-                            <div class="key" data-note="E4"></div>
-                            <div class="key" data-note="F4"></div>
-                            <div class="key black" data-note="F#4"></div>
-                            <div class="key" data-note="G4"></div>
-                            <div class="key black" data-note="G#4"></div>
-                            <div class="key" data-note="A4"></div>
-                            <div class="key black" data-note="A#4"></div>
-                            <div class="key" data-note="B4"></div>                            <div class="key" data-note="C5"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Snake Game -->
-                <div>
-                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-snake"></i> Snake Game</h3>
-                    <canvas id="snakeCanvas" width="600" height="400"></canvas>
-                    <p style="text-align: center; margin-top: 10px;">استخدم الأسهم للتحكم ←↑↓→</p>
-                </div>
-
-                <!-- 2048 Game -->
-                <div>
-                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-th"></i> 2048</h3>
-                    <iframe class="game-frame" src="https://play2048.co/" frameborder="0"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <!-- Learning Section -->
-        <section class="card">
-            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> تعلّم</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h3><i class="fas fa-code"></i> لغات البرمجة</h3>
-                    <div style="margin-top: 15px;">
-                        <a href="https://www.codecademy.com/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
-                            <i class="fas fa-external-link-alt"></i> Codecademy
-                        </a>
-                        <a href="https://www.freecodecamp.org/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
-                            <i class="fas fa-external-link-alt"></i> freeCodeCamp
-                        </a>
-                        <a href="https://www.w3schools.com/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
-                            <i class="fas fa-external-link-alt"></i> W3Schools
-                        </a>
-                    </div>
-                </div>
+        <!-- About Page -->
+        <div id="about" class="page">
+            <div class="about-page">
+                <h1>من أنا؟</h1>
+                <p>السلام عليكم! أنا أحمد، مطور ويب شغوف بالتكنولوجيا والتصميم. بدأت رحلتي في عالم البرمجة منذ 5 سنوات، ومنذ ذلك الحين وأنا أسعى لخلق تجارب رقمية مميزة ومبتكرة.</p>
+                <p>أؤمن بأن البرمجة ليست مجرد أكواد، بل هي فن وحرفة تتيح لنا تحويل الأفكار إلى واقع ملموس. أعمل حالياً كمطور ويب حر، وأساعد الشركات والأفراد في بناء حضورهم الرقمي.</p>
+                <p>خلال مسيرتي، تعاونت مع أكثر من 50 عميلاً في مشاريع متنوعة، من مواقع شخصية إلى تطبيقات ويب معقدة. هدفي دائماً هو تقديم حلول تقنية تجمع بين الجمال والأداء العالي.</p>
                 
-                <div class="tool-card">
-                    <h3><i class="fas fa-quran"></i> التجويد</h3>
-                    <div style="margin-top: 15px;">
-                        <a href="https://quran.com/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
-                            <i class="fas fa-external-link-alt"></i> Quran.com
-                        </a>
-                        <a href="https://www.islamway.net/" target="_blank" style="display: block; padding: 10px; margin: 5px 0; background: var(--bg-color); border-radius: 10px; text-decoration: none; color: var(--primary-color);">
-                            <i class="fas fa-external-link-alt"></i> Islamway
-                        </a>
-                    </div>
-                </div>            </div>
-        </section>
-
-        <!-- Tools Section -->
-        <section class="card">
-            <h2 class="section-title"><i class="fas fa-tools"></i> الأدوات</h2>
-            <div class="tools-grid">
-                <!-- Calculator -->
-                <div class="tool-card">
-                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-calculator"></i> الحاسبة</h3>
-                    <div class="calculator">
-                        <div class="calc-display" id="calcDisplay">0</div>
-                        <button class="calc-btn" onclick="clearCalc()">C</button>
-                        <button class="calc-btn" onclick="appendToCalc('(')">(</button>
-                        <button class="calc-btn" onclick="appendToCalc(')')">)</button>
-                        <button class="calc-btn operator" onclick="appendToCalc('/')">÷</button>
-                        <button class="calc-btn" onclick="appendToCalc('7')">7</button>
-                        <button class="calc-btn" onclick="appendToCalc('8')">8</button>
-                        <button class="calc-btn" onclick="appendToCalc('9')">9</button>
-                        <button class="calc-btn operator" onclick="appendToCalc('*')">×</button>
-                        <button class="calc-btn" onclick="appendToCalc('4')">4</button>
-                        <button class="calc-btn" onclick="appendToCalc('5')">5</button>
-                        <button class="calc-btn" onclick="appendToCalc('6')">6</button>
-                        <button class="calc-btn operator" onclick="appendToCalc('-')">-</button>
-                        <button class="calc-btn" onclick="appendToCalc('1')">1</button>
-                        <button class="calc-btn" onclick="appendToCalc('2')">2</button>
-                        <button class="calc-btn" onclick="appendToCalc('3')">3</button>
-                        <button class="calc-btn operator" onclick="appendToCalc('+')">+</button>
-                        <button class="calc-btn" onclick="appendToCalc('0')">0</button>
-                        <button class="calc-btn" onclick="appendToCalc('.')">.</button>
-                        <button class="calc-btn operator" onclick="calculate()">=</button>
-                    </div>
+                <div class="skills">
+                    <h2>المهارات التقنية</h2>
+                    <ul>
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>React.js & Next.js</li>
+                        <li>Vue.js</li>
+                        <li>Python & Django</li>
+                        <li>Node.js & Express</li>
+                        <li>UI/UX Design</li>
+                        <li>Git & GitHub</li>
+                    </ul>
                 </div>
 
-                <!-- AI Chat -->
-                <div class="tool-card">
-                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-robot"></i> الذكاء الاصطناعي</h3>
-                    <div class="chat-container">
-                        <div class="chat-messages" id="chatMessages">
-                            <div style="padding: 10px; background: rgba(0, 212, 255, 0.2); border-radius: 10px; margin-bottom: 10px;">
-                                <strong>AI:</strong> أهلاً بك! أنا هنا لمساعدتك. اسألني أي سؤال!
-                            </div>
-                        </div>
-                        <div class="chat-input">
-                            <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا..." onkeypress="if(event.key==='Enter')sendMessage()">
-                            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Alarm & Timer -->
-                <div class="tool-card">
-                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-clock"></i> المنبه & المؤقت</h3>
-                    <div style="margin-bottom: 20px;">
-                        <h4>المنبه</h4>
-                        <input type="time" id="alarmTime" style="padding: 8px; margin: 5px; border-radius: 5px; border: 1px solid var(--primary-color); background: var(--bg-color); color: var(--text-color);">
-                        <button onclick="setAlarm()" style="padding: 8px 15px; background: var(--primary-color); border: none; border-radius: 5px; cursor: pointer;">ضبط المنبه</button>
-                    </div>
-                    <div>
-                        <h4>المؤقت</h4>
-                        <input type="number" id="timerMinutes" placeholder="الدقائق" style="padding: 8px; margin: 5px; width: 100px; border-radius: 5px; border: 1px solid var(--primary-color); background: var(--bg-color); color: var(--text-color);">
-                        <button onclick="startTimer()" style="padding: 8px 15px; background: var(--secondary-color); border: none; border-radius: 5px; cursor: pointer; color: white;">ابدأ</button>
-                        <div id="timerDisplay" style="margin-top: 10px; font-size: 1.5em; color: var(--primary-color);"></div>
-                    </div>
-                </div>
-
-                <!-- Notepad -->
-                <div class="tool-card">
-                    <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-sticky-note"></i> المفكرة</h3>
-                    <textarea id="notepad" rows="10" style="width: 100%; padding: 10px; border: 2px solid var(--primary-color); border-radius: 10px; background: var(--bg-color); color: var(--text-color); resize: vertical;" placeholder="اكتب ملاحظاتك هنا..."></textarea>
-                    <button onclick="saveNotepad()" style="margin-top: 10px; padding: 10px 20px; background: var(--primary-color); border: none; border-radius: 5px; cursor: pointer; width: 100%;">حفظ</button>
+                <div style="margin-top: 2rem;">
+                    <h2>الخبرات</h2>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>✓ 5+ سنوات في تطوير الويب</li>
+                        <li>✓ أكثر من 50 مشروع منجح</li>
+                        <li>✓ شهادات معتمدة في React و JavaScript</li>
+                        <li>✓ مدرب برمجة في أكاديميات محلية</li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Contact Form -->
-        <section class="card">
-            <h2 class="section-title"><i class="fas fa-envelope"></i> تواصل عبر البريد</h2>
-            <form class="contact-form" onsubmit="sendEmail(event)">
-                <div class="form-group">
-                    <label>بريدك الإلكتروني</label>
-                    <input type="email" id="senderEmail" required placeholder="example@email.com">
+        <!-- Blog Page -->
+        <div id="blog" class="page">
+            <div class="about-page">
+                <h1>المدونة</h1>
+                <div class="blog-posts">
+                    <article>
+                        <h2>أساسيات تعلم البرمجة للمبتدئين</h2>
+                        <p style="color: #888; font-size: 0.9rem;">📅 15 مارس 2025 | ⏱️ 5 دقائق قراءة</p>
+                        <p>إذا كنت مبتدئاً في عالم البرمجة ولا تعرف من أين تبدأ، هذا المقال سيساعدك على اختيار المسار المناسب وأهم النصائح لبداية قوية...</p>
+                        <a href="#" onclick="return false;">اقرأ المزيد →</a>
+                    </article>
+                    
+                    <article>
+                        <h2>أفضل أدوات المطورين في 2025</h2>
+                        <p style="color: #888; font-size: 0.9rem;">📅 1 مارس 2025 | ⏱️ 4 دقائق قراءة</p>
+                        <p>تعرف على أهم الأدوات التي ستسهل عملك كمطور وتزيد إنتاجيتك بشكل ملحوظ. من VS Code إلى Figma وأدوات الذكاء الاصطناعي...</p>
+                        <a href="#" onclick="return false;">اقرأ المزيد →</a>
+                    </article>
+                    
+                    <article>
+                        <h2>كيف تبني موقع شخصي ناجح</h2>
+                        <p style="color: #888; font-size: 0.9rem;">📅 15 فبراير 2025 | ⏱️ 6 دقائق قراءة</p>
+                        <p>دليل شامل لبناء موقع شخصي يعكس هويتك المهنية، ويجذب العملاء، ويعرض أعمالك بأفضل صورة ممكنة...</p>
+                        <a href="#" onclick="return false;">اقرأ المزيد →</a>
+                    </article>
+                    
+                    <article>
+                        <h2>أساسيات SEO لتحسين ظهور موقعك</h2>
+                        <p style="color: #888; font-size: 0.9rem;">📅 1 فبراير 2025 | ⏱️ 7 دقائق قراءة</p>
+                        <p>تعلم أساسيات تحسين محركات البحث وكيف تظهر موقعك في الصفحات الأولى لنتائج البحث وجذب زوار أكثر...</p>
+                        <a href="#" onclick="return false;">اقرأ المزيد →</a>
+                    </article>
                 </div>
-                <div class="form-group">
-                    <label>الموضوع</label>
-                    <input type="text" id="emailSubject" required placeholder="موضوع الرسالة">
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <div class="contact-page">
+                <h1>تواصل معي</h1>
+                <p style="margin-bottom: 2rem;">يسعدني التواصل معك! اترك لي رسالة وسأرد عليك في أقرب وقت ممكن.</p>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" name="name" required placeholder="أدخل اسمك">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" required placeholder="example@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">الموضوع</label>
+                        <input type="text" id="subject" name="subject" required placeholder="موضوع الرسالة">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">الرسالة</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="اكتب رسالتك هنا..."></textarea>
+                    </div>
+                    
+                    <button type="submit">إرسال الرسالة 📧</button>
+                </form>
+                
+                <div class="social-links">
+                    <h3>تواصل معي عبر وسائل التواصل</h3>
+                    <div class="social-icons">
+                        <a href="#" onclick="return false;">📧 البريد</a>
+                        <a href="#" onclick="return false;">📱 واتساب</a>
+                        <a href="#" onclick="return false;">💼 لينكدإن</a>
+                        <a href="#" onclick="return false;">🐙 جيت هاب</a>
+                        <a href="#" onclick="return false;">📷 انستغرام</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>الرسالة</label>
-                    <textarea id="emailMessage" rows="5" required placeholder="اكتب رسالتك هنا..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> إرسال الرسالة
-                </button>
-            </form>
-        </section>
+            </div>
+        </div>
     </div>
 
-    <!-- Floating WhatsApp -->
-    <a href="https://wa.me/201025474780" class="whatsapp-float" target="_blank">        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Footer -->
     <footer>
-        <p class="developer-credit">
-            <i class="fas fa-code"></i>
-            هذا الموقع من برمجة وتطوير Abdulrahman Ahmed Bashir
-            <i class="fas fa-code"></i>
-        </p>
-        <p style="margin-top: 10px; color: var(--primary-color);">© 2026 جميع الحقوق محفوظة</p>
+        <p>© 2025 أحمد - مطور ويب محترف. جميع الحقوق محفوظة.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">🏆 نسعى دائماً لتقديم الأفضل</p>
     </footer>
 
     <script>
-        // Clock
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('ar-EG');
-            document.getElementById('clock-time').textContent = timeString;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Weather
-        function getWeather() {
-            document.getElementById('weather-info').textContent = '☀️ 25°C - Cairo';
-        }
-        getWeather();
-
-        // Theme Toggle
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.querySelector('.theme-toggle');
-            
-            if (body.getAttribute('data-theme') === 'light') {
-                body.removeAttribute('data-theme');
-                btn.innerHTML = '<i class="fas fa-moon"></i> الوضع الداكن';
-            } else {
-                body.setAttribute('data-theme', 'light');
-                btn.innerHTML = '<i class="fas fa-sun"></i> الوضع الفاتح';
-            }
-        }
-
-        // Background Changer
-        function changeBackground(element, type) {
-            document.querySelectorAll('.bg-option').forEach(opt => opt.classList.remove('active'));
-            element.classList.add('active');
-            
-            const backgrounds = {
-                gradient1: 'linear-gradient(45deg, #0a0a0a, #1a1a1a)',                gradient2: 'linear-gradient(45deg, #1a0033, #001a33)',
-                gradient3: 'linear-gradient(45deg, #00331a, #003333)',
-                gradient4: 'linear-gradient(45deg, #331a00, #33001a)'
-            };
-            
-            document.body.style.background = backgrounds[type];
-        }
-
-        // Piano
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const notes = {
-            'C4': 261.63, 'C#4': 277.18, 'D4': 293.66, 'D#4': 311.13,
-            'E4': 329.63, 'F4': 349.23, 'F#4': 369.99, 'G4': 392.00,
-            'G#4': 415.30, 'A4': 440.00, 'A#4': 466.16, 'B4': 493.88, 'C5': 523.25
-        };
-
-        document.querySelectorAll('.key').forEach(key => {
-            key.addEventListener('click', function() {
-                playNote(this.dataset.note);
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active-page');
             });
-        });
-
-        function playNote(note) {
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
             
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
+            // Show selected page
+            document.getElementById(pageId).classList.add('active-page');
             
-            oscillator.frequency.value = notes[note];
-            oscillator.type = 'sine';
-            
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.5);
-            
-            event.target.classList.add('active');
-            setTimeout(() => event.target.classList.remove('active'), 200);
-        }
-
-        // Snake Game
-        const canvas = document.getElementById('snakeCanvas');
-        const ctx = canvas.getContext('2d');
-        const gridSize = 20;
-        const tileCountX = canvas.width / gridSize;
-        const tileCountY = canvas.height / gridSize;
-
-        let snake = [{x: 10, y: 10}];        let food = {x: 15, y: 15};
-        let dx = 0;
-        let dy = 0;
-        let gameRunning = true;
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowUp' && dy === 0) { dx = 0; dy = -1; gameRunning = true; }
-            if (e.key === 'ArrowDown' && dy === 0) { dx = 0; dy = 1; gameRunning = true; }
-            if (e.key === 'ArrowLeft' && dx === 0) { dx = -1; dy = 0; gameRunning = true; }
-            if (e.key === 'ArrowRight' && dx === 0) { dx = 1; dy = 0; gameRunning = true; }
-        });
-
-        function updateSnake() {
-            if (!gameRunning) return;
-            
-            const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-            
-            if (head.x < 0 || head.x >= tileCountX || head.y < 0 || head.y >= tileCountY) {
-                resetSnake();
-                return;
-            }
-            
-            for (let segment of snake) {
-                if (head.x === segment.x && head.y === segment.y) {
-                    resetSnake();
-                    return;
+            // Update active button
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('data-page') === pageId) {
+                    btn.classList.add('active');
                 }
-            }
-            
-            snake.unshift(head);
-            
-            if (head.x === food.x && head.y === food.y) {
-                food = {
-                    x: Math.floor(Math.random() * tileCountX),
-                    y: Math.floor(Math.random() * tileCountY)
-                };
-            } else {
-                snake.pop();
-            }
-            
-            drawSnake();
-        }
-
-        function resetSnake() {
-            snake = [{x: 10, y: 10}];
-            dx = 0;
-            dy = 0;
-            gameRunning = false;
-            setTimeout(() => { gameRunning = true; }, 1000);
-        }
-        function drawSnake() {
-            ctx.fillStyle = '#000';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#00d4ff';
-            snake.forEach(segment => {
-                ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
             });
             
-            ctx.fillStyle = '#ff6b00';
-            ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
-        }
-
-        setInterval(() => updateSnake(), 100);
-        drawSnake();
-
-        // Calculator
-        let calcExpression = '';
-        
-        function appendToCalc(value) {
-            calcExpression += value;
-            document.getElementById('calcDisplay').textContent = calcExpression;
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
-        function clearCalc() {
-            calcExpression = '';
-            document.getElementById('calcDisplay').textContent = '0';
+        // Add click event to navigation buttons
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const pageId = this.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        // Handle contact form submission
+        const contactForm = document.getElementById('contactForm');
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Show success message
+                showMessage(`شكراً ${name}! تم استلام رسالتك بنجاح. سأتواصل معك قريباً.`, 'success');
+                
+                // Clear form
+                contactForm.reset();
+                
+                // In a real website, you would send this data to a server
+                console.log('Form submitted:', { name, email, subject, message });
+            });
         }
         
-        function calculate() {
-            try {
-                const result = eval(calcExpression);
-                document.getElementById('calcDisplay').textContent = result;
-                calcExpression = result.toString();
-            } catch {
-                document.getElementById('calcDisplay').textContent = 'Error';
-                calcExpression = '';
-            }
-        }
-
-        // AI Chat
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            if (!message) return;
+        // Function to show popup messages
+        function showMessage(msg, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message-popup';
+            messageDiv.textContent = msg;
             
-            const messagesDiv = document.getElementById('chatMessages');
-            
-            messagesDiv.innerHTML += `                <div style="padding: 10px; background: rgba(255, 107, 0, 0.2); border-radius: 10px; margin-bottom: 10px; text-align: left;">
-                    <strong>أنت:</strong> ${message}
-                </div>
-            `;
-            
-            let response = 'أنا ذكاء اصطناعي بسيط. اسألني عن الألعاب أو البرمجة!';
-            
-            const lowerMsg = message.toLowerCase();
-            if (lowerMsg.includes('ببجي') || lowerMsg.includes('pubg')) {
-                response = 'ببجي لعبة رائعة! بتلعبها كام ساعة في اليوم؟';
-            } else if (lowerMsg.includes('برمجة') || lowerMsg.includes('code')) {
-                response = 'البرمجة مجال رائع! أنصحك تبدأ بـ Python أو JavaScript.';
-            } else if (lowerMsg.includes('سلام') || lowerMsg.includes('هلا')) {
-                response = 'وعليكم السلام! أهلاً بك في موقعي 😊';
-            } else if (lowerMsg.includes('شكراً')) {
-                response = 'عفواً! أنا هنا دائماً لمساعدتك 🎮';
+            if(type === 'success') {
+                messageDiv.style.background = '#4caf50';
+            } else if(type === 'error') {
+                messageDiv.style.background = '#f44336';
             }
             
+            document.body.appendChild(messageDiv);
+            
+            // Remove message after 3 seconds
             setTimeout(() => {
-                messagesDiv.innerHTML += `
-                    <div style="padding: 10px; background: rgba(0, 212, 255, 0.2); border-radius: 10px; margin-bottom: 10px;">
-                        <strong>AI:</strong> ${response}
-                    </div>
-                `;
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            }, 500);
-            
-            input.value = '';
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        // Alarm
-        let alarmInterval;
-        function setAlarm() {
-            const alarmTime = document.getElementById('alarmTime').value;
-            if (!alarmTime) return;
-            
-            alert(`تم ضبط المنبه على ${alarmTime}`);
-            
-            if (alarmInterval) clearInterval(alarmInterval);
-            
-            alarmInterval = setInterval(() => {
-                const now = new Date();
-                const currentTime = now.toLocaleTimeString('ar-EG', {hour: '2-digit', minute: '2-digit'});
-                
-                if (currentTime === alarmTime) {
-                    alert('⏰ وقت المنبه!');
-                    clearInterval(alarmInterval);
-                }
-            }, 1000);        }
-
-        // Timer
-        let timerInterval;
-        function startTimer() {
-            const minutes = parseInt(document.getElementById('timerMinutes').value);
-            if (!minutes) return;
-            
-            let seconds = minutes * 60;
-            const display = document.getElementById('timerDisplay');
-            
-            if (timerInterval) clearInterval(timerInterval);
-            
-            timerInterval = setInterval(() => {
-                const mins = Math.floor(seconds / 60);
-                const secs = seconds % 60;
-                display.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-                
-                if (seconds <= 0) {
-                    clearInterval(timerInterval);
-                    alert('⏰ انتهى الوقت!');
-                    display.textContent = '';
-                }
-                seconds--;
-            }, 1000);
-        }
-
-        // Notepad
-        function saveNotepad() {
-            const text = document.getElementById('notepad').value;
-            localStorage.setItem('notepad', text);
-            alert('✅ تم الحفظ!');
+                messageDiv.remove();
+            }, 3000);
         }
         
-        window.onload = () => {
-            const saved = localStorage.getItem('notepad');
-            if (saved) {
-                document.getElementById('notepad').value = saved;
+        // Add smooth scroll and animations
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Add some interactive effects
+        const cards = document.querySelectorAll('.card, article');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Display welcome message on load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                showMessage('مرحباً بك في موقعي الشخصي! 🎉', 'success');
+            }, 1000);
+        });
+        
+        // Add keyboard navigation (optional)
+        document.addEventListener('keydown', function(e) {
+            if(e.key >= '1' && e.key <= '4') {
+                const pages = ['home', 'about', 'blog', 'contact'];
+                const index = parseInt(e.key) - 1;
+                if(pages[index]) {
+                    showPage(pages[index]);
+                }
             }
-        };
-
-        // Contact Form
-        function sendEmail(e) {
-            e.preventDefault();
-            
-            const senderEmail = document.getElementById('senderEmail').value;
-            const subject = document.getElementById('emailSubject').value;
-            const message = document.getElementById('emailMessage').value;
-            
-            const mailtoLink = `mailto:abdulrahmanbashir573@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${senderEmail}\n\n${message}`)}`;            
-            window.location.href = mailtoLink;
-        }
+        });
     </script>
 </body>
 </html>
