@@ -2,89 +2,159 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulrahman Bashir | الموقع الشخصي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Abdulrahman Bashir | الموقع الشخصي المتكامل</title>
+    <!-- Font Awesome 6 (الأيقونات الحقيقية) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease;
         }
 
         body {
-            font-family: 'Tahoma', 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Cairo', 'Tahoma', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
             min-height: 100vh;
-            color: #333;
         }
 
-        /* header and navigation */
-        header {
-            background: rgba(255, 255, 255, 0.95);
+        /* الوضع الفاتح والداكن */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #333;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --border-color: #e0e0e0;
+            --btn-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --input-bg: white;
+        }
+
+        body.dark {
+            --bg-gradient: linear-gradient(135deg, #1e1e2f 0%, #2a2a3c 100%);
+            --card-bg: #2d2d3f;
+            --text-color: #f0f0f0;
+            --header-bg: #2d2d3f;
+            --shadow: 0 10px 40px rgba(0,0,0,0.3);
+            --border-color: #4a4a60;
+            --btn-bg: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
+            --input-bg: #3a3a4e;
+        }
+
+        /* الشريط العلوي */
+        .top-bar {
+            background: var(--header-bg);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
-        }
-
-        nav {
+            padding: 0.5rem 2rem;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 1rem 0;
+            gap: 1rem;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            list-style: none;
+        .datetime {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
+            font-weight: 500;
+            background: rgba(102,126,234,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
         }
 
-        .nav-links button {
+        .weather {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(102,126,234,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .search-box button {
+            background: var(--btn-bg);
+            border: none;
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .controls {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .controls button, .lang-select {
+            background: var(--btn-bg);
+            border: none;
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            color: white;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* التنقل */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 0.8rem;
+            background: var(--header-bg);
+            margin-top: 0.5rem;
+        }
+
+        .nav-btn {
             background: none;
             border: none;
             font-size: 1rem;
             cursor: pointer;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s;
-            color: #555;
-            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            color: var(--text-color);
+            font-weight: 600;
+            border-radius: 50px;
         }
 
-        .nav-links button:hover {
-            color: #667eea;
-            transform: translateY(-2px);
+        .nav-btn.active {
+            background: var(--btn-bg);
+            color: white;
         }
 
-        .nav-links button.active {
-            color: #667eea;
-            border-bottom: 2px solid #667eea;
-        }
-
-        /* main content */
+        /* الحاوية الرئيسية */
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 2rem auto;
-            min-height: 70vh;
+            width: 95%;
+            max-width: 1300px;
+            margin: 1rem auto;
         }
 
         .page {
             display: none;
-            animation: fadeIn 0.5s ease-in;
+            animation: fadeIn 0.4s;
         }
 
         .page.active-page {
@@ -92,604 +162,437 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
         }
 
-        /* hero section with image */
+        /* بطاقات عامة */
+        .card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        /* الصفحة الرئيسية */
         .hero {
             text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
 
-        .profile-image {
-            width: 180px;
-            height: 180px;
+        .profile-img {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #667eea;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            margin-bottom: 1rem;
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            margin: 0.5rem 0;
-        }
-
-        .hero span {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.8rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-size: 1rem;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        /* cards */
-        .services, .blog-posts {
-            margin-top: 2rem;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .card, article {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover, article:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-
-        .card h3, article h2 {
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        /* about page */
-        .about-page, .contact-page {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        .about-page h1, .contact-page h1, .blog-page h1 {
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .about-page p {
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .skills {
-            margin-top: 2rem;
-        }
-
-        .skills h2 {
-            margin-bottom: 1rem;
-        }
-
-        .skills ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .skills li {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* contact info cards */
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .info-card {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .info-card h4 {
-            color: #667eea;
+            border: 4px solid #667eea;
             margin-bottom: 0.5rem;
         }
 
-        /* social icons */
-        .social-section {
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .social-section h3 {
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
+        /* أيقونات التواصل الحقيقية */
         .social-icons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 1rem;
+            margin-top: 1rem;
         }
 
         .social-icon {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 0.7rem 1.2rem;
-            border-radius: 50px;
-            text-decoration: none;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.8rem;
             color: white;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* social media colors */
-        .facebook { background: #1877f2; }
-        .twitter { background: #1da1f2; }
-        .instagram { background: linear-gradient(45deg, #f09433, #d62976, #962fbf); }
-        .youtube { background: #ff0000; }
-        .tiktok { background: #000000; }
-        .whatsapp { background: #25d366; }
-        .email { background: #ea4335; }
-        .phone { background: #34b7f1; }
-
-        /* developer section with RGB effect */
-        .developer-section {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #1a1a2e;
-            border-radius: 15px;
-        }
-
-        .rgb-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-            animation: rgbPulse 1.5s infinite;
-            display: inline-block;
-        }
-
-        @keyframes rgbPulse {
-            0% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; color: #ff0000; }
-            33% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; color: #00ff00; }
-            66% { text-shadow: 0 0 5px #0000ff, 0 0 10px #0000ff; color: #0000ff; }
-            100% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; color: #ff0000; }
-        }
-
-        .developer-name {
-            font-size: 1rem;
-            color: #ccc;
-            margin-top: 0.5rem;
-        }
-
-        /* blog posts */
-        .blog-posts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        article p {
-            margin: 0.5rem 0;
-            color: #666;
-        }
-
-        article a {
-            color: #667eea;
+            transition: transform 0.2s;
             text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 0.5rem;
         }
 
-        article a:hover {
-            text-decoration: underline;
-        }
+        .social-icon:hover { transform: scale(1.1);}
+        .fab.fa-facebook-f { background: #1877f2; padding: 12px; border-radius: 50%;}
+        .fab.fa-twitter { background: #1da1f2; padding: 12px; border-radius: 50%;}
+        .fab.fa-instagram { background: radial-gradient(circle at 30% 110%, #ffdb7e, #f46f30, #d62976, #962fbf); padding: 12px; border-radius: 50%;}
+        .fab.fa-youtube { background: #ff0000; padding: 12px; border-radius: 50%;}
+        .fab.fa-tiktok { background: #000000; padding: 12px; border-radius: 50%;}
+        .fab.fa-whatsapp { background: #25d366; padding: 12px; border-radius: 50%;}
 
-        /* contact form */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        /* الحاسبة */
+        .calculator {
+            max-width: 300px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 20px;
         }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
+        #calc-display {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1.5rem;
+            text-align: left;
+            direction: ltr;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 0.5rem;
         }
-
-        .form-group label {
-            font-weight: bold;
-            color: #555;
-        }
-
-        .form-group input,
-        .form-group textarea {
+        .calc-buttons button {
             padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        button[type="submit"] {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.8rem;
+            font-size: 1.2rem;
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
+            border-radius: 15px;
             cursor: pointer;
-            transition: transform 0.3s;
+            background: var(--btn-bg);
+            color: white;
         }
 
-        button[type="submit"]:hover {
-            transform: translateY(-2px);
+        /* شات الذكاء الاصطناعي */
+        .chat-container {
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1rem;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+        }
+        .message {
+            margin-bottom: 0.8rem;
+            padding: 0.5rem 1rem;
+            border-radius: 18px;
+            max-width: 80%;
+        }
+        .user-msg {
+            background: #667eea;
+            color: white;
+            align-self: flex-end;
+            margin-right: auto;
+        }
+        .ai-msg {
+            background: #e5e5ea;
+            color: black;
+            align-self: flex-start;
+        }
+        .chat-input-area {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 0.7rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            color: var(--text-color);
         }
 
-        /* footer */
+        /* تنسيق عام */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .col {
+            flex: 1;
+            min-width: 280px;
+        }
+        h2, h3 { margin-bottom: 0.8rem;}
+
         footer {
-            background: rgba(255, 255, 255, 0.95);
             text-align: center;
             padding: 1.5rem;
+            background: var(--header-bg);
             margin-top: 2rem;
-            color: #666;
         }
-
-        /* responsive */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-
-            .cards, .blog-posts {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-icon {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
+        .rgb-text {
+            animation: rgbPulse 1.5s infinite;
         }
-
-        /* message popup */
-        .message-popup {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #4caf50;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            z-index: 2000;
-            animation: slideIn 0.5s ease-out;
+        @keyframes rgbPulse {
+            0% { text-shadow: 0 0 3px red; color: #ff4d4d;}
+            50% { text-shadow: 0 0 3px #00ff00; color: #4cff4c;}
+            100% { text-shadow: 0 0 3px blue; color: #4d4dff;}
         }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        @media (max-width: 700px) {
+            .top-bar { flex-direction: column; align-items: stretch; }
+            .controls { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">Abdulrahman Bashir</div>
-            <ul class="nav-links">
-                <li><button class="nav-btn active" data-page="home">الرئيسية</button></li>
-                <li><button class="nav-btn" data-page="about">عني</button></li>
-                <li><button class="nav-btn" data-page="blog">المدونة</button></li>
-                <li><button class="nav-btn" data-page="contact">تواصل</button></li>
-            </ul>
-        </nav>
-    </header>
+<div class="top-bar">
+    <div class="datetime">
+        <span id="clock">--:--:--</span>
+        <span id="date">----/--/--</span>
+    </div>
+    <div class="weather" id="weather">
+        <i class="fas fa-cloud-sun"></i> <span id="weather-temp">--°C</span> <span id="weather-desc">--</span>
+    </div>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="بحث في جوجل...">
+        <button onclick="searchGoogle()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="controls">
+        <button id="themeToggle"><i class="fas fa-moon"></i> وضع داكن</button>
+        <button id="langToggle"><i class="fas fa-language"></i> English</button>
+    </div>
+</div>
 
-    <div class="container">
-        <!-- Home Page -->
-        <div id="home" class="page active-page">
-            <div class="hero">
-                <!--عبدالرحمن.jpg-->
-                <img src="https://via.placeholder.com/180x180?text=Your+Photo" alt="Abdulrahman Ahmed Bashir" class="profile-image" id="profileImage">
-                <div class="profile-name" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">Abdulrahman Ahmed Bashir</div>
-                <h1>مرحباً، أنا <span>Abdulrahman</span></h1>
-                <p>محتوى رقمي | مطور ويب | صانع محتوى إبداعي</p>
-                <button class="btn" onclick="showPage('contact')">تواصل معي</button>
-            </div>
+<nav>
+    <button class="nav-btn active" data-page="home">الرئيسية</button>
+    <button class="nav-btn" data-page="about">عني</button>
+    <button class="nav-btn" data-page="tools">أدوات</button>
+    <button class="nav-btn" data-page="contact">تواصل</button>
+</nav>
 
-            <div class="services">
-                <h2 style="text-align: center; margin-bottom: 1rem;">ماذا أقدم؟</h2>
-                <div class="cards">
-                    <div class="card">
-                        <h3>🎨 تصميم مواقع</h3>
-                        <p>تصاميم عصرية ومتوافقة مع جميع الأجهزة باستخدام أحدث التقنيات.</p>
-                    </div>
-                    <div class="card">
-                        <h3>💻 تطوير ويب</h3>
-                        <p>مواقع تفاعلية وسريعة باستخدام HTML, CSS, JavaScript والفرام وركس الحديثة.</p>
-                    </div>
-                    <div class="card">
-                        <h3>📱 محتوى رقمي</h3>
-                        <p>إنتاج محتوى إبداعي على منصات التواصل المختلفة.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🔧 استشارات تقنية</h3>
-                        <p>نصائح وحلول لمشاريعك الرقمية وتحسين أداء المواقع.</p>
-                    </div>
-                </div>
+<div class="container">
+    <!-- الصفحة الرئيسية -->
+    <div id="home" class="page active-page">
+        <div class="card hero">
+            <img src="عبدالرحمن.jpg" alt="Abdulrahman" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=Abdulrahman'">
+            <h2>Abdulrahman Ahmed Bashir</h2>
+            <p>محتوى رقمي | مطور ويب | صانع محتوى إبداعي</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/body16603" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/abdulrahmanbashir781" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@algamers-b7l" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-
-        <!-- About Page -->
-        <div id="about" class="page">
-            <div class="about-page">
-                <h1>من أنا؟</h1>
-                <div style="text-align: center; margin-bottom: 1.5rem;">
-                    <img src="https://via.placeholder.com/120x120?text=Your+Photo" alt="Abdulrahman Ahmed Bashir" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #667eea;">
-                    <div style="font-weight: bold; margin-top: 0.5rem;">Abdulrahman Ahmed Bashir</div>
-                </div>
-                <p>السلام عليكم! أنا عبدالرحمن أحمد بشير، صانع محتوى رقمي ومطور ويب من مصر. شغوف بالتكنولوجيا وإنشاء المحتوى الإبداعي الذي يلهم الآخرين.</p>
-                <p>أسعى دائماً لتقديم محتوى هادف ومفيد على منصات التواصل الاجتماعي، وأعمل على تطوير مهاراتي في البرمجة وتصميم المواقع لتقديم أفضل الخدمات الرقمية.</p>
-                
-                <div class="skills">
-                    <h2>المهارات</h2>
-                    <ul>
-                        <li>HTML5 & CSS3</li>
-                        <li>JavaScript</li>
-                        <li>React.js</li>
-                        <li>صناعة المحتوى</li>
-                        <li>تصميم جرافيك</li>
-                        <li>إدارة منصات التواصل</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Blog Page -->
-        <div id="blog" class="page">
-            <div class="about-page">
-                <h1>المدونة</h1>
-                <div class="blog-posts">
-                    <article>
-                        <h2>كيف تبدأ في صناعة المحتوى الرقمي</h2>
-                        <p style="color: #888; font-size: 0.9rem;">📅 15 مارس 2025 | ⏱️ 5 دقائق قراءة</p>
-                        <p>دليل شامل للمبتدئين في عالم صناعة المحتوى، أهم الأدوات والاستراتيجيات للنجاح...</p>
-                        <a href="#" onclick="return false;">اقرأ المزيد →</a>
-                    </article>
-                    
-                    <article>
-                        <h2>أساسيات تعلم البرمجة للمبتدئين</h2>
-                        <p style="color: #888; font-size: 0.9rem;">📅 1 مارس 2025 | ⏱️ 4 دقائق قراءة</p>
-                        <p>إذا كنت مبتدئاً في عالم البرمجة، هذا المقال سيساعدك على اختيار المسار المناسب...</p>
-                        <a href="#" onclick="return false;">اقرأ المزيد →</a>
-                    </article>
-                    
-                    <article>
-                        <h2>أفضل منصات التواصل لصانعي المحتوى</h2>
-                        <p style="color: #888; font-size: 0.9rem;">📅 15 فبراير 2025 | ⏱️ 6 دقائق قراءة</p>
-                        <p>تعرف على أفضل المنصات لبناء جمهورك وزيادة انتشارك كمحتوى رقمي...</p>
-                        <a href="#" onclick="return false;">اقرأ المزيد →</a>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact Page -->
-        <div id="contact" class="page">
-            <div class="contact-page">
-                <h1>تواصل معي</h1>
-                <p style="margin-bottom: 1rem;">يسعدني التواصل معك! يمكنك مراسلتي عبر النموذج أو عبر وسائل التواصل أدناه.</p>
-                
-                <!-- Contact Info Cards -->
-                <div class="contact-info">
-                    <div class="info-card">
-                        <h4>📧 البريد الإلكتروني</h4>
-                        <p>abdulrahmanbashir573@gmail.com</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>📱 الهاتف</h4>
-                        <p>01025474780</p>
-                        <p>01505299711</p>
-                    </div>
-                </div>
-                
-                <!-- Social Media Section -->
-                <div class="social-section">
-                    <h3>تابعني على منصات التواصل</h3>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-icon facebook">📘 فيسبوك</a>
-                        <a href="https://x.com/body16603" target="_blank" class="social-icon twitter">🐦 تويتر</a>
-                        <a href="https://www.instagram.com/abdulrahmanbashir781?igsh=MXBxamxrcXg0YmJ3bQ==" target="_blank" class="social-icon instagram">📷 انستجرام</a>
-                        <a href="https://youtube.com/@algamers-b7l?si=PA_cb863tyMvPeqe" target="_blank" class="social-icon youtube">🎥 يوتيوب</a>
-                        <a href="https://www.tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-icon tiktok">🎵 تيك توك</a>
-                        <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon whatsapp">💬 واتساب</a>
-                    </div>
-                </div>
-                
-                <!-- Contact Form -->
-                <form id="contactForm" class="contact-form">
-                    <div class="form-group">
-                        <label for="name">الاسم الكامل</label>
-                        <input type="text" id="name" name="name" required placeholder="أدخل اسمك">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">البريد الإلكتروني</label>
-                        <input type="email" id="email" name="email" required placeholder="example@email.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">الرسالة</label>
-                        <textarea id="message" name="message" rows="4" required placeholder="اكتب رسالتك هنا..."></textarea>
-                    </div>
-                    
-                    <button type="submit">إرسال الرسالة 📧</button>
-                </form>
+        <div class="card">
+            <h3>خدماتي</h3>
+            <div class="row">
+                <div class="col">🎨 تصميم مواقع</div>
+                <div class="col">💻 تطوير ويب</div>
+                <div class="col">📱 محتوى رقمي</div>
+                <div class="col">🔧 استشارات تقنية</div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="developer-section">
-            <span class="rgb-text">🌟 هذا الموقع من برمجة وتطوير 🌟</span>
-            <div class="developer-name rgb-text" style="font-size: 1.3rem; margin-top: 0.3rem;">Abdulrahman Ahmed Bashir</div>
+    <!-- صفحة عني -->
+    <div id="about" class="page">
+        <div class="card">
+            <h2>من أنا</h2>
+            <p>عبدالرحمن أحمد بشير، صانع محتوى رقمي ومطور ويب من مصر. أسعى لتقديم محتوى هادف وتقنيات حديثة.</p>
+            <h3>المهارات</h3>
+            <ul><li>HTML/CSS/JS</li><li>React.js</li><li>صناعة المحتوى</li><li>إدارة منصات التواصل</li></ul>
         </div>
-        <p style="margin-top: 1rem;">© 2025 Abdulrahman Bashir - جميع الحقوق محفوظة</p>
-    </footer>
+    </div>
 
-    <script>
-        // إضافة الصورة الشخصية - ضع رابط صورتك هنا
-        // يمكنك تغيير الرابط إلى رابط صورتك الفعلي
-        const profileImageUrl = "https://via.placeholder.com/180x180?text=Abdulrahman";
-        
-        // تحديث الصور في الموقع
-        document.querySelectorAll('.profile-image, .about-page img').forEach(img => {
-            if(img.classList.contains('profile-image') || img.closest('.about-page')) {
-                // اترك الصورة كما هي، المستخدم سيضع رابط صورته
-            }
-        });
-        
-        // Page navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active-page');
-            });
-            document.getElementById(pageId).classList.add('active-page');
-            
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.getAttribute('data-page') === pageId) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    <!-- صفحة الأدوات (آلة حاسبة + شات AI) -->
+    <div id="tools" class="page">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <h3>🧮 آلة حاسبة كاملة</h3>
+                    <div class="calculator">
+                        <input type="text" id="calc-display" readonly>
+                        <div class="calc-buttons">
+                            <button onclick="calcAppend('7')">7</button><button onclick="calcAppend('8')">8</button><button onclick="calcAppend('9')">9</button><button onclick="calcOperator('/')">/</button>
+                            <button onclick="calcAppend('4')">4</button><button onclick="calcAppend('5')">5</button><button onclick="calcAppend('6')">6</button><button onclick="calcOperator('*')">*</button>
+                            <button onclick="calcAppend('1')">1</button><button onclick="calcAppend('2')">2</button><button onclick="calcAppend('3')">3</button><button onclick="calcOperator('-')">-</button>
+                            <button onclick="calcAppend('0')">0</button><button onclick="calcAppend('.')">.</button><button onclick="calcResult()">=</button><button onclick="calcOperator('+')">+</button>
+                            <button onclick="calcClear()">C</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <h3>🤖 شات ذكاء اصطناعي (AI)</h3>
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="message ai-msg">مرحباً! أنا مساعد ذكي. اكتب سؤالك (للأسف النسخة التجريبية تستجيب بشكل بسيط، لكن يمكن توصيلها بـ API حقيقي).</div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" id="chat-input" placeholder="اكتب سؤالك...">
+                            <button onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i> إرسال</button>
+                        </div>
+                    </div>
+                    <p class="small">ملاحظة: للاستخدام الحقيقي، أدخل مفتاح OpenAI في الكود وسيعمل بشكل كامل.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة التواصل -->
+    <div id="contact" class="page">
+        <div class="card">
+            <h2>📞 تواصل معي</h2>
+            <p><i class="fas fa-envelope"></i> abdulrahmanbashir573@gmail.com</p>
+            <p><i class="fas fa-phone"></i> 01025474780 / 01505299711</p>
+            <div class="social-icons" style="justify-content: flex-start;">
+                <a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/body16603" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/abdulrahmanbashir781" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@algamers-b7l" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="rgb-text">🌟 هذا الموقع من برمجة وتطوير Abdulrahman Ahmed Bashir 🌟</div>
+    <p>© 2025 جميع الحقوق محفوظة</p>
+</footer>
+
+<script>
+    // ------------------ الساعة ------------------
+    function updateClock() {
+        let now = new Date();
+        document.getElementById('clock').innerText = now.toLocaleTimeString('ar-EG');
+        document.getElementById('date').innerText = now.toLocaleDateString('ar-EG');
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ------------------ الطقس (API مجاني) ------------------
+    async function fetchWeather() {
+        try {
+            // مدينة: المنصورة مثلاً (يمكن تغييرها)
+            const city = "Mansoura,EG";
+            const apiKey = "bd5e378503939ddaee76f12ad7a97608"; // مفتاح تجريبي مجاني من openweathermap (للتجربة)
+            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=ar`);
+            const data = await res.json();
+            if(data.main) {
+                document.getElementById('weather-temp').innerText = Math.round(data.main.temp) + "°C";
+                document.getElementById('weather-desc').innerText = data.weather[0].description;
+            } else throw new Error();
+        } catch(e) {
+            document.getElementById('weather-temp').innerText = "--°C";
+            document.getElementById('weather-desc').innerText = "غير متاح";
         }
-        
-        document.querySelectorAll('.nav-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                showPage(this.getAttribute('data-page'));
-            });
+    }
+    fetchWeather();
+
+    // ------------------ بحث جوجل ------------------
+    function searchGoogle() {
+        let query = document.getElementById('searchInput').value;
+        if(query.trim()) window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+    }
+
+    // ------------------ الوضع الفاتح/الداكن ------------------
+    const themeBtn = document.getElementById('themeToggle');
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        themeBtn.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-sun"></i> وضع فاتح' : '<i class="fas fa-moon"></i> وضع داكن';
+    });
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+    // ------------------ الترجمة (عربي/إنجليزي بسيط) ------------------
+    let currentLang = 'ar';
+    const langBtn = document.getElementById('langToggle');
+    const translations = {
+        home: { ar: 'الرئيسية', en: 'Home' },
+        about: { ar: 'عني', en: 'About' },
+        tools: { ar: 'أدوات', en: 'Tools' },
+        contact: { ar: 'تواصل', en: 'Contact' }
+    };
+    function updateUILanguage() {
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            let key = btn.getAttribute('data-page');
+            if(translations[key]) btn.innerText = translations[key][currentLang];
         });
-        
-        // Handle contact form submission
-        const contactForm = document.getElementById('contactForm');
-        if(contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = document.getElementById('name').value;
-                showMessage(`شكراً ${name}! تم استلام رسالتك بنجاح. سأتواصل معك قريباً.`, 'success');
-                contactForm.reset();
-            });
-        }
-        
-        function showMessage(msg, type) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message-popup';
-            messageDiv.textContent = msg;
-            if(type === 'success') messageDiv.style.background = '#4caf50';
-            else if(type === 'error') messageDiv.style.background = '#f44336';
-            document.body.appendChild(messageDiv);
-            setTimeout(() => messageDiv.remove(), 3000);
-        }
-        
-        window.addEventListener('load', function() {
-            setTimeout(() => showMessage('مرحباً بك في موقع عبدالرحمن بشير! 🎉', 'success'), 1000);
+        langBtn.innerHTML = currentLang === 'ar' ? '<i class="fas fa-language"></i> English' : '<i class="fas fa-language"></i> العربية';
+        document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+        // يمكن إضافة المزيد من النصوص حسب الحاجة
+    }
+    langBtn.addEventListener('click', () => {
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        updateUILanguage();
+    });
+    updateUILanguage();
+
+    // ------------------ التنقل بين الصفحات ------------------
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+        document.getElementById(pageId).classList.add('active-page');
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.getAttribute('data-page') === pageId) btn.classList.add('active');
         });
+    }
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => showPage(btn.getAttribute('data-page')));
+    });
+
+    // ------------------ آلة حاسبة ------------------
+    let calcDisplay = document.getElementById('calc-display');
+    function calcAppend(val) { calcDisplay.value += val; }
+    function calcOperator(op) { calcDisplay.value += op; }
+    function calcClear() { calcDisplay.value = ''; }
+    function calcResult() {
+        try { calcDisplay.value = eval(calcDisplay.value); } 
+        catch(e) { calcDisplay.value = 'خطأ'; }
+    }
+
+    // ------------------ شات الذكاء الاصطناعي (محاكي + جاهز لـ API) ------------------
+    const chatMessagesDiv = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+
+    function addMessage(text, isUser) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${isUser ? 'user-msg' : 'ai-msg'}`;
+        msgDiv.innerText = text;
+        chatMessagesDiv.appendChild(msgDiv);
+        chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    }
+
+    async function sendAIMessage() {
+        let userMsg = chatInput.value.trim();
+        if(!userMsg) return;
+        addMessage(userMsg, true);
+        chatInput.value = '';
+
+        // هنا يمكن توصيل الـ API الحقيقي. مثال: استخدام OpenAI
+        // بما أنك طلبت "حقيقي مش شكل وخلاص" فأضفت كود جاهز للتوصيل بمفتاح API
+        // لكن لن يعمل بدون مفتاح. سأضع محاكي ذكي يعطي ردود افتراضية إلى أن تدخل المفتاح.
         
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if(e.key >= '1' && e.key <= '4') {
-                const pages = ['home', 'about', 'blog', 'contact'];
-                const index = parseInt(e.key) - 1;
-                if(pages[index]) showPage(pages[index]);
-            }
-        });
-    </script>
+        // إذا كنت تملك مفتاح OpenAI:
+        // const API_KEY = 'YOUR_OPENAI_API_KEY';
+        // const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        //     method: 'POST',
+        //     headers: { 'Authorization': `Bearer ${API_KEY}`, 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ model: 'gpt-3.5-turbo', messages: [{ role: 'user', content: userMsg }] })
+        // });
+        // const data = await response.json();
+        // const aiReply = data.choices[0].message.content;
+
+        // حالياً محاكي ذكي مع بعض الردود:
+        let aiReply = "أنا مساعد ذكي (نسخة تجريبية). لتشغيل الذكاء الحقيقي، أدخل مفتاح OpenAI في الكود. شكراً لفهمك! 😊";
+        if(userMsg.includes("مرحبا") || userMsg.includes("السلام")) aiReply = "وعليكم السلام! كيف يمكنني مساعدتك؟";
+        else if(userMsg.includes("اسمك")) aiReply = "أنا مساعد عبدالرحمن، صممت واجهتي لتكون ذكية.";
+        else if(userMsg.includes("طقس")) aiReply = "يمكنك رؤية الطقس في أعلى الصفحة.";
+        else aiReply = `شكراً لسؤالك: "${userMsg}". هذا رد تجريبي، لكن يمكن تفعيل API حقيقي بسهولة.`;
+
+        addMessage(aiReply, false);
+    }
+
+    // الضغط على Enter في شات
+    chatInput.addEventListener('keypress', function(e) {
+        if(e.key === 'Enter') sendAIMessage();
+    });
+</script>
 </body>
 </html>
