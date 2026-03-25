@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الشخصي | أحمد</title>
+    <title>Abdulrahman Bashir | الموقع الشخصي</title>
     <style>
         * {
             margin: 0;
@@ -39,7 +39,7 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
@@ -102,18 +102,28 @@
             }
         }
 
-        /* hero section */
+        /* hero section with image */
         .hero {
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 2rem;
             background: white;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin: 0.5rem 0;
         }
 
         .hero span {
@@ -124,9 +134,9 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #666;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .btn {
@@ -218,6 +228,100 @@
             font-size: 0.9rem;
         }
 
+        /* contact info cards */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .info-card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* social icons */
+        .social-section {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .social-section h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .social-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* social media colors */
+        .facebook { background: #1877f2; }
+        .twitter { background: #1da1f2; }
+        .instagram { background: linear-gradient(45deg, #f09433, #d62976, #962fbf); }
+        .youtube { background: #ff0000; }
+        .tiktok { background: #000000; }
+        .whatsapp { background: #25d366; }
+        .email { background: #ea4335; }
+        .phone { background: #34b7f1; }
+
+        /* developer section with RGB effect */
+        .developer-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #1a1a2e;
+            border-radius: 15px;
+        }
+
+        .rgb-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            animation: rgbPulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes rgbPulse {
+            0% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; color: #ff0000; }
+            33% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; color: #00ff00; }
+            66% { text-shadow: 0 0 5px #0000ff, 0 0 10px #0000ff; color: #0000ff; }
+            100% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; color: #ff0000; }
+        }
+
+        .developer-name {
+            font-size: 1rem;
+            color: #ccc;
+            margin-top: 0.5rem;
+        }
+
         /* blog posts */
         .blog-posts {
             display: grid;
@@ -291,36 +395,6 @@
             transform: translateY(-2px);
         }
 
-        .social-links {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .social-links h3 {
-            margin-bottom: 1rem;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .social-icons a {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.5rem 1rem;
-            border: 2px solid #667eea;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-
-        .social-icons a:hover {
-            background: #667eea;
-            color: white;
-        }
-
         /* footer */
         footer {
             background: rgba(255, 255, 255, 0.95);
@@ -344,11 +418,16 @@
             }
 
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .cards, .blog-posts {
                 grid-template-columns: 1fr;
+            }
+            
+            .social-icon {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
         }
 
@@ -381,7 +460,7 @@
 
     <header>
         <nav>
-            <div class="logo">أحمد</div>
+            <div class="logo">Abdulrahman Bashir</div>
             <ul class="nav-links">
                 <li><button class="nav-btn active" data-page="home">الرئيسية</button></li>
                 <li><button class="nav-btn" data-page="about">عني</button></li>
@@ -395,8 +474,11 @@
         <!-- Home Page -->
         <div id="home" class="page active-page">
             <div class="hero">
-                <h1>مرحباً، أنا <span>أحمد</span></h1>
-                <p>مطور ويب ومصمم إبداعي. أساعد في تحويل الأفكار إلى واقع رقمي.</p>
+                <!-- صورة شخصية - ضع رابط صورتك هنا -->
+                <img src="https://via.placeholder.com/180x180?text=Your+Photo" alt="Abdulrahman Ahmed Bashir" class="profile-image" id="profileImage">
+                <div class="profile-name" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">Abdulrahman Ahmed Bashir</div>
+                <h1>مرحباً، أنا <span>Abdulrahman</span></h1>
+                <p>محتوى رقمي | مطور ويب | صانع محتوى إبداعي</p>
                 <button class="btn" onclick="showPage('contact')">تواصل معي</button>
             </div>
 
@@ -412,8 +494,8 @@
                         <p>مواقع تفاعلية وسريعة باستخدام HTML, CSS, JavaScript والفرام وركس الحديثة.</p>
                     </div>
                     <div class="card">
-                        <h3>📱 تطبيقات الجوال</h3>
-                        <p>تطبيقات متوافقة مع نظامي Android و iOS باستخدام تقنيات跨平台.</p>
+                        <h3>📱 محتوى رقمي</h3>
+                        <p>إنتاج محتوى إبداعي على منصات التواصل المختلفة.</p>
                     </div>
                     <div class="card">
                         <h3>🔧 استشارات تقنية</h3>
@@ -427,31 +509,22 @@
         <div id="about" class="page">
             <div class="about-page">
                 <h1>من أنا؟</h1>
-                <p>السلام عليكم! أنا أحمد، مطور ويب شغوف بالتكنولوجيا والتصميم. بدأت رحلتي في عالم البرمجة منذ 5 سنوات، ومنذ ذلك الحين وأنا أسعى لخلق تجارب رقمية مميزة ومبتكرة.</p>
-                <p>أؤمن بأن البرمجة ليست مجرد أكواد، بل هي فن وحرفة تتيح لنا تحويل الأفكار إلى واقع ملموس. أعمل حالياً كمطور ويب حر، وأساعد الشركات والأفراد في بناء حضورهم الرقمي.</p>
-                <p>خلال مسيرتي، تعاونت مع أكثر من 50 عميلاً في مشاريع متنوعة، من مواقع شخصية إلى تطبيقات ويب معقدة. هدفي دائماً هو تقديم حلول تقنية تجمع بين الجمال والأداء العالي.</p>
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <img src="https://via.placeholder.com/120x120?text=Your+Photo" alt="Abdulrahman Ahmed Bashir" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #667eea;">
+                    <div style="font-weight: bold; margin-top: 0.5rem;">Abdulrahman Ahmed Bashir</div>
+                </div>
+                <p>السلام عليكم! أنا عبدالرحمن أحمد بشير، صانع محتوى رقمي ومطور ويب من مصر. شغوف بالتكنولوجيا وإنشاء المحتوى الإبداعي الذي يلهم الآخرين.</p>
+                <p>أسعى دائماً لتقديم محتوى هادف ومفيد على منصات التواصل الاجتماعي، وأعمل على تطوير مهاراتي في البرمجة وتصميم المواقع لتقديم أفضل الخدمات الرقمية.</p>
                 
                 <div class="skills">
-                    <h2>المهارات التقنية</h2>
+                    <h2>المهارات</h2>
                     <ul>
                         <li>HTML5 & CSS3</li>
-                        <li>JavaScript (ES6+)</li>
-                        <li>React.js & Next.js</li>
-                        <li>Vue.js</li>
-                        <li>Python & Django</li>
-                        <li>Node.js & Express</li>
-                        <li>UI/UX Design</li>
-                        <li>Git & GitHub</li>
-                    </ul>
-                </div>
-
-                <div style="margin-top: 2rem;">
-                    <h2>الخبرات</h2>
-                    <ul style="list-style: none; margin-top: 1rem;">
-                        <li>✓ 5+ سنوات في تطوير الويب</li>
-                        <li>✓ أكثر من 50 مشروع منجح</li>
-                        <li>✓ شهادات معتمدة في React و JavaScript</li>
-                        <li>✓ مدرب برمجة في أكاديميات محلية</li>
+                        <li>JavaScript</li>
+                        <li>React.js</li>
+                        <li>صناعة المحتوى</li>
+                        <li>تصميم جرافيك</li>
+                        <li>إدارة منصات التواصل</li>
                     </ul>
                 </div>
             </div>
@@ -463,30 +536,23 @@
                 <h1>المدونة</h1>
                 <div class="blog-posts">
                     <article>
-                        <h2>أساسيات تعلم البرمجة للمبتدئين</h2>
+                        <h2>كيف تبدأ في صناعة المحتوى الرقمي</h2>
                         <p style="color: #888; font-size: 0.9rem;">📅 15 مارس 2025 | ⏱️ 5 دقائق قراءة</p>
-                        <p>إذا كنت مبتدئاً في عالم البرمجة ولا تعرف من أين تبدأ، هذا المقال سيساعدك على اختيار المسار المناسب وأهم النصائح لبداية قوية...</p>
+                        <p>دليل شامل للمبتدئين في عالم صناعة المحتوى، أهم الأدوات والاستراتيجيات للنجاح...</p>
                         <a href="#" onclick="return false;">اقرأ المزيد →</a>
                     </article>
                     
                     <article>
-                        <h2>أفضل أدوات المطورين في 2025</h2>
+                        <h2>أساسيات تعلم البرمجة للمبتدئين</h2>
                         <p style="color: #888; font-size: 0.9rem;">📅 1 مارس 2025 | ⏱️ 4 دقائق قراءة</p>
-                        <p>تعرف على أهم الأدوات التي ستسهل عملك كمطور وتزيد إنتاجيتك بشكل ملحوظ. من VS Code إلى Figma وأدوات الذكاء الاصطناعي...</p>
+                        <p>إذا كنت مبتدئاً في عالم البرمجة، هذا المقال سيساعدك على اختيار المسار المناسب...</p>
                         <a href="#" onclick="return false;">اقرأ المزيد →</a>
                     </article>
                     
                     <article>
-                        <h2>كيف تبني موقع شخصي ناجح</h2>
+                        <h2>أفضل منصات التواصل لصانعي المحتوى</h2>
                         <p style="color: #888; font-size: 0.9rem;">📅 15 فبراير 2025 | ⏱️ 6 دقائق قراءة</p>
-                        <p>دليل شامل لبناء موقع شخصي يعكس هويتك المهنية، ويجذب العملاء، ويعرض أعمالك بأفضل صورة ممكنة...</p>
-                        <a href="#" onclick="return false;">اقرأ المزيد →</a>
-                    </article>
-                    
-                    <article>
-                        <h2>أساسيات SEO لتحسين ظهور موقعك</h2>
-                        <p style="color: #888; font-size: 0.9rem;">📅 1 فبراير 2025 | ⏱️ 7 دقائق قراءة</p>
-                        <p>تعلم أساسيات تحسين محركات البحث وكيف تظهر موقعك في الصفحات الأولى لنتائج البحث وجذب زوار أكثر...</p>
+                        <p>تعرف على أفضل المنصات لبناء جمهورك وزيادة انتشارك كمحتوى رقمي...</p>
                         <a href="#" onclick="return false;">اقرأ المزيد →</a>
                     </article>
                 </div>
@@ -497,8 +563,35 @@
         <div id="contact" class="page">
             <div class="contact-page">
                 <h1>تواصل معي</h1>
-                <p style="margin-bottom: 2rem;">يسعدني التواصل معك! اترك لي رسالة وسأرد عليك في أقرب وقت ممكن.</p>
+                <p style="margin-bottom: 1rem;">يسعدني التواصل معك! يمكنك مراسلتي عبر النموذج أو عبر وسائل التواصل أدناه.</p>
                 
+                <!-- Contact Info Cards -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h4>📧 البريد الإلكتروني</h4>
+                        <p>abdulrahmanbashir573@gmail.com</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>📱 الهاتف</h4>
+                        <p>01025474780</p>
+                        <p>01505299711</p>
+                    </div>
+                </div>
+                
+                <!-- Social Media Section -->
+                <div class="social-section">
+                    <h3>تابعني على منصات التواصل</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-icon facebook">📘 فيسبوك</a>
+                        <a href="https://x.com/body16603" target="_blank" class="social-icon twitter">🐦 تويتر</a>
+                        <a href="https://www.instagram.com/abdulrahmanbashir781?igsh=MXBxamxrcXg0YmJ3bQ==" target="_blank" class="social-icon instagram">📷 انستجرام</a>
+                        <a href="https://youtube.com/@algamers-b7l?si=PA_cb863tyMvPeqe" target="_blank" class="social-icon youtube">🎥 يوتيوب</a>
+                        <a href="https://www.tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-icon tiktok">🎵 تيك توك</a>
+                        <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon whatsapp">💬 واتساب</a>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
                 <form id="contactForm" class="contact-form">
                     <div class="form-group">
                         <label for="name">الاسم الكامل</label>
@@ -511,49 +604,43 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="subject">الموضوع</label>
-                        <input type="text" id="subject" name="subject" required placeholder="موضوع الرسالة">
-                    </div>
-                    
-                    <div class="form-group">
                         <label for="message">الرسالة</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="اكتب رسالتك هنا..."></textarea>
+                        <textarea id="message" name="message" rows="4" required placeholder="اكتب رسالتك هنا..."></textarea>
                     </div>
                     
                     <button type="submit">إرسال الرسالة 📧</button>
                 </form>
-                
-                <div class="social-links">
-                    <h3>تواصل معي عبر وسائل التواصل</h3>
-                    <div class="social-icons">
-                        <a href="#" onclick="return false;">📧 البريد</a>
-                        <a href="#" onclick="return false;">📱 واتساب</a>
-                        <a href="#" onclick="return false;">💼 لينكدإن</a>
-                        <a href="#" onclick="return false;">🐙 جيت هاب</a>
-                        <a href="#" onclick="return false;">📷 انستغرام</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2025 أحمد - مطور ويب محترف. جميع الحقوق محفوظة.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">🏆 نسعى دائماً لتقديم الأفضل</p>
+        <div class="developer-section">
+            <span class="rgb-text">🌟 هذا الموقع من برمجة وتطوير 🌟</span>
+            <div class="developer-name rgb-text" style="font-size: 1.3rem; margin-top: 0.3rem;">Abdulrahman Ahmed Bashir</div>
+        </div>
+        <p style="margin-top: 1rem;">© 2025 Abdulrahman Bashir - جميع الحقوق محفوظة</p>
     </footer>
 
     <script>
+        // إضافة الصورة الشخصية - ضع رابط صورتك هنا
+        // يمكنك تغيير الرابط إلى رابط صورتك الفعلي
+        const profileImageUrl = "https://via.placeholder.com/180x180?text=Abdulrahman";
+        
+        // تحديث الصور في الموقع
+        document.querySelectorAll('.profile-image, .about-page img').forEach(img => {
+            if(img.classList.contains('profile-image') || img.closest('.about-page')) {
+                // اترك الصورة كما هي، المستخدم سيضع رابط صورته
+            }
+        });
+        
         // Page navigation
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active-page');
             });
-            
-            // Show selected page
             document.getElementById(pageId).classList.add('active-page');
             
-            // Update active button
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.getAttribute('data-page') === pageId) {
@@ -561,15 +648,12 @@
                 }
             });
             
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
-        // Add click event to navigation buttons
         document.querySelectorAll('.nav-btn').forEach(button => {
             button.addEventListener('click', function() {
-                const pageId = this.getAttribute('data-page');
-                showPage(pageId);
+                showPage(this.getAttribute('data-page'));
             });
         });
         
@@ -578,81 +662,32 @@
         if(contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                // Get form data
                 const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                // Show success message
                 showMessage(`شكراً ${name}! تم استلام رسالتك بنجاح. سأتواصل معك قريباً.`, 'success');
-                
-                // Clear form
                 contactForm.reset();
-                
-                // In a real website, you would send this data to a server
-                console.log('Form submitted:', { name, email, subject, message });
             });
         }
         
-        // Function to show popup messages
         function showMessage(msg, type) {
             const messageDiv = document.createElement('div');
             messageDiv.className = 'message-popup';
             messageDiv.textContent = msg;
-            
-            if(type === 'success') {
-                messageDiv.style.background = '#4caf50';
-            } else if(type === 'error') {
-                messageDiv.style.background = '#f44336';
-            }
-            
+            if(type === 'success') messageDiv.style.background = '#4caf50';
+            else if(type === 'error') messageDiv.style.background = '#f44336';
             document.body.appendChild(messageDiv);
-            
-            // Remove message after 3 seconds
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 3000);
+            setTimeout(() => messageDiv.remove(), 3000);
         }
         
-        // Add smooth scroll and animations
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-        
-        // Add some interactive effects
-        const cards = document.querySelectorAll('.card, article');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-        
-        // Display welcome message on load
         window.addEventListener('load', function() {
-            setTimeout(() => {
-                showMessage('مرحباً بك في موقعي الشخصي! 🎉', 'success');
-            }, 1000);
+            setTimeout(() => showMessage('مرحباً بك في موقع عبدالرحمن بشير! 🎉', 'success'), 1000);
         });
         
-        // Add keyboard navigation (optional)
+        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if(e.key >= '1' && e.key <= '4') {
                 const pages = ['home', 'about', 'blog', 'contact'];
                 const index = parseInt(e.key) - 1;
-                if(pages[index]) {
-                    showPage(pages[index]);
-                }
+                if(pages[index]) showPage(pages[index]);
             }
         });
     </script>
