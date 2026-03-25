@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Abdulrahman Bashir | الموقع الشخصي المتكامل</title>
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -47,7 +45,6 @@
             --game-bg: #2d2d3f;
         }
 
-        /* الشريط العلوي */
         .top-bar {
             background: var(--header-bg);
             backdrop-filter: blur(10px);
@@ -109,7 +106,7 @@
             align-items: center;
         }
 
-        .controls button, .lang-select {
+        .controls button {
             background: var(--btn-bg);
             border: none;
             border-radius: 50px;
@@ -119,7 +116,6 @@
             font-family: inherit;
         }
 
-        /* التنقل */
         nav {
             display: flex;
             justify-content: center;
@@ -187,10 +183,10 @@
             margin-bottom: 0.5rem;
         }
 
-        /* ألعاب */
+        /* Games Grid */
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-top: 1rem;
         }
@@ -198,10 +194,10 @@
         .game-card {
             background: var(--game-bg);
             border-radius: 20px;
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: center;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s;
             border: 1px solid var(--border-color);
         }
 
@@ -221,126 +217,65 @@
             margin-bottom: 0.5rem;
         }
 
-        .game-desc {
-            font-size: 0.8rem;
-            color: #888;
-        }
-
         .play-btn {
             background: var(--btn-bg);
             border: none;
             border-radius: 50px;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.2rem;
             color: white;
             margin-top: 0.8rem;
             cursor: pointer;
         }
 
-        /* نافذة اللعبة المنبثقة */
-        .game-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .game-modal-content {
-            width: 90%;
-            height: 90%;
-            background: white;
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .game-modal-content iframe {
-            width: 100%;
-            height: calc(100% - 50px);
-            border: none;
-        }
-
-        .close-game {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #333;
-            z-index: 10;
-            background: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* ألعاب مدمجة */
-        .inline-game {
+        /* Inline Game Container */
+        .inline-game-container {
+            margin-top: 1rem;
+            padding: 1rem;
             background: var(--game-bg);
             border-radius: 20px;
-            padding: 1rem;
-            margin-top: 1rem;
         }
 
-        .inline-game canvas {
-            background: white;
-            border-radius: 10px;
+        /* Snake Canvas */
+        #snakeCanvas, #pianoCanvas, #flappyCanvas {
             display: block;
             margin: 0 auto;
+            border-radius: 10px;
+            background: #fff;
         }
 
-        /* social icons */
-        .social-icons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
+        /* Memory Game */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            margin: auto;
         }
-
-        .social-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.8rem;
+        .memory-card {
+            aspect-ratio: 1;
+            font-size: 2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #667eea;
             color: white;
-            transition: transform 0.2s;
-            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .memory-card.flipped {
+            background: var(--card-bg);
+            color: var(--text-color);
         }
 
-        .social-icon:hover { transform: scale(1.1);}
-        .fab.fa-facebook-f { background: #1877f2; padding: 12px; border-radius: 50%;}
-        .fab.fa-twitter { background: #1da1f2; padding: 12px; border-radius: 50%;}
-        .fab.fa-instagram { background: radial-gradient(circle at 30% 110%, #ffdb7e, #f46f30, #d62976, #962fbf); padding: 12px; border-radius: 50%;}
-        .fab.fa-youtube { background: #ff0000; padding: 12px; border-radius: 50%;}
-        .fab.fa-tiktok { background: #000000; padding: 12px; border-radius: 50%;}
-        .fab.fa-whatsapp { background: #25d366; padding: 12px; border-radius: 50%;}
-
-        /* calculator */
+        /* Calculator */
         .calculator {
             max-width: 300px;
             margin: auto;
-            background: var(--card-bg);
-            padding: 1rem;
-            border-radius: 20px;
         }
         #calc-display {
             width: 100%;
             padding: 0.8rem;
             font-size: 1.5rem;
             text-align: left;
-            direction: ltr;
             background: var(--input-bg);
             border: 1px solid var(--border-color);
             border-radius: 15px;
@@ -362,17 +297,86 @@
             color: white;
         }
 
+        /* Chat */
+        .chat-container {
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1rem;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+        .message {
+            margin-bottom: 0.8rem;
+            padding: 0.5rem 1rem;
+            border-radius: 18px;
+            max-width: 80%;
+        }
+        .user-msg {
+            background: #667eea;
+            color: white;
+            margin-right: auto;
+        }
+        .ai-msg {
+            background: #e5e5ea;
+            color: black;
+        }
+        .chat-input-area {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 0.7rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            color: var(--text-color);
+        }
+
         .row {
             display: flex;
             flex-wrap: wrap;
             gap: 1.5rem;
-            margin-top: 1rem;
         }
         .col {
             flex: 1;
             min-width: 280px;
         }
-        
+
+        .social-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: white;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+        .social-icon:hover { transform: scale(1.1);}
+        .fab.fa-facebook-f { background: #1877f2; padding: 12px; border-radius: 50%;}
+        .fab.fa-twitter { background: #1da1f2; padding: 12px; border-radius: 50%;}
+        .fab.fa-instagram { background: radial-gradient(circle at 30% 110%, #ffdb7e, #f46f30, #d62976, #962fbf); padding: 12px; border-radius: 50%;}
+        .fab.fa-youtube { background: #ff0000; padding: 12px; border-radius: 50%;}
+        .fab.fa-tiktok { background: #000000; padding: 12px; border-radius: 50%;}
+        .fab.fa-whatsapp { background: #25d366; padding: 12px; border-radius: 50%;}
+
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -391,26 +395,16 @@
             .top-bar { flex-direction: column; align-items: stretch; }
             .controls { justify-content: center; }
         }
+        button { cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="top-bar">
-    <div class="datetime">
-        <span id="clock">--:--:--</span>
-        <span id="date">----/--/--</span>
-    </div>
-    <div class="weather" id="weather">
-        <i class="fas fa-cloud-sun"></i> <span id="weather-temp">--°C</span> <span id="weather-desc">--</span>
-    </div>
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="بحث في جوجل...">
-        <button onclick="searchGoogle()"><i class="fas fa-search"></i></button>
-    </div>
-    <div class="controls">
-        <button id="themeToggle"><i class="fas fa-moon"></i> وضع داكن</button>
-        <button id="langToggle"><i class="fas fa-language"></i> English</button>
-    </div>
+    <div class="datetime"><span id="clock">--:--:--</span> <span id="date">----/--/--</span></div>
+    <div class="weather"><i class="fas fa-cloud-sun"></i> <span id="weather-temp">--°C</span> <span id="weather-desc">--</span></div>
+    <div class="search-box"><input type="text" id="searchInput" placeholder="بحث..."><button onclick="searchGoogle()"><i class="fas fa-search"></i></button></div>
+    <div class="controls"><button id="themeToggle"><i class="fas fa-moon"></i> داكن</button><button id="langToggle"><i class="fas fa-language"></i> English</button></div>
 </div>
 
 <nav>
@@ -422,10 +416,10 @@
 </nav>
 
 <div class="container">
-    <!-- الصفحة الرئيسية -->
+    <!-- Home -->
     <div id="home" class="page active-page">
         <div class="card hero">
-            <img src="Abdulrahman.jpg" alt="Abdulrahman" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=Abdulrahman'">
+            <img src="عبدالرحمن.jpg" alt="Abdulrahman" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=Abdulrahman'">
             <h2>Abdulrahman Ahmed Bashir</h2>
             <p>محتوى رقمي | مطور ويب | صانع محتوى إبداعي</p>
             <div class="social-icons">
@@ -437,414 +431,218 @@
                 <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-        <div class="card">
-            <h3>خدماتي</h3>
-            <div class="row">
-                <div class="col">🎨 تصميم مواقع</div>
-                <div class="col">💻 تطوير ويب</div>
-                <div class="col">📱 محتوى رقمي</div>
-                <div class="col">🔧 استشارات تقنية</div>
-            </div>
-        </div>
+        <div class="card"><h3>خدماتي</h3><div class="row"><div class="col">🎨 تصميم مواقع</div><div class="col">💻 تطوير ويب</div><div class="col">📱 محتوى رقمي</div><div class="col">🔧 استشارات تقنية</div></div></div>
     </div>
 
-    <!-- صفحة عني -->
+    <!-- About -->
     <div id="about" class="page">
-        <div class="card">
-            <h2>من أنا</h2>
-            <p>عبدالرحمن أحمد بشير، صانع محتوى رقمي ومطور ويب من مصر. أسعى لتقديم محتوى هادف وتقنيات حديثة.</p>
-            <h3>المهارات</h3>
-            <ul><li>HTML/CSS/JS</li><li>React.js</li><li>صناعة المحتوى</li><li>إدارة منصات التواصل</li></ul>
-        </div>
+        <div class="card"><h2>من أنا</h2><p>عبدالرحمن أحمد بشير، صانع محتوى رقمي ومطور ويب من مصر.</p><h3>المهارات</h3><ul><li>HTML/CSS/JS</li><li>React.js</li><li>صناعة المحتوى</li></ul></div>
     </div>
 
-    <!-- صفحة الألعاب الجديدة -->
+    <!-- Games Page -->
     <div id="games" class="page">
         <div class="card">
-            <h2>🎮 ألعاب مجانية</h2>
-            <p>اختار اللعبة المفضلة واضغط عليها لتلعب مباشرة</p>
-            
+            <h2>🎮 ألعاب مدمجة</h2>
+            <p>اختر اللعبة وابدأ اللعب مباشرة داخل الموقع</p>
             <div class="games-grid">
-                <!-- لعبة صابواي Subway Surfers -->
-                <div class="game-card" onclick="openGame('https://play.famobi.com/subway-surfers', 'Subway Surfers')">
-                    <div class="game-icon">🏃‍♂️🚇</div>
-                    <div class="game-title">Subway Surfers</div>
-                    <div class="game-desc">اجري على القضبان واهرب من الشرطة! لعبة الجري الكلاسيكية</div>
-                    <button class="play-btn">🎮 العب الآن</button>
-                </div>
-                
-                <!-- لعبة بيانو Piano Tiles -->
-                <div class="game-card" onclick="openGame('https://piano-tiles.io/', 'Piano Tiles')">
-                    <div class="game-icon">🎹🎵</div>
-                    <div class="game-title">Piano Tiles</div>
-                    <div class="game-desc">اضغط على البلاط الأسود بسرعة وتجنب الأبيض! لعبة سرعة وموسيقى</div>
-                    <button class="play-btn">🎹 العب الآن</button>
-                </div>
-                
-                <!-- لعبة ثعبان Snake -->
-                <div class="game-card" onclick="openSnakeGame()">
-                    <div class="game-icon">🐍🍎</div>
-                    <div class="game-title">Snake Game</div>
-                    <div class="game-desc">اللعبة الكلاسيكية! حرك الثعبان وكل التفاح واكبر</div>
-                    <button class="play-btn">🐍 العب الآن</button>
-                </div>
-                
-                <!-- لعبة ذاكرة Memory Match -->
-                <div class="game-card" onclick="openMemoryGame()">
-                    <div class="game-icon">🧠🃏</div>
-                    <div class="game-title">Memory Match</div>
-                    <div class="game-desc">اختبر ذاكرتك! اقلب البطاقات وطابق الأزواج</div>
-                    <button class="play-btn">🧠 العب الآن</button>
-                </div>
+                <div class="game-card" onclick="showGame('snake')"><div class="game-icon">🐍🍎</div><div class="game-title">Snake Game</div><div class="game-desc">اللعبة الكلاسيكية - كل التفاح واكبر!</div><button class="play-btn">🐍 العب</button></div>
+                <div class="game-card" onclick="showGame('memory')"><div class="game-icon">🧠🃏</div><div class="game-title">Memory Match</div><div class="game-desc">طابق الأزواج واختبر ذاكرتك</div><button class="play-btn">🧠 العب</button></div>
+                <div class="game-card" onclick="showGame('piano')"><div class="game-icon">🎹🎵</div><div class="game-title">Piano Tiles</div><div class="game-desc">اضغط على المربعات السوداء بسرعة!</div><button class="play-btn">🎹 العب</button></div>
+                <div class="game-card" onclick="showGame('flappy')"><div class="game-icon">🐦🔥</div><div class="game-title">Flappy Bird</div><div class="game-desc">حلق بين الأنابيب دون أن تصطدم</div><button class="play-btn">🐦 العب</button></div>
             </div>
+            <div id="gameArea" class="inline-game-container" style="display:none;"></div>
         </div>
-        
-        <!-- حاوية عرض الألعاب المدمجة -->
-        <div id="game-container" style="display: none;"></div>
     </div>
 
-    <!-- صفحة الأدوات -->
+    <!-- Tools -->
     <div id="tools" class="page">
         <div class="row">
-            <div class="col">
-                <div class="card">
-                    <h3>🧮 آلة حاسبة كاملة</h3>
-                    <div class="calculator">
-                        <input type="text" id="calc-display" readonly>
-                        <div class="calc-buttons">
-                            <button onclick="calcAppend('7')">7</button><button onclick="calcAppend('8')">8</button><button onclick="calcAppend('9')">9</button><button onclick="calcOperator('/')">/</button>
-                            <button onclick="calcAppend('4')">4</button><button onclick="calcAppend('5')">5</button><button onclick="calcAppend('6')">6</button><button onclick="calcOperator('*')">*</button>
-                            <button onclick="calcAppend('1')">1</button><button onclick="calcAppend('2')">2</button><button onclick="calcAppend('3')">3</button><button onclick="calcOperator('-')">-</button>
-                            <button onclick="calcAppend('0')">0</button><button onclick="calcAppend('.')">.</button><button onclick="calcResult()">=</button><button onclick="calcOperator('+')">+</button>
-                            <button onclick="calcClear()">C</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <h3>🤖 شات ذكاء اصطناعي</h3>
-                    <div class="chat-container" style="border:1px solid var(--border-color);border-radius:20px;padding:1rem;height:400px;display:flex;flex-direction:column;background:var(--card-bg);">
-                        <div class="chat-messages" id="chat-messages" style="flex:1;overflow-y:auto;margin-bottom:1rem;">
-                            <div class="message ai-msg" style="background:#e5e5ea;color:black;padding:0.5rem 1rem;border-radius:18px;max-width:80%;margin-bottom:0.8rem;">مرحباً! أنا مساعد ذكي. اكتب سؤالك وسأجيبك (للتواصل مع Gemini API حقيقي).</div>
-                        </div>
-                        <div class="chat-input-area" style="display:flex;gap:0.5rem;">
-                            <input type="text" id="chat-input" style="flex:1;padding:0.7rem;border-radius:30px;border:1px solid var(--border-color);background:var(--input-bg);color:var(--text-color);">
-                            <button onclick="sendAIMessage()" style="background:var(--btn-bg);border:none;border-radius:30px;padding:0.7rem 1rem;color:white;"><i class="fas fa-paper-plane"></i> إرسال</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="col"><div class="card"><h3>🧮 آلة حاسبة</h3><div class="calculator"><input type="text" id="calc-display" readonly><div class="calc-buttons"><button onclick="calcAppend('7')">7</button><button onclick="calcAppend('8')">8</button><button onclick="calcAppend('9')">9</button><button onclick="calcOperator('/')">/</button><button onclick="calcAppend('4')">4</button><button onclick="calcAppend('5')">5</button><button onclick="calcAppend('6')">6</button><button onclick="calcOperator('*')">*</button><button onclick="calcAppend('1')">1</button><button onclick="calcAppend('2')">2</button><button onclick="calcAppend('3')">3</button><button onclick="calcOperator('-')">-</button><button onclick="calcAppend('0')">0</button><button onclick="calcAppend('.')">.</button><button onclick="calcResult()">=</button><button onclick="calcOperator('+')">+</button><button onclick="calcClear()">C</button></div></div></div></div>
+            <div class="col"><div class="card"><h3>🤖 شات ذكاء اصطناعي</h3><div class="chat-container"><div class="chat-messages" id="chat-messages"><div class="message ai-msg">مرحباً! أنا مساعد ذكي. اسألني أي شيء.</div></div><div class="chat-input-area"><input type="text" id="chat-input" placeholder="اكتب سؤالك..."><button onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i> إرسال</button></div></div></div></div>
         </div>
     </div>
 
-    <!-- صفحة التواصل -->
+    <!-- Contact -->
     <div id="contact" class="page">
-        <div class="card">
-            <h2>📞 تواصل معي</h2>
-            <p><i class="fas fa-envelope"></i> abdulrahmanbashir573@gmail.com</p>
-            <p><i class="fas fa-phone"></i> 01025474780 / 01505299711</p>
-            <div class="social-icons" style="justify-content: flex-start;">
-                <a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://x.com/body16603" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/abdulrahmanbashir781" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/@algamers-b7l" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
-                <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
+        <div class="card"><h2>📞 تواصل معي</h2><p><i class="fas fa-envelope"></i> abdulrahmanbashir573@gmail.com</p><p><i class="fas fa-phone"></i> 01025474780 / 01505299711</p><div class="social-icons"><a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="https://x.com/body16603" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a><a href="https://www.instagram.com/abdulrahmanbashir781" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@algamers-b7l" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a><a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a></div></div>
     </div>
 </div>
 
-<footer>
-    <div class="rgb-text">🌟 هذا الموقع من برمجة وتطوير Abdulrahman Ahmed Bashir 🌟</div>
-    <p>© 2025 جميع الحقوق محفوظة</p>
-</footer>
-
-<!-- نافذة اللعبة المنبثقة -->
-<div id="gameModal" class="game-modal">
-    <div class="game-modal-content">
-        <span class="close-game" onclick="closeGame()">&times;</span>
-        <iframe id="gameIframe" src=""></iframe>
-    </div>
-</div>
+<footer><div class="rgb-text">🌟 هذا الموقع من برمجة وتطوير Abdulrahman Ahmed Bashir 🌟</div><p>© 2025 جميع الحقوق محفوظة</p></footer>
 
 <script>
-    // ------------------ الساعة ------------------
-    function updateClock() {
-        let now = new Date();
-        document.getElementById('clock').innerText = now.toLocaleTimeString('ar-EG');
-        document.getElementById('date').innerText = now.toLocaleDateString('ar-EG');
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+    // Clock
+    function updateClock() { let n=new Date(); document.getElementById('clock').innerText=n.toLocaleTimeString('ar-EG'); document.getElementById('date').innerText=n.toLocaleDateString('ar-EG'); }
+    setInterval(updateClock,1000); updateClock();
 
-    // ------------------ الطقس ------------------
+    // Weather
     async function fetchWeather() {
-        try {
-            const city = "Mansoura,EG";
-            const apiKey = "bd5e378503939ddaee76f12ad7a97608";
-            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=ar`);
-            const data = await res.json();
-            if(data.main) {
-                document.getElementById('weather-temp').innerText = Math.round(data.main.temp) + "°C";
-                document.getElementById('weather-desc').innerText = data.weather[0].description;
-            } else throw new Error();
-        } catch(e) {
-            document.getElementById('weather-temp').innerText = "--°C";
-            document.getElementById('weather-desc').innerText = "غير متاح";
-        }
+        try { let r=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Mansoura,EG&appid=bd5e378503939ddaee76f12ad7a97608&units=metric&lang=ar`); let d=await r.json(); if(d.main){ document.getElementById('weather-temp').innerText=Math.round(d.main.temp)+"°C"; document.getElementById('weather-desc').innerText=d.weather[0].description; } }
+        catch(e){ document.getElementById('weather-temp').innerText="--°C"; document.getElementById('weather-desc').innerText="غير متاح"; }
     }
     fetchWeather();
 
-    function searchGoogle() {
-        let query = document.getElementById('searchInput').value;
-        if(query.trim()) window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+    function searchGoogle(){ let q=document.getElementById('searchInput').value; if(q.trim()) window.open(`https://www.google.com/search?q=${encodeURIComponent(q)}`,'_blank'); }
+
+    // Theme
+    const themeBtn=document.getElementById('themeToggle');
+    themeBtn.onclick=()=>{ document.body.classList.toggle('dark'); localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light'); themeBtn.innerHTML=document.body.classList.contains('dark')?'<i class=\"fas fa-sun\"></i> فاتح':'<i class=\"fas fa-moon\"></i> داكن'; };
+    if(localStorage.getItem('theme')==='dark') document.body.classList.add('dark');
+
+    // Language
+    let lang='ar';
+    const langBtn=document.getElementById('langToggle');
+    const trans={ home:{ar:'الرئيسية',en:'Home'}, about:{ar:'عني',en:'About'}, games:{ar:'🎮 ألعاب',en:'🎮 Games'}, tools:{ar:'أدوات',en:'Tools'}, contact:{ar:'تواصل',en:'Contact'} };
+    function updateLang(){ document.querySelectorAll('.nav-btn').forEach(btn=>{ let k=btn.getAttribute('data-page'); if(trans[k]) btn.innerText=trans[k][lang]; }); langBtn.innerHTML=lang==='ar'?'<i class=\"fas fa-language\"></i> English':'<i class=\"fas fa-language\"></i> العربية'; document.body.dir=lang==='ar'?'rtl':'ltr'; }
+    langBtn.onclick=()=>{ lang=lang==='ar'?'en':'ar'; updateLang(); }; updateLang();
+
+    // Navigation
+    function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active-page')); document.getElementById(id).classList.add('active-page'); document.querySelectorAll('.nav-btn').forEach(b=>{ b.classList.remove('active'); if(b.getAttribute('data-page')===id) b.classList.add('active'); }); document.getElementById('gameArea').style.display='none'; }
+    document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>showPage(b.getAttribute('data-page'))));
+
+    // Calculator
+    let disp=document.getElementById('calc-display');
+    function calcAppend(v){ disp.value+=v; }
+    function calcOperator(o){ disp.value+=o; }
+    function calcClear(){ disp.value=''; }
+    function calcResult(){ try{ disp.value=eval(disp.value); }catch(e){ disp.value='خطأ'; } }
+
+    // Games - Fully working
+    let activeGame = null;
+    function showGame(game) {
+        const area = document.getElementById('gameArea');
+        area.style.display = 'block';
+        if(game === 'snake') initSnakeGame(area);
+        else if(game === 'memory') initMemoryGame(area);
+        else if(game === 'piano') initPianoGame(area);
+        else if(game === 'flappy') initFlappyGame(area);
     }
 
-    // الوضع الفاتح/الداكن
-    const themeBtn = document.getElementById('themeToggle');
-    themeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-        themeBtn.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-sun"></i> وضع فاتح' : '<i class="fas fa-moon"></i> وضع داكن';
-    });
-    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-
-    // الترجمة
-    let currentLang = 'ar';
-    const langBtn = document.getElementById('langToggle');
-    const translations = {
-        home: { ar: 'الرئيسية', en: 'Home' },
-        about: { ar: 'عني', en: 'About' },
-        games: { ar: '🎮 ألعاب', en: '🎮 Games' },
-        tools: { ar: 'أدوات', en: 'Tools' },
-        contact: { ar: 'تواصل', en: 'Contact' }
-    };
-    function updateUILanguage() {
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            let key = btn.getAttribute('data-page');
-            if(translations[key]) btn.innerText = translations[key][currentLang];
-        });
-        langBtn.innerHTML = currentLang === 'ar' ? '<i class="fas fa-language"></i> English' : '<i class="fas fa-language"></i> العربية';
-        document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-    }
-    langBtn.addEventListener('click', () => {
-        currentLang = currentLang === 'ar' ? 'en' : 'ar';
-        updateUILanguage();
-    });
-    updateUILanguage();
-
-    // التنقل بين الصفحات
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-        document.getElementById(pageId).classList.add('active-page');
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if(btn.getAttribute('data-page') === pageId) btn.classList.add('active');
-        });
-        // إخفاء نافذة اللعبة لو مفتوحة
-        closeGame();
-    }
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.addEventListener('click', () => showPage(btn.getAttribute('data-page')));
-    });
-
-    // آلة حاسبة
-    let calcDisplay = document.getElementById('calc-display');
-    function calcAppend(val) { calcDisplay.value += val; }
-    function calcOperator(op) { calcDisplay.value += op; }
-    function calcClear() { calcDisplay.value = ''; }
-    function calcResult() {
-        try { calcDisplay.value = eval(calcDisplay.value); } 
-        catch(e) { calcDisplay.value = 'خطأ'; }
-    }
-
-    // ------------------ الألعاب ------------------
-    function openGame(url, title) {
-        const modal = document.getElementById('gameModal');
-        const iframe = document.getElementById('gameIframe');
-        iframe.src = url;
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeGame() {
-        const modal = document.getElementById('gameModal');
-        const iframe = document.getElementById('gameIframe');
-        iframe.src = '';
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-    
-    // لعبة الثعبان (Snake) - لعبة مدمجة
-    function openSnakeGame() {
-        const container = document.getElementById('game-container');
-        container.innerHTML = `
-            <div class="card inline-game">
-                <h3>🐍 Snake Game</h3>
-                <canvas id="snakeCanvas" width="400" height="400" style="border:2px solid var(--border-color); background:#fff;"></canvas>
-                <div style="margin-top:10px;">
-                    <button onclick="startSnakeGame()" class="play-btn">بدء اللعبة</button>
-                    <button onclick="closeInlineGame()" class="play-btn" style="background:#f44336;">إغلاق</button>
-                </div>
-                <p>استخدم الأسهم ↑ ↓ ← → للتحريك</p>
-            </div>
-        `;
-        container.style.display = 'block';
-        initSnakeGame();
-    }
-    
-    function initSnakeGame() {
+    // Snake Game
+    function initSnakeGame(container) {
+        container.innerHTML = `<h3>🐍 Snake Game</h3><canvas id="snakeCanvas" width="400" height="400" style="border:2px solid var(--border-color); background:#fff;"></canvas><div><button onclick="location.reload()" class="play-btn">إعادة</button> <button onclick="document.getElementById('gameArea').style.display='none'" class="play-btn">إغلاق</button></div><p>استخدم الأسهم ↑ ↓ ← →</p>`;
         const canvas = document.getElementById('snakeCanvas');
-        if(!canvas) return;
         const ctx = canvas.getContext('2d');
-        let snake = [{x: 200, y: 200}, {x: 190, y: 200}, {x: 180, y: 200}];
-        let direction = 'RIGHT';
-        let food = {x: 300, y: 200};
-        let score = 0;
+        let snake = [{x:200,y:200},{x:190,y:200},{x:180,y:200}];
+        let dir = 'RIGHT';
+        let food = {x:300,y:200};
         let gameLoop;
-        
         function draw() {
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(0, 0, 400, 400);
-            ctx.fillStyle = 'red';
-            ctx.fillRect(food.x, food.y, 10, 10);
-            ctx.fillStyle = 'green';
-            snake.forEach(segment => {
-                ctx.fillRect(segment.x, segment.y, 10, 10);
-            });
+            ctx.fillStyle='#fff'; ctx.fillRect(0,0,400,400);
+            ctx.fillStyle='red'; ctx.fillRect(food.x,food.y,10,10);
+            ctx.fillStyle='green'; snake.forEach(s=>ctx.fillRect(s.x,s.y,10,10));
         }
-        
         function move() {
             let head = {...snake[0]};
-            if(direction === 'RIGHT') head.x += 10;
-            if(direction === 'LEFT') head.x -= 10;
-            if(direction === 'UP') head.y -= 10;
-            if(direction === 'DOWN') head.y += 10;
-            
-            if(head.x === food.x && head.y === food.y) {
-                score++;
-                snake.unshift(head);
-                food = {x: Math.floor(Math.random() * 40) * 10, y: Math.floor(Math.random() * 40) * 10};
-            } else {
-                snake.unshift(head);
-                snake.pop();
-            }
-            
-            if(head.x < 0 || head.x >= 400 || head.y < 0 || head.y >= 400 || snake.some((seg, i) => i !== 0 && seg.x === head.x && seg.y === head.y)) {
-                clearInterval(gameLoop);
-                alert(`انتهت اللعبة! نتيجتك: ${score}`);
-                closeInlineGame();
-            }
+            if(dir==='RIGHT') head.x+=10; if(dir==='LEFT') head.x-=10; if(dir==='UP') head.y-=10; if(dir==='DOWN') head.y+=10;
+            if(head.x===food.x && head.y===food.y) { snake.unshift(head); food={x:Math.floor(Math.random()*40)*10,y:Math.floor(Math.random()*40)*10}; }
+            else { snake.unshift(head); snake.pop(); }
+            if(head.x<0||head.x>=400||head.y<0||head.y>=400||snake.slice(1).some(s=>s.x===head.x&&s.y===head.y)) { clearInterval(gameLoop); alert('انتهت اللعبة!'); container.innerHTML='<div class="card"><h3>انتهت اللعبة</h3><button onclick="location.reload()" class="play-btn">لعب مرة أخرى</button></div>'; return; }
             draw();
         }
-        
-        document.addEventListener('keydown', (e) => {
-            if(e.key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
-            if(e.key === 'ArrowLeft' && direction !== 'RIGHT') direction = 'LEFT';
-            if(e.key === 'ArrowUp' && direction !== 'DOWN') direction = 'UP';
-            if(e.key === 'ArrowDown' && direction !== 'UP') direction = 'DOWN';
-        });
-        
-        gameLoop = setInterval(move, 100);
-        draw();
-        window.snakeInterval = gameLoop;
+        document.addEventListener('keydown',(e)=>{ if(e.key==='ArrowRight' && dir!=='LEFT') dir='RIGHT'; if(e.key==='ArrowLeft' && dir!=='RIGHT') dir='LEFT'; if(e.key==='ArrowUp' && dir!=='DOWN') dir='UP'; if(e.key==='ArrowDown' && dir!=='UP') dir='DOWN'; });
+        gameLoop = setInterval(move,100); draw();
     }
-    
-    function startSnakeGame() {
-        if(window.snakeInterval) clearInterval(window.snakeInterval);
-        initSnakeGame();
-    }
-    
-    // لعبة الذاكرة
-    function openMemoryGame() {
-        const container = document.getElementById('game-container');
-        container.innerHTML = `
-            <div class="card inline-game">
-                <h3>🧠 Memory Match</h3>
-                <div id="memory-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:400px;margin:auto;"></div>
-                <div style="margin-top:10px;">
-                    <button onclick="initMemoryGame()" class="play-btn">إعادة</button>
-                    <button onclick="closeInlineGame()" class="play-btn" style="background:#f44336;">إغلاق</button>
-                </div>
-            </div>
-        `;
-        container.style.display = 'block';
-        initMemoryGame();
-    }
-    
-    function initMemoryGame() {
-        const emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
-        let cards = [...emojis, ...emojis];
-        cards.sort(() => Math.random() - 0.5);
-        let opened = [], matched = [];
-        
-        function renderGrid() {
-            const grid = document.getElementById('memory-grid');
-            if(!grid) return;
-            grid.innerHTML = '';
-            cards.forEach((card, i) => {
-                const btn = document.createElement('button');
-                btn.innerText = matched.includes(i) || opened.includes(i) ? card : '?';
-                btn.style.padding = '20px';
-                btn.style.fontSize = '24px';
-                btn.style.cursor = 'pointer';
-                btn.onclick = () => {
-                    if(opened.length === 2 || matched.includes(i) || opened.includes(i)) return;
-                    opened.push(i);
-                    renderGrid();
-                    if(opened.length === 2) {
-                        setTimeout(() => {
-                            if(cards[opened[0]] === cards[opened[1]]) {
-                                matched.push(...opened);
-                            }
-                            opened = [];
-                            renderGrid();
-                            if(matched.length === cards.length) alert('مبروك! لقد فزت!');
-                        }, 500);
-                    }
-                };
-                grid.appendChild(btn);
-            });
+
+    // Memory Game
+    function initMemoryGame(container) {
+        const emojis = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼'];
+        let cards = [...emojis,...emojis];
+        cards.sort(()=>Math.random()-0.5);
+        let opened=[], matched=[];
+        function render() {
+            let html = '<h3>🧠 Memory Match</h3><div class="memory-grid">';
+            cards.forEach((c,i)=> { html += `<button class="memory-card ${matched.includes(i)||opened.includes(i)?'flipped':''}" onclick="window.memoryFlip(${i})">${matched.includes(i)||opened.includes(i)?c:'?'}</button>`; });
+            html += '</div><div><button onclick="location.reload()" class="play-btn">إعادة</button> <button onclick="document.getElementById(\'gameArea\').style.display=\'none\'" class="play-btn">إغلاق</button></div>';
+            container.innerHTML = html;
         }
-        renderGrid();
+        window.memoryFlip = (i) => {
+            if(opened.length===2 || matched.includes(i) || opened.includes(i)) return;
+            opened.push(i); render();
+            if(opened.length===2) setTimeout(()=>{ if(cards[opened[0]]===cards[opened[1]]) matched.push(...opened); opened=[]; render(); if(matched.length===cards.length) alert('مبروك! فزت!'); },500);
+        };
+        render();
     }
-    
-    function closeInlineGame() {
-        const container = document.getElementById('game-container');
-        container.innerHTML = '';
-        container.style.display = 'none';
-        if(window.snakeInterval) clearInterval(window.snakeInterval);
+
+    // Piano Tiles Game
+    function initPianoGame(container) {
+        container.innerHTML = `<h3>🎹 Piano Tiles</h3><canvas id="pianoCanvas" width="400" height="500" style="border:2px solid var(--border-color); background:#fff;"></canvas><div><button onclick="location.reload()" class="play-btn">إعادة</button> <button onclick="document.getElementById('gameArea').style.display='none'" class="play-btn">إغلاق</button></div><p>اضغط على المربعات السوداء فقط!</p>`;
+        const canvas = document.getElementById('pianoCanvas');
+        const ctx = canvas.getContext('2d');
+        let tiles = [];
+        let score = 0;
+        let gameRunning = true;
+        function addTile() { tiles.push({x:Math.floor(Math.random()*4)*100, y:0, color:'black'}); }
+        setInterval(()=>{ if(gameRunning) addTile(); }, 800);
+        function draw() {
+            ctx.fillStyle='#fff'; ctx.fillRect(0,0,400,500);
+            for(let i=0;i<4;i++) ctx.strokeRect(i*100,0,100,500);
+            tiles.forEach(t=>{ ctx.fillStyle=t.color; ctx.fillRect(t.x,t.y,100,30); t.y+=5; });
+            ctx.fillStyle='black'; ctx.font='20px Arial'; ctx.fillText(`Score: ${score}`,10,50);
+            tiles = tiles.filter(t=>t.y<500);
+        }
+        function checkClick(e) {
+            if(!gameRunning) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (canvas.width/rect.width);
+            const y = (e.clientY - rect.top) * (canvas.height/rect.height);
+            for(let i=0;i<tiles.length;i++) {
+                if(y>=tiles[i].y && y<=tiles[i].y+30 && x>=tiles[i].x && x<=tiles[i].x+100) {
+                    if(tiles[i].color==='black') { score++; tiles.splice(i,1); }
+                    else { gameRunning=false; alert(`انتهت! نتيجتك: ${score}`); location.reload(); }
+                    break;
+                }
+            }
+        }
+        canvas.addEventListener('click',checkClick);
+        function update() { if(gameRunning) { draw(); requestAnimationFrame(update); } }
+        update();
     }
-    
-    // شات AI (محاكي - يمكن توصيله بـ Gemini API)
-    const chatMessagesDiv = document.getElementById('chat-messages');
-    const chatInput = document.getElementById('chat-input');
-    
-    function addMessage(text, isUser) {
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `message ${isUser ? 'user-msg' : 'ai-msg'}`;
-        msgDiv.style.cssText = `margin-bottom:0.8rem;padding:0.5rem 1rem;border-radius:18px;max-width:80%;${isUser ? 'background:#667eea;color:white;margin-right:auto;' : 'background:#e5e5ea;color:black;'}`;
-        msgDiv.innerText = text;
-        chatMessagesDiv.appendChild(msgDiv);
-        chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+
+    // Flappy Bird Game
+    function initFlappyGame(container) {
+        container.innerHTML = `<h3>🐦 Flappy Bird</h3><canvas id="flappyCanvas" width="400" height="500" style="border:2px solid var(--border-color); background:#87CEEB;"></canvas><div><button onclick="location.reload()" class="play-btn">إعادة</button> <button onclick="document.getElementById('gameArea').style.display='none'" class="play-btn">إغلاق</button></div><p>اضغط مسافة أو انقر للطيران</p>`;
+        const canvas = document.getElementById('flappyCanvas');
+        const ctx = canvas.getContext('2d');
+        let bird = {x:50, y:250, vy:0};
+        let pipes = [{x:400, gapY:200}];
+        let score = 0;
+        let gameOver = false;
+        function draw() {
+            ctx.fillStyle='#87CEEB'; ctx.fillRect(0,0,400,500);
+            ctx.fillStyle='yellow'; ctx.fillRect(bird.x,bird.y,30,30);
+            ctx.fillStyle='green'; pipes.forEach(p=>{ ctx.fillRect(p.x,0,50,p.gapY-80); ctx.fillRect(p.x,p.gapY+80,50,500-p.gapY-80); });
+            ctx.fillStyle='black'; ctx.fillText(`Score: ${score}`,10,50);
+            if(gameOver) ctx.fillText('Game Over - اضغط إعادة',150,250);
+        }
+        function update() {
+            if(gameOver) return;
+            bird.vy += 0.5;
+            bird.y += bird.vy;
+            if(bird.y<=0 || bird.y>=470) gameOver=true;
+            pipes.forEach(p=>{ p.x-=2; if(p.x+50<0) pipes.shift(); });
+            if(pipes[pipes.length-1].x<250) pipes.push({x:400, gapY:150+Math.random()*200});
+            pipes.forEach(p=>{ if(bird.x+30>p.x && bird.x<p.x+50 && (bird.y<p.gapY-80 || bird.y+30>p.gapY+80)) gameOver=true; if(p.x+50<bird.x && !p.counted) { score++; p.counted=true; } });
+            draw();
+            requestAnimationFrame(update);
+        }
+        function jump() { if(!gameOver) bird.vy = -8; }
+        document.addEventListener('keydown',(e)=>{ if(e.code==='Space') jump(); });
+        canvas.addEventListener('click',jump);
+        update();
     }
-    
-    async function sendAIMessage() {
-        let userMsg = chatInput.value.trim();
-        if(!userMsg) return;
-        addMessage(userMsg, true);
-        chatInput.value = '';
-        
-        // محاكي ردود بسيطة (يمكن استبدالها بـ Gemini API)
-        let aiReply = "شكراً لسؤالك! أنا مساعد ذكي (نسخة تجريبية). لتشغيل الذكاء الحقيقي، أدخل مفتاح Gemini API في الكود.";
-        if(userMsg.includes("مرحبا")) aiReply = "وعليكم السلام! كيف يمكنني مساعدتك؟";
-        else if(userMsg.includes("اسمك")) aiReply = "أنا مساعد عبدالرحمن الذكي.";
-        else if(userMsg.includes("لعبة")) aiReply = "جرب قسم الألعاب! فيه Subway Surfers وبيانو وثعبان وذاكرة.";
-        else aiReply = `رد على: "${userMsg}". لتجربة الذكاء الحقيقي، استخدم مفتاح API من Google AI Studio.`;
-        
-        addMessage(aiReply, false);
+
+    // Chat AI
+    const chatDiv = document.getElementById('chat-messages');
+    const chatInp = document.getElementById('chat-input');
+    function addMsg(t,isUser){ let d=document.createElement('div'); d.className=`message ${isUser?'user-msg':'ai-msg'}`; d.innerText=t; chatDiv.appendChild(d); chatDiv.scrollTop=chatDiv.scrollHeight; }
+    async function sendAIMessage(){
+        let u=chatInp.value.trim(); if(!u) return; addMsg(u,true); chatInp.value='';
+        let reply="شكراً لسؤالك! أنا مساعد ذكي. لتشغيل الذكاء الحقيقي، أدخل مفتاح Gemini API.";
+        if(u.includes("مرحبا")) reply="وعليكم السلام! كيف يمكنني مساعدتك؟";
+        else if(u.includes("لعبة")) reply="جرب قسم الألعاب! فيه Snake وMemory وPiano وFlappy Bird.";
+        else if(u.includes("اسمك")) reply="أنا مساعد عبدالرحمن الذكي.";
+        addMsg(reply,false);
     }
 </script>
 </body>
