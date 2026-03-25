@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Abdulrahman Bashir | الموقع الشخصي المتكامل</title>
-    <!-- Font Awesome 6 (الأيقونات الحقيقية) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease;
+            transition: background-color 0.3s ease, color 0.2s ease;
         }
 
         body {
@@ -23,7 +23,6 @@
             min-height: 100vh;
         }
 
-        /* الوضع الفاتح والداكن */
         :root {
             --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             --card-bg: rgba(255, 255, 255, 0.95);
@@ -33,6 +32,7 @@
             --border-color: #e0e0e0;
             --btn-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --input-bg: white;
+            --game-bg: #f9f9f9;
         }
 
         body.dark {
@@ -44,6 +44,7 @@
             --border-color: #4a4a60;
             --btn-bg: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
             --input-bg: #3a3a4e;
+            --game-bg: #2d2d3f;
         }
 
         /* الشريط العلوي */
@@ -145,7 +146,6 @@
             color: white;
         }
 
-        /* الحاوية الرئيسية */
         .container {
             width: 95%;
             max-width: 1300px;
@@ -166,7 +166,6 @@
             to { opacity: 1; transform: translateY(0);}
         }
 
-        /* بطاقات عامة */
         .card {
             background: var(--card-bg);
             border-radius: 25px;
@@ -175,7 +174,6 @@
             box-shadow: var(--shadow);
         }
 
-        /* الصفحة الرئيسية */
         .hero {
             text-align: center;
         }
@@ -189,7 +187,117 @@
             margin-bottom: 0.5rem;
         }
 
-        /* أيقونات التواصل الحقيقية */
+        /* ألعاب */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .game-card {
+            background: var(--game-bg);
+            border-radius: 20px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .game-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-desc {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .play-btn {
+            background: var(--btn-bg);
+            border: none;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            color: white;
+            margin-top: 0.8rem;
+            cursor: pointer;
+        }
+
+        /* نافذة اللعبة المنبثقة */
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-modal-content {
+            width: 90%;
+            height: 90%;
+            background: white;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-modal-content iframe {
+            width: 100%;
+            height: calc(100% - 50px);
+            border: none;
+        }
+
+        .close-game {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #333;
+            z-index: 10;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ألعاب مدمجة */
+        .inline-game {
+            background: var(--game-bg);
+            border-radius: 20px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .inline-game canvas {
+            background: white;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* social icons */
         .social-icons {
             display: flex;
             flex-wrap: wrap;
@@ -219,7 +327,7 @@
         .fab.fa-tiktok { background: #000000; padding: 12px; border-radius: 50%;}
         .fab.fa-whatsapp { background: #25d366; padding: 12px; border-radius: 50%;}
 
-        /* الحاسبة */
+        /* calculator */
         .calculator {
             max-width: 300px;
             margin: auto;
@@ -254,53 +362,6 @@
             color: white;
         }
 
-        /* شات الذكاء الاصطناعي */
-        .chat-container {
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 1rem;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            background: var(--card-bg);
-        }
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-        }
-        .message {
-            margin-bottom: 0.8rem;
-            padding: 0.5rem 1rem;
-            border-radius: 18px;
-            max-width: 80%;
-        }
-        .user-msg {
-            background: #667eea;
-            color: white;
-            align-self: flex-end;
-            margin-right: auto;
-        }
-        .ai-msg {
-            background: #e5e5ea;
-            color: black;
-            align-self: flex-start;
-        }
-        .chat-input-area {
-            display: flex;
-            gap: 0.5rem;
-        }
-        .chat-input-area input {
-            flex: 1;
-            padding: 0.7rem;
-            border-radius: 30px;
-            border: 1px solid var(--border-color);
-            background: var(--input-bg);
-            color: var(--text-color);
-        }
-
-        /* تنسيق عام */
         .row {
             display: flex;
             flex-wrap: wrap;
@@ -311,8 +372,7 @@
             flex: 1;
             min-width: 280px;
         }
-        h2, h3 { margin-bottom: 0.8rem;}
-
+        
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -356,6 +416,7 @@
 <nav>
     <button class="nav-btn active" data-page="home">الرئيسية</button>
     <button class="nav-btn" data-page="about">عني</button>
+    <button class="nav-btn" data-page="games">🎮 ألعاب</button>
     <button class="nav-btn" data-page="tools">أدوات</button>
     <button class="nav-btn" data-page="contact">تواصل</button>
 </nav>
@@ -364,7 +425,7 @@
     <!-- الصفحة الرئيسية -->
     <div id="home" class="page active-page">
         <div class="card hero">
-            <img src="عبدالرحمن.jpg" alt="Abdulrahman" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=Abdulrahman'">
+            <img src="Abdulrahman.jpg" alt="Abdulrahman" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=Abdulrahman'">
             <h2>Abdulrahman Ahmed Bashir</h2>
             <p>محتوى رقمي | مطور ويب | صانع محتوى إبداعي</p>
             <div class="social-icons">
@@ -397,7 +458,52 @@
         </div>
     </div>
 
-    <!-- صفحة الأدوات (آلة حاسبة + شات AI) -->
+    <!-- صفحة الألعاب الجديدة -->
+    <div id="games" class="page">
+        <div class="card">
+            <h2>🎮 ألعاب مجانية</h2>
+            <p>اختار اللعبة المفضلة واضغط عليها لتلعب مباشرة</p>
+            
+            <div class="games-grid">
+                <!-- لعبة صابواي Subway Surfers -->
+                <div class="game-card" onclick="openGame('https://play.famobi.com/subway-surfers', 'Subway Surfers')">
+                    <div class="game-icon">🏃‍♂️🚇</div>
+                    <div class="game-title">Subway Surfers</div>
+                    <div class="game-desc">اجري على القضبان واهرب من الشرطة! لعبة الجري الكلاسيكية</div>
+                    <button class="play-btn">🎮 العب الآن</button>
+                </div>
+                
+                <!-- لعبة بيانو Piano Tiles -->
+                <div class="game-card" onclick="openGame('https://piano-tiles.io/', 'Piano Tiles')">
+                    <div class="game-icon">🎹🎵</div>
+                    <div class="game-title">Piano Tiles</div>
+                    <div class="game-desc">اضغط على البلاط الأسود بسرعة وتجنب الأبيض! لعبة سرعة وموسيقى</div>
+                    <button class="play-btn">🎹 العب الآن</button>
+                </div>
+                
+                <!-- لعبة ثعبان Snake -->
+                <div class="game-card" onclick="openSnakeGame()">
+                    <div class="game-icon">🐍🍎</div>
+                    <div class="game-title">Snake Game</div>
+                    <div class="game-desc">اللعبة الكلاسيكية! حرك الثعبان وكل التفاح واكبر</div>
+                    <button class="play-btn">🐍 العب الآن</button>
+                </div>
+                
+                <!-- لعبة ذاكرة Memory Match -->
+                <div class="game-card" onclick="openMemoryGame()">
+                    <div class="game-icon">🧠🃏</div>
+                    <div class="game-title">Memory Match</div>
+                    <div class="game-desc">اختبر ذاكرتك! اقلب البطاقات وطابق الأزواج</div>
+                    <button class="play-btn">🧠 العب الآن</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- حاوية عرض الألعاب المدمجة -->
+        <div id="game-container" style="display: none;"></div>
+    </div>
+
+    <!-- صفحة الأدوات -->
     <div id="tools" class="page">
         <div class="row">
             <div class="col">
@@ -417,17 +523,16 @@
             </div>
             <div class="col">
                 <div class="card">
-                    <h3>🤖 شات ذكاء اصطناعي (AI)</h3>
-                    <div class="chat-container">
-                        <div class="chat-messages" id="chat-messages">
-                            <div class="message ai-msg">مرحباً! أنا مساعد ذكي. اكتب سؤالك (للأسف النسخة التجريبية تستجيب بشكل بسيط، لكن يمكن توصيلها بـ API حقيقي).</div>
+                    <h3>🤖 شات ذكاء اصطناعي</h3>
+                    <div class="chat-container" style="border:1px solid var(--border-color);border-radius:20px;padding:1rem;height:400px;display:flex;flex-direction:column;background:var(--card-bg);">
+                        <div class="chat-messages" id="chat-messages" style="flex:1;overflow-y:auto;margin-bottom:1rem;">
+                            <div class="message ai-msg" style="background:#e5e5ea;color:black;padding:0.5rem 1rem;border-radius:18px;max-width:80%;margin-bottom:0.8rem;">مرحباً! أنا مساعد ذكي. اكتب سؤالك وسأجيبك (للتواصل مع Gemini API حقيقي).</div>
                         </div>
-                        <div class="chat-input-area">
-                            <input type="text" id="chat-input" placeholder="اكتب سؤالك...">
-                            <button onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i> إرسال</button>
+                        <div class="chat-input-area" style="display:flex;gap:0.5rem;">
+                            <input type="text" id="chat-input" style="flex:1;padding:0.7rem;border-radius:30px;border:1px solid var(--border-color);background:var(--input-bg);color:var(--text-color);">
+                            <button onclick="sendAIMessage()" style="background:var(--btn-bg);border:none;border-radius:30px;padding:0.7rem 1rem;color:white;"><i class="fas fa-paper-plane"></i> إرسال</button>
                         </div>
                     </div>
-                    <p class="small">ملاحظة: للاستخدام الحقيقي، أدخل مفتاح OpenAI في الكود وسيعمل بشكل كامل.</p>
                 </div>
             </div>
         </div>
@@ -456,6 +561,14 @@
     <p>© 2025 جميع الحقوق محفوظة</p>
 </footer>
 
+<!-- نافذة اللعبة المنبثقة -->
+<div id="gameModal" class="game-modal">
+    <div class="game-modal-content">
+        <span class="close-game" onclick="closeGame()">&times;</span>
+        <iframe id="gameIframe" src=""></iframe>
+    </div>
+</div>
+
 <script>
     // ------------------ الساعة ------------------
     function updateClock() {
@@ -466,12 +579,11 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // ------------------ الطقس (API مجاني) ------------------
+    // ------------------ الطقس ------------------
     async function fetchWeather() {
         try {
-            // مدينة: المنصورة مثلاً (يمكن تغييرها)
             const city = "Mansoura,EG";
-            const apiKey = "bd5e378503939ddaee76f12ad7a97608"; // مفتاح تجريبي مجاني من openweathermap (للتجربة)
+            const apiKey = "bd5e378503939ddaee76f12ad7a97608";
             const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=ar`);
             const data = await res.json();
             if(data.main) {
@@ -485,13 +597,12 @@
     }
     fetchWeather();
 
-    // ------------------ بحث جوجل ------------------
     function searchGoogle() {
         let query = document.getElementById('searchInput').value;
         if(query.trim()) window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
     }
 
-    // ------------------ الوضع الفاتح/الداكن ------------------
+    // الوضع الفاتح/الداكن
     const themeBtn = document.getElementById('themeToggle');
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark');
@@ -500,12 +611,13 @@
     });
     if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
 
-    // ------------------ الترجمة (عربي/إنجليزي بسيط) ------------------
+    // الترجمة
     let currentLang = 'ar';
     const langBtn = document.getElementById('langToggle');
     const translations = {
         home: { ar: 'الرئيسية', en: 'Home' },
         about: { ar: 'عني', en: 'About' },
+        games: { ar: '🎮 ألعاب', en: '🎮 Games' },
         tools: { ar: 'أدوات', en: 'Tools' },
         contact: { ar: 'تواصل', en: 'Contact' }
     };
@@ -516,7 +628,6 @@
         });
         langBtn.innerHTML = currentLang === 'ar' ? '<i class="fas fa-language"></i> English' : '<i class="fas fa-language"></i> العربية';
         document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-        // يمكن إضافة المزيد من النصوص حسب الحاجة
     }
     langBtn.addEventListener('click', () => {
         currentLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -524,7 +635,7 @@
     });
     updateUILanguage();
 
-    // ------------------ التنقل بين الصفحات ------------------
+    // التنقل بين الصفحات
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
         document.getElementById(pageId).classList.add('active-page');
@@ -532,12 +643,14 @@
             btn.classList.remove('active');
             if(btn.getAttribute('data-page') === pageId) btn.classList.add('active');
         });
+        // إخفاء نافذة اللعبة لو مفتوحة
+        closeGame();
     }
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', () => showPage(btn.getAttribute('data-page')));
     });
 
-    // ------------------ آلة حاسبة ------------------
+    // آلة حاسبة
     let calcDisplay = document.getElementById('calc-display');
     function calcAppend(val) { calcDisplay.value += val; }
     function calcOperator(op) { calcDisplay.value += op; }
@@ -547,52 +660,192 @@
         catch(e) { calcDisplay.value = 'خطأ'; }
     }
 
-    // ------------------ شات الذكاء الاصطناعي (محاكي + جاهز لـ API) ------------------
+    // ------------------ الألعاب ------------------
+    function openGame(url, title) {
+        const modal = document.getElementById('gameModal');
+        const iframe = document.getElementById('gameIframe');
+        iframe.src = url;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeGame() {
+        const modal = document.getElementById('gameModal');
+        const iframe = document.getElementById('gameIframe');
+        iframe.src = '';
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    // لعبة الثعبان (Snake) - لعبة مدمجة
+    function openSnakeGame() {
+        const container = document.getElementById('game-container');
+        container.innerHTML = `
+            <div class="card inline-game">
+                <h3>🐍 Snake Game</h3>
+                <canvas id="snakeCanvas" width="400" height="400" style="border:2px solid var(--border-color); background:#fff;"></canvas>
+                <div style="margin-top:10px;">
+                    <button onclick="startSnakeGame()" class="play-btn">بدء اللعبة</button>
+                    <button onclick="closeInlineGame()" class="play-btn" style="background:#f44336;">إغلاق</button>
+                </div>
+                <p>استخدم الأسهم ↑ ↓ ← → للتحريك</p>
+            </div>
+        `;
+        container.style.display = 'block';
+        initSnakeGame();
+    }
+    
+    function initSnakeGame() {
+        const canvas = document.getElementById('snakeCanvas');
+        if(!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let snake = [{x: 200, y: 200}, {x: 190, y: 200}, {x: 180, y: 200}];
+        let direction = 'RIGHT';
+        let food = {x: 300, y: 200};
+        let score = 0;
+        let gameLoop;
+        
+        function draw() {
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, 400, 400);
+            ctx.fillStyle = 'red';
+            ctx.fillRect(food.x, food.y, 10, 10);
+            ctx.fillStyle = 'green';
+            snake.forEach(segment => {
+                ctx.fillRect(segment.x, segment.y, 10, 10);
+            });
+        }
+        
+        function move() {
+            let head = {...snake[0]};
+            if(direction === 'RIGHT') head.x += 10;
+            if(direction === 'LEFT') head.x -= 10;
+            if(direction === 'UP') head.y -= 10;
+            if(direction === 'DOWN') head.y += 10;
+            
+            if(head.x === food.x && head.y === food.y) {
+                score++;
+                snake.unshift(head);
+                food = {x: Math.floor(Math.random() * 40) * 10, y: Math.floor(Math.random() * 40) * 10};
+            } else {
+                snake.unshift(head);
+                snake.pop();
+            }
+            
+            if(head.x < 0 || head.x >= 400 || head.y < 0 || head.y >= 400 || snake.some((seg, i) => i !== 0 && seg.x === head.x && seg.y === head.y)) {
+                clearInterval(gameLoop);
+                alert(`انتهت اللعبة! نتيجتك: ${score}`);
+                closeInlineGame();
+            }
+            draw();
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
+            if(e.key === 'ArrowLeft' && direction !== 'RIGHT') direction = 'LEFT';
+            if(e.key === 'ArrowUp' && direction !== 'DOWN') direction = 'UP';
+            if(e.key === 'ArrowDown' && direction !== 'UP') direction = 'DOWN';
+        });
+        
+        gameLoop = setInterval(move, 100);
+        draw();
+        window.snakeInterval = gameLoop;
+    }
+    
+    function startSnakeGame() {
+        if(window.snakeInterval) clearInterval(window.snakeInterval);
+        initSnakeGame();
+    }
+    
+    // لعبة الذاكرة
+    function openMemoryGame() {
+        const container = document.getElementById('game-container');
+        container.innerHTML = `
+            <div class="card inline-game">
+                <h3>🧠 Memory Match</h3>
+                <div id="memory-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:400px;margin:auto;"></div>
+                <div style="margin-top:10px;">
+                    <button onclick="initMemoryGame()" class="play-btn">إعادة</button>
+                    <button onclick="closeInlineGame()" class="play-btn" style="background:#f44336;">إغلاق</button>
+                </div>
+            </div>
+        `;
+        container.style.display = 'block';
+        initMemoryGame();
+    }
+    
+    function initMemoryGame() {
+        const emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
+        let cards = [...emojis, ...emojis];
+        cards.sort(() => Math.random() - 0.5);
+        let opened = [], matched = [];
+        
+        function renderGrid() {
+            const grid = document.getElementById('memory-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            cards.forEach((card, i) => {
+                const btn = document.createElement('button');
+                btn.innerText = matched.includes(i) || opened.includes(i) ? card : '?';
+                btn.style.padding = '20px';
+                btn.style.fontSize = '24px';
+                btn.style.cursor = 'pointer';
+                btn.onclick = () => {
+                    if(opened.length === 2 || matched.includes(i) || opened.includes(i)) return;
+                    opened.push(i);
+                    renderGrid();
+                    if(opened.length === 2) {
+                        setTimeout(() => {
+                            if(cards[opened[0]] === cards[opened[1]]) {
+                                matched.push(...opened);
+                            }
+                            opened = [];
+                            renderGrid();
+                            if(matched.length === cards.length) alert('مبروك! لقد فزت!');
+                        }, 500);
+                    }
+                };
+                grid.appendChild(btn);
+            });
+        }
+        renderGrid();
+    }
+    
+    function closeInlineGame() {
+        const container = document.getElementById('game-container');
+        container.innerHTML = '';
+        container.style.display = 'none';
+        if(window.snakeInterval) clearInterval(window.snakeInterval);
+    }
+    
+    // شات AI (محاكي - يمكن توصيله بـ Gemini API)
     const chatMessagesDiv = document.getElementById('chat-messages');
     const chatInput = document.getElementById('chat-input');
-
+    
     function addMessage(text, isUser) {
         const msgDiv = document.createElement('div');
         msgDiv.className = `message ${isUser ? 'user-msg' : 'ai-msg'}`;
+        msgDiv.style.cssText = `margin-bottom:0.8rem;padding:0.5rem 1rem;border-radius:18px;max-width:80%;${isUser ? 'background:#667eea;color:white;margin-right:auto;' : 'background:#e5e5ea;color:black;'}`;
         msgDiv.innerText = text;
         chatMessagesDiv.appendChild(msgDiv);
         chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
     }
-
+    
     async function sendAIMessage() {
         let userMsg = chatInput.value.trim();
         if(!userMsg) return;
         addMessage(userMsg, true);
         chatInput.value = '';
-
-        // هنا يمكن توصيل الـ API الحقيقي. مثال: استخدام OpenAI
-        // بما أنك طلبت "حقيقي مش شكل وخلاص" فأضفت كود جاهز للتوصيل بمفتاح API
-        // لكن لن يعمل بدون مفتاح. سأضع محاكي ذكي يعطي ردود افتراضية إلى أن تدخل المفتاح.
         
-        // إذا كنت تملك مفتاح OpenAI:
-        // const API_KEY = 'YOUR_OPENAI_API_KEY';
-        // const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        //     method: 'POST',
-        //     headers: { 'Authorization': `Bearer ${API_KEY}`, 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ model: 'gpt-3.5-turbo', messages: [{ role: 'user', content: userMsg }] })
-        // });
-        // const data = await response.json();
-        // const aiReply = data.choices[0].message.content;
-
-        // حالياً محاكي ذكي مع بعض الردود:
-        let aiReply = "أنا مساعد ذكي (نسخة تجريبية). لتشغيل الذكاء الحقيقي، أدخل مفتاح OpenAI في الكود. شكراً لفهمك! 😊";
-        if(userMsg.includes("مرحبا") || userMsg.includes("السلام")) aiReply = "وعليكم السلام! كيف يمكنني مساعدتك؟";
-        else if(userMsg.includes("اسمك")) aiReply = "أنا مساعد عبدالرحمن، صممت واجهتي لتكون ذكية.";
-        else if(userMsg.includes("طقس")) aiReply = "يمكنك رؤية الطقس في أعلى الصفحة.";
-        else aiReply = `شكراً لسؤالك: "${userMsg}". هذا رد تجريبي، لكن يمكن تفعيل API حقيقي بسهولة.`;
-
+        // محاكي ردود بسيطة (يمكن استبدالها بـ Gemini API)
+        let aiReply = "شكراً لسؤالك! أنا مساعد ذكي (نسخة تجريبية). لتشغيل الذكاء الحقيقي، أدخل مفتاح Gemini API في الكود.";
+        if(userMsg.includes("مرحبا")) aiReply = "وعليكم السلام! كيف يمكنني مساعدتك؟";
+        else if(userMsg.includes("اسمك")) aiReply = "أنا مساعد عبدالرحمن الذكي.";
+        else if(userMsg.includes("لعبة")) aiReply = "جرب قسم الألعاب! فيه Subway Surfers وبيانو وثعبان وذاكرة.";
+        else aiReply = `رد على: "${userMsg}". لتجربة الذكاء الحقيقي، استخدم مفتاح API من Google AI Studio.`;
+        
         addMessage(aiReply, false);
     }
-
-    // الضغط على Enter في شات
-    chatInput.addEventListener('keypress', function(e) {
-        if(e.key === 'Enter') sendAIMessage();
-    });
 </script>
 </body>
 </html>
