@@ -274,6 +274,13 @@
             color: white;
             margin-top: 0.8rem;
             cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
         }
 
         /* Inline Game Container */
@@ -439,7 +446,6 @@
             border-radius: 20px;
             padding: 1.5rem;
             text-align: center;
-            cursor: pointer;
             transition: transform 0.2s;
             border: 1px solid var(--border-color);
         }
@@ -491,6 +497,10 @@
             color: var(--text-secondary);
         }
 
+        .certificate-info p {
+            margin: 0.5rem 0;
+        }
+
         .verify-btn {
             background: var(--btn-bg);
             border: none;
@@ -504,13 +514,18 @@
             display: inline-block;
         }
 
-        /* Embedded App Container */
-        .embedded-app {
-            width: 100%;
-            height: 80vh;
-            border: none;
+        .verify-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+
+        .certificate-img {
+            max-width: 100%;
+            height: auto;
             border-radius: 15px;
-            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            border: 3px solid #667eea;
+            margin: 20px 0;
         }
 
         footer {
@@ -530,7 +545,6 @@
         @media (max-width: 700px) {
             .top-bar { flex-direction: column; align-items: stretch; }
             .controls { justify-content: center; }
-            .embedded-app { height: 60vh; }
         }
         button { cursor: pointer; }
     </style>
@@ -548,7 +562,7 @@
     <button class="nav-btn active" data-page="home">الرئيسية</button>
     <button class="nav-btn" data-page="about">عني</button>
     <button class="nav-btn" data-page="games">🎮 ألعاب</button>
-    <button class="nav-btn" data-page="projects">🚀 مشاريعي</button>
+    <button class="nav-btn" data-page="projects"> مشاريعي</button>
     <button class="nav-btn" data-page="certificates">📜 شهاداتي</button>
     <button class="nav-btn" data-page="tools">أدوات</button>
     <button class="nav-btn" data-page="contact">تواصل</button>
@@ -570,7 +584,7 @@
                 <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-        <div class="card"><h3>خدماتي</h3><div class="row"><div class="col">🎨 تصميم مواقع</div><div class="col">💻 تطوير ويب</div><div class="col">📱 محتوى رقمي</div><div class="col">🔧 استشارات تقنية</div></div></div>
+        <div class="card"><h3>خدماتي</h3><div class="row"><div class="col"> تصميم مواقع</div><div class="col"> تطوير ويب</div><div class="col"> محتوى رقمي</div><div class="col">🔧 استشارات تقنية</div></div></div>
     </div>
 
     <!-- About -->
@@ -581,11 +595,11 @@
     <!-- Games Page -->
     <div id="games" class="page">
         <div class="card">
-            <h2>🎮 ألعاب مدمجة</h2>
+            <h2> ألعاب مدمجة</h2>
             <p>اختر اللعبة وابدأ اللعب مباشرة داخل الموقع</p>
             <div class="games-grid">
-                <div class="game-card" onclick="showGame('snake')"><div class="game-icon">🐍🍎</div><div class="game-title">Snake Game</div><div class="game-desc">اللعبة الكلاسيكية - كل التفاح واكبر!</div><button class="play-btn">🐍 العب</button></div>
-                <div class="game-card" onclick="showGame('memory')"><div class="game-icon">🧠🃏</div><div class="game-title">Memory Match</div><div class="game-desc">طابق الأزواج واختبر ذاكرتك</div><button class="play-btn">🧠 العب</button></div>
+                <div class="game-card" onclick="showGame('snake')"><div class="game-icon">🍎</div><div class="game-title">Snake Game</div><div class="game-desc">اللعبة الكلاسيكية - كل التفاح واكبر!</div><button class="play-btn">🐍 العب</button></div>
+                <div class="game-card" onclick="showGame('memory')"><div class="game-icon">🧠</div><div class="game-title">Memory Match</div><div class="game-desc">طابق الأزواج واختبر ذاكرتك</div><button class="play-btn">🧠 العب</button></div>
                 <div class="game-card" onclick="showGame('piano')"><div class="game-icon">🎹🎵</div><div class="game-title">Piano Tiles</div><div class="game-desc">اضغط على المربعات السوداء بسرعة!</div><button class="play-btn">🎹 العب</button></div>
                 <div class="game-card" onclick="showGame('flappy')"><div class="game-icon">🐦🔥</div><div class="game-title">Flappy Bird</div><div class="game-desc">حلق بين الأنابيب دون أن تصطدم</div><button class="play-btn">🐦 العب</button></div>
             </div>
@@ -596,23 +610,25 @@
     <!-- Projects Page -->
     <div id="projects" class="page">
         <div class="card">
-            <h2>🚀 مشاريعي ومواقعي</h2>
+            <h2> مشاريعي ومواقعي</h2>
             <p>مواقع وتطبيقات قمت بتطويرها</p>
             <div class="projects-grid">
-                <div class="project-card" onclick="openEmbeddedApp('gamefixer')">
+                <!-- GameFixer -->
+                <div class="project-card">
                     <div class="project-icon">🎮💻</div>
                     <div class="project-title">GameFixer</div>
                     <div class="project-desc">حلول برمجية، ألعاب، وشروحات ويندوز</div>
-                    <button class="play-btn">🚀 فتح الموقع</button>
+                    <a href="gamefixer.html" class="play-btn">🚀 فتح الموقع</a>
                 </div>
-                <div class="project-card" onclick="openEmbeddedApp('studyspark')">
-                    <div class="project-icon">📚✨</div>
+                
+                <!-- StudySpark -->
+                <div class="project-card">
+                    <div class="project-icon">✨</div>
                     <div class="project-title">StudySpark</div>
                     <div class="project-desc">منصتك للمذاكرة التفاعلية</div>
-                    <button class="play-btn">🚀 فتح الموقع</button>
+                    <a href="studyspark.html" class="play-btn">🚀 فتح الموقع</a>
                 </div>
             </div>
-            <div id="embeddedAppArea" class="inline-game-container" style="display:none;"></div>
         </div>
     </div>
 
@@ -620,16 +636,26 @@
     <div id="certificates" class="page">
         <div class="card">
             <h2>📜 شهاداتي</h2>
+            
+            <!-- TOFAS Certificate -->
             <div class="certificate-card">
-                <div class="certificate-icon">🏆</div>
+                <div class="certificate-icon"></div>
                 <div class="certificate-title">JavaScript Level 1</div>
+                
+                <!-- Certificate Image -->
+                <img src="Tofas2026.jpg" alt="TOFAS JavaScript Certificate" class="certificate-img">
+                
                 <div class="certificate-info">
                     <p><strong>الجهة المانحة:</strong> TOFAS - International Test of Fundamental Academic Skills</p>
                     <p><strong>تاريخ الحصول:</strong> 27 أبريل 2026</p>
                     <p><strong>رقم الشهادة:</strong> 0019dcffa246711550334b7a80cf0def</p>
+                    <p><strong>رقم الطالب:</strong> 470924199</p>
                 </div>
+                
                 <a href="https://rcsult-cgy-programming-testing.com/certificate-check/0019dcffa246711550334b7a80cf0def" 
-                   target="_blank" class="verify-btn">✓ التحقق من الشهادة</a>
+                   target="_blank" class="verify-btn">
+                   <i class="fas fa-check-circle"></i> التحقق من الشهادة
+                </a>
             </div>
         </div>
     </div>
@@ -644,11 +670,11 @@
 
     <!-- Contact -->
     <div id="contact" class="page">
-        <div class="card"><h2>📞 تواصل معي</h2><p><i class="fas fa-envelope"></i> abdulrahmanbashir573@gmail.com</p><p><i class="fas fa-phone"></i> 01025474780 / 01505299711</p><div class="social-icons"><a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="https://x.com/body16603" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a><a href="https://www.instagram.com/abdulrahmanbashir781" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@algamers-b7l" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a><a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a></div></div>
+        <div class="card"><h2> تواصل معي</h2><p><i class="fas fa-envelope"></i> abdulrahmanbashir573@gmail.com</p><p><i class="fas fa-phone"></i> 01025474780 / 01505299711</p><div class="social-icons"><a href="https://www.facebook.com/share/1TEgrdfEvr/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="https://x.com/body16603" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a><a href="https://www.instagram.com/abdulrahmanbashir781" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@algamers-b7l" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@abdulrahmanbashir523" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a><a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a></div></div>
     </div>
 </div>
 
-<footer><div class="rgb-text">🌟 هذا الموقع من برمجة وتطوير Abdulrahman Ahmed Bashir 🌟</div><p>© 2025 جميع الحقوق محفوظة</p></footer>
+<footer><div class="rgb-text"> هذا الموقع من برمجة وتطوير Abdulrahman Ahmed Bashir 🌟</div><p>© 2025 جميع الحقوق محفوظة</p></footer>
 
 <script>
     // Clock
@@ -672,12 +698,12 @@
     // Language
     let lang='ar';
     const langBtn=document.getElementById('langToggle');
-    const trans={ home:{ar:'الرئيسية',en:'Home'}, about:{ar:'عني',en:'About'}, games:{ar:'🎮 ألعاب',en:'🎮 Games'}, projects:{ar:'🚀 مشاريعي',en:'🚀 Projects'}, certificates:{ar:'📜 شهاداتي',en:'📜 Certificates'}, tools:{ar:'أدوات',en:'Tools'}, contact:{ar:'تواصل',en:'Contact'} };
+    const trans={ home:{ar:'الرئيسية',en:'Home'}, about:{ar:'عني',en:'About'}, games:{ar:'🎮 ألعاب',en:'🎮 Games'}, projects:{ar:'🚀 مشاريعي',en:'🚀 Projects'}, certificates:{ar:' شهاداتي',en:'📜 Certificates'}, tools:{ar:'أدوات',en:'Tools'}, contact:{ar:'تواصل',en:'Contact'} };
     function updateLang(){ document.querySelectorAll('.nav-btn').forEach(btn=>{ let k=btn.getAttribute('data-page'); if(trans[k]) btn.innerText=trans[k][lang]; }); langBtn.innerHTML=lang==='ar'?'<i class=\"fas fa-language\"></i> English':'<i class=\"fas fa-language\"></i> العربية'; document.body.dir=lang==='ar'?'rtl':'ltr'; }
     langBtn.onclick=()=>{ lang=lang==='ar'?'en':'ar'; updateLang(); }; updateLang();
 
     // Navigation
-    function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active-page')); document.getElementById(id).classList.add('active-page'); document.querySelectorAll('.nav-btn').forEach(b=>{ b.classList.remove('active'); if(b.getAttribute('data-page')===id) b.classList.add('active'); }); document.getElementById('gameArea').style.display='none'; document.getElementById('embeddedAppArea').style.display='none'; }
+    function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active-page')); document.getElementById(id).classList.add('active-page'); document.querySelectorAll('.nav-btn').forEach(b=>{ b.classList.remove('active'); if(b.getAttribute('data-page')===id) b.classList.add('active'); }); document.getElementById('gameArea').style.display='none'; }
     document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>showPage(b.getAttribute('data-page'))));
 
     // Calculator
@@ -696,18 +722,6 @@
         else if(game === 'memory') initMemoryGame(area);
         else if(game === 'piano') initPianoGame(area);
         else if(game === 'flappy') initFlappyGame(area);
-    }
-
-    // Embedded Apps
-    function openEmbeddedApp(appName) {
-        const area = document.getElementById('embeddedAppArea');
-        area.style.display = 'block';
-        
-        if(appName === 'gamefixer') {
-            area.innerHTML = `<h3>🎮 GameFixer</h3><iframe src="gamefixer.html" class="embedded-app"></iframe><div style="margin-top:1rem;"><button onclick="document.getElementById('embeddedAppArea').style.display='none'" class="play-btn">إغلاق</button></div>`;
-        } else if(appName === 'studyspark') {
-            area.innerHTML = `<h3>📚 StudySpark</h3><iframe src="studyspark.html" class="embedded-app"></iframe><div style="margin-top:1rem;"><button onclick="document.getElementById('embeddedAppArea').style.display='none'" class="play-btn">إغلاق</button></div>`;
-        }
     }
 
     // Snake Game
