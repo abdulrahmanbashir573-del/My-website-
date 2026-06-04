@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>GameFixer | الموقع الرسمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.3s, color 0.2s;
+            line-height: 1.6;
+        }
+        :root {
+            --bg-primary: #f9fafc;
+            --bg-secondary: #ffffff;
+            --text-primary: #1e2a3e;
+            --text-secondary: #334155;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --border: #e2e8f0;
+            --code-bg: #f1f5f9;
+            --logo-glow: 0 0 15px rgba(59,130,246,0.3);
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+        body.dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --accent: #38bdf8;
+            --accent-hover: #7dd3fc;
+            --border: #334155;
+            --code-bg: #0f172a;
+        }
+        a { text-decoration: none; color: var(--accent); transition: 0.2s; }
+        a:hover { color: var(--accent-hover); }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;            backdrop-filter: blur(8px);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 16px 0;
+            gap: 16px;
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--logo-glow);
+        }
+        .logo-icon i { font-size: 28px; color: white; }
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo-sub { font-size: 0.7rem; letter-spacing: 2px; color: var(--text-secondary); }
+        .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav-links a { color: var(--text-primary); font-weight: 500; cursor: pointer; }
+        .dark-toggle {
+            background: var(--code-bg);
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 40px;
+            color: var(--text-primary);
+        }
+        .settings-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            font-size: 1.6rem;
+            transition: 0.2s;
+        }
+        .settings-btn:hover { transform: scale(1.05); background: var(--accent-hover); }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 28px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 28px;
+        }
+        .password-input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .settings-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+        .danger-btn {
+            background: var(--danger);
+            color: white;            border: none;
+            padding: 8px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .stats-box {
+            background: var(--code-bg);
+            border-radius: 16px;
+            padding: 12px;
+            margin: 10px 0;
+        }
+        .close-modal {
+            float: left;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+        .hero {
+            background: linear-gradient(145deg, var(--bg-secondary), var(--bg-primary));
+            border-radius: 2rem;
+            padding: 48px 32px;
+            margin: 32px 0;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+        .hero h1 { font-size: 2.5rem; }
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .social-btn.tiktok { background: #000000; color: white; border: 1px solid #25F4EE; }
+        .social-btn.youtube { background: #ff0000; color: white; }
+        .social-btn.whatsapp { background: #25D366; color: white; }
+        .social-btn:hover { transform: scale(1.03); opacity: 0.9; }
+        .videos-grid, .downloads-grid {
+            display: grid;            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .video-card, .download-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s;
+            border: 1px solid var(--border);
+        }
+        .video-card:hover, .download-card:hover { transform: translateY(-3px); }
+        .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+            background: #000;
+        }
+        .video-thumbnail img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.7);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        .video-info, .download-card { padding: 20px; }
+        .download-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            margin-bottom: 10px;
+        }
+        .type-game { background: #8b5cf6; color: white; }
+        .type-software { background: #3b82f6; color: white; }
+        .download-link-btn {
+            display: inline-block;            background: var(--success);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 40px;
+            margin-top: 10px;
+        }
+        .admin-panel {
+            display: none;
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 24px;
+            margin: 30px 0;
+            border: 2px dashed var(--accent);
+        }
+        .admin-panel.show { display: block; }
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .admin-form input, .admin-form select, .admin-form textarea {
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .admin-form button {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        .delete-btn {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 8px;
+            font-size: 0.7rem;
+            display: inline-block;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;            margin-bottom: 48px;
+        }
+        .card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border);
+        }
+        .card-content { padding: 20px; }
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+        }
+        .rating i { color: #facc15; cursor: pointer; }
+        .contact-form, .comments-area {
+            background: var(--bg-secondary);
+            padding: 32px;
+            border-radius: 24px;
+            margin: 40px 0;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; }
+            .hero h1 { font-size: 1.8rem; }
+        }
+        .comment { border-bottom: 1px solid var(--border); padding: 16px 0; }
+        .section-title {
+            font-size: 1.8rem;
+            margin: 40px 0 24px 0;
+            border-right: 5px solid var(--accent);
+            padding-right: 16px;        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-gamepad"></i></div>
+                <div>
+                    <div class="logo-text">GAMEFIXER</div>
+                    <div class="logo-sub">FIX · PLAY · WIN</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a data-tab="home">الرئيسية</a>
+                <a data-tab="videos">🎬 فيديوهات</a>
+                <a data-tab="downloads-section">📦 تحميلات</a>
+                <a data-tab="programming">💻 برمجة</a>
+                <a data-tab="games">🎮 ألعاب</a>
+                <a data-tab="windows">🛠️ ويندوز</a>
+                <a data-tab="contact">تواصل</a>
+            </div>
+            <button class="dark-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+        </div>
+    </div>
+</header>
+
+<main class="container" id="mainContent"></main>
+
+<div class="settings-btn" id="settingsBtn">
+    <i class="fas fa-cog"></i>
+</div>
+
+<div class="modal-overlay" id="passwordModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <h2><i class="fas fa-lock"></i> لوحة التحكم</h2>
+        <p>أدخل كلمة المرور للدخول إلى إعدادات الموقع</p>
+        <input type="password" id="passwordInput" class="password-input" placeholder="كلمة المرور">
+        <button id="submitPassword" style="background:var(--accent); color:white; border:none; padding:12px; width:100%; border-radius:40px; cursor:pointer;">دخول</button>
+        <p id="passwordError" style="color:var(--danger); margin-top:10px; display:none;">كلمة المرور غير صحيحة</p>
+    </div>
+</div>
+
+<div class="modal-overlay" id="settingsModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeSettingsModal">&times;</span>
+        <h2><i class="fas fa-sliders-h"></i> إعدادات المدير</h2>        
+        <div class="settings-section">
+            <h3><i class="fas fa-video"></i> الفيديوهات</h3>
+            <div class="stats-box" id="videosCountBox"></div>
+            <button class="danger-btn" id="clearAllVideos"><i class="fas fa-trash"></i> حذف جميع الفيديوهات</button>
+        </div>
+        
+        <div class="settings-section">
+            <h3><i class="fas fa-download"></i> التحميلات</h3>
+            <div class="stats-box" id="downloadsCountBox"></div>
+            <button class="danger-btn" id="clearAllDownloads"><i class="fas fa-trash"></i> حذف جميع روابط التحميل</button>
+        </div>
+        
+        <div class="settings-section">
+            <h3><i class="fas fa-comment"></i> التعليقات</h3>
+            <div class="stats-box" id="commentsCountBox"></div>
+            <button class="danger-btn" id="clearAllComments"><i class="fas fa-trash"></i> حذف جميع التعليقات</button>
+        </div>
+        
+        <div class="settings-section">
+            <h3><i class="fas fa-chart-line"></i> إحصائيات</h3>
+            <div class="stats-box" id="statsBox"></div>
+            <button class="danger-btn" id="resetAllData"><i class="fas fa-database"></i> إعادة تعيين كل بيانات الموقع</button>
+        </div>
+        
+        <div class="settings-section">
+            <h3><i class="fas fa-user-shield"></i> جلسة المدير</h3>
+            <button class="danger-btn" id="logoutAdminBtn"><i class="fas fa-sign-out-alt"></i> تسجيل خروج (إخفاء أدوات الإدارة)</button>
+        </div>
+    </div>
+</div>
+
+<div id="videoModal" class="modal-overlay" style="background:rgba(0,0,0,0.95);">
+    <div style="position:relative; width:90%; max-width:1000px;">
+        <span style="position:absolute; top:-40px; right:0; color:white; font-size:30px; cursor:pointer;" id="closeVideoModal">&times;</span>
+        <iframe id="modalIframe" style="width:100%; aspect-ratio:16/9; border:none; border-radius:20px;"></iframe>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 GameFixer - حلول برمجية، ألعاب، وشروحات ويندوز</p>
+    <div style="margin-top: 12px;">
+        <a href="https://youtube.com/@algamers-b7l" target="_blank"><i class="fab fa-youtube fa-lg"></i></a>
+        <a href="https://www.tiktok.com/@algamers40" target="_blank"><i class="fab fa-tiktok fa-lg"></i></a>
+        <a href="https://whatsapp.com/channel/0029VbC8hDQAjPXIO2CSeV2U" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
+    </div>
+</footer>
+
+<script>
+    const ADMIN_PASSWORD = "12122009";    let isAdmin = sessionStorage.getItem("gamefixer_admin") === "true";
+    
+    function setAdminSession(admin) {
+        isAdmin = admin;
+        if(admin) sessionStorage.setItem("gamefixer_admin", "true");
+        else sessionStorage.removeItem("gamefixer_admin");
+        loadTab(currentTab);
+    }
+    
+    let downloadsList = JSON.parse(localStorage.getItem("gamefixer_downloads")) || [
+        { id: "1", title: "GTA V - النسخة الكاملة", description: "لعبة الأكشن الشهيرة مع جميع الإضافات", type: "game", link: "https://example.com/gta5", date: "2025-03-01" },
+        { id: "2", title: "Adobe Photoshop 2025", description: "برنامج تصميم الصور الاحترافي", type: "software", link: "https://example.com/photoshop", date: "2025-02-28" }
+    ];
+    
+    let videosList = JSON.parse(localStorage.getItem("gamefixer_videos")) || [
+        { id: "1", title: "شرح تحسين أداء ويندوز 11", description: "حلول سريعة وفعالة لزيادة سرعة الجهاز", youtubeId: "dQw4w9WgXcQ", date: "2025-03-01" },
+        { id: "2", title: "أساسيات JavaScript من الصفر", description: "تعلم JavaScript في 3 ساعات", youtubeId: "PkZNo7MFNFg", date: "2025-02-25" }
+    ];
+    
+    let commentsList = JSON.parse(localStorage.getItem("siteComments")) || [];
+    
+    function saveDownloads() { localStorage.setItem("gamefixer_downloads", JSON.stringify(downloadsList)); }
+    function saveVideos() { localStorage.setItem("gamefixer_videos", JSON.stringify(videosList)); }
+    function saveComments() { localStorage.setItem("siteComments", JSON.stringify(commentsList)); }
+    
+    function addDownload(title, description, type, link) {
+        if(!title || !link) { alert("الرجاء إدخال عنوان ورابط التحميل"); return false; }
+        downloadsList.unshift({ id: Date.now().toString(), title, description: description || "لا يوجد وصف", type, link, date: new Date().toISOString().split('T')[0] });
+        saveDownloads();
+        return true;
+    }
+    
+    function addVideo(title, description, youtubeInput) {
+        if(!title || !youtubeInput) { alert("الرجاء إدخال عنوان ورابط الفيديو"); return false; }
+        let youtubeId = youtubeInput;
+        const match = youtubeInput.match(/(?:youtube\.com\/watch\?v=)([^&]+)/);
+        if(match) youtubeId = match[1];
+        videosList.unshift({ id: Date.now().toString(), title, description: description || "لا يوجد وصف", youtubeId, date: new Date().toISOString().split('T')[0] });
+        saveVideos();
+        return true;
+    }
+    
+    function deleteDownload(id) { downloadsList = downloadsList.filter(d => d.id !== id); saveDownloads(); loadTab(currentTab); }
+    function deleteVideo(id) { videosList = videosList.filter(v => v.id !== id); saveVideos(); loadTab(currentTab); }
+    function deleteAllVideos() { videosList = []; saveVideos(); loadTab(currentTab); }
+    function deleteAllDownloads() { downloadsList = []; saveDownloads(); loadTab(currentTab); }
+    function deleteAllComments() { commentsList = []; saveComments(); loadTab(currentTab); }
+    function resetAllData() { localStorage.clear(); sessionStorage.clear(); location.reload(); }
+    
+    function addComment(name, text) {        if(!text) return false;
+        commentsList.unshift({ name: name || "زائر", text, date: new Date().toLocaleString() });
+        saveComments();
+        return true;
+    }
+    
+    function escapeHtml(str) { if(!str) return ""; return str.replace(/[&<>]/g, function(m) { return m === '&' ? '&' : m === '<' ? '<' : '>'; }); }
+    
+    function renderVideosPage() {
+        let html = `<h2 class="section-title">🎬 جميع الفيديوهات</h2><div class="videos-grid">`;
+        videosList.forEach(video => {
+            html += `<div class="video-card">
+                        <div class="video-thumbnail" data-video-id="${video.youtubeId}">
+                            <img src="https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg">
+                            <div class="play-overlay"><i class="fas fa-play"></i></div>
