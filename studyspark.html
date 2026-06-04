@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySpark - منصتك للمذاكرة التفاعلية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 14px;        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 15px;
+        }
+
+        .stat-card .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-card .label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-right: 4px solid #667eea;
+            padding-right: 15px;        }
+
+        .timer-display {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .timer-circle {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .timer-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .task-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .task-input input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .task-input input:focus {
+            border-color: #667eea;
+        }
+
+        .task-list {
+            list-style: none;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        .task-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .delete-task {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .motivation-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .motivation-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .motivation-author {
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .achievement {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .achievement.unlocked {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .achievement-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .achievement-name {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .progress-section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .progress-bar-container {
+            background: #f0f0f0;
+            border-radius: 25px;
+            height: 30px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;            }
+            
+            .stats {
+                justify-content: center;
+            }
+            
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <h1>✨ StudySpark ✨</h1>
+                <p>أشعل حماسك للمذاكرة!</p>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="number" id="totalPoints">0</div>
+                    <div class="label">نقاط</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="studyStreak">0</div>
+                    <div class="label">أيام متتالية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="totalTasks">0</div>
+                    <div class="label">مهام مكتملة</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <div class="card">
+                <h2>⏱️ مؤقت بومودورو</h2>
+                <div class="timer-display">
+                    <div class="timer-circle">
+                        <svg width="200" height="200">
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="#f0f0f0" stroke-width="10"/>
+                            <circle id="timer-progress" cx="100" cy="100" r="90" fill="none" stroke="#667eea" stroke-width="10" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="565.48" stroke-dashoffset="0"/>
+                        </svg>
+                        <div class="timer-number" id="timerDisplay">25:00</div>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="btn btn-primary" onclick="startTimer()">▶ بدء</button>
+                        <button class="btn btn-secondary" onclick="pauseTimer()">⏸ إيقاف</button>
+                        <button class="btn btn-secondary" onclick="resetTimer()">🔄 إعادة</button>                    </div>
+                </div>
+                <p style="text-align: center; color: #666; margin-top: 15px;">
+                    🎯 ركز 25 دقيقة، خذ 5 دقائق راحة
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>📝 مهام المذاكرة</h2>
+                <div class="task-input">
+                    <input type="text" id="taskInput" placeholder="أضف مهمة جديدة...">
+                    <button class="btn btn-primary" onclick="addTask()">➕ أضف</button>
+                </div>
+                <ul class="task-list" id="taskList">
+                    <li style="text-align: center; color: #999;">أضف مهامك الأولى</li>
+                </ul>
+            </div>
+
+            <div class="card motivation-card">
+                <h2 style="color: white;">💪 رسالة تحفيزية</h2>
+                <div class="motivation-text" id="motivationText">
+                    "النجاح ليس محطة الوصول، بل رحلة الاستمرار"
+                </div>
+                <div class="motivation-author" id="motivationAuthor">
+                    - StudySpark -
+                </div>
+                <button class="btn btn-secondary" onclick="changeMotivation()" style="margin-top: 15px; width: 100%;">
+                    رسالة جديدة 🔄
+                </button>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 25px;">
+            <h2>🏆 الإنجازات</h2>
+            <div class="achievements-grid" id="achievementsGrid">
+                <div class="achievement" id="ach-firstTask">
+                    <div class="achievement-icon">🎯</div>
+                    <div class="achievement-name">البداية القوية</div>
+                </div>
+                <div class="achievement" id="ach-fiveTasks">
+                    <div class="achievement-icon">⭐</div>
+                    <div class="achievement-name">نجم المذاكرة</div>
+                </div>
+                <div class="achievement" id="ach-tenTasks">
+                    <div class="achievement-icon">🏅</div>
+                    <div class="achievement-name">بطل التركيز</div>
+                </div>
+                <div class="achievement" id="ach-studyHour">
+                    <div class="achievement-icon">⏰</div>
+                    <div class="achievement-name">ساعة ذهبية</div>                </div>
+            </div>
+        </div>
+
+        <div class="progress-section">
+            <h2>📊 تقدمك اليومي</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar">0%</div>
+            </div>
+            <p style="text-align: center; color: #666;" id="progressMessage">
+                أكمل مهامك لترى تقدمك! 🚀
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        let points = parseInt(localStorage.getItem('points')) || 0;
+        let streak = parseInt(localStorage.getItem('streak')) || 0;
+        let completedTasks = parseInt(localStorage.getItem('completedTasks')) || 0;
+        
+        let timerInterval;
+        let timeLeft = 25 * 60;
+        let isRunning = false;
+        
+        const motivations = [
+            { text: "النجاح ليس محطة الوصول، بل رحلة الاستمرار", author: "StudySpark" },
+            { text: "المذاكرة اليوم تبني مستقبل الغد", author: "حكمة" },
+            { text: "كل دقيقة تذاكرها الآن توفر ساعات من الندم لاحقاً", author: "نصيحة" },
+            { text: "أنت أقوى مما تعتقد، وأذكى مما تظن", author: "تحفيز" },
+            { text: "التركيز هو مفتاح الإتقان", author: "StudySpark" },
+            { text: "لا تؤجل ما تستطيع فعله اليوم", author: "بنجامين فرانكلين" },
+            { text: "العلم نور والجهل ظلام", author: "حكمة" }
+        ];
+        
+        function init() {
+            updateStats();
+            renderTasks();
+            updateAchievements();
+            updateProgress();
+            displayRandomMotivation();
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timerDisplay').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            const circumference = 565.48;
+            const offset = circumference - (timeLeft / (25 * 60)) * circumference;            document.getElementById('timer-progress').style.strokeDashoffset = offset;
+        }
+        
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateTimerDisplay();
+                    } else {
+                        pauseTimer();
+                        addPoints(10);
+                        alert("🎉 أحسنت! أكملت جلسة مذاكرة +10 نقاط");
+                        resetTimer();
+                    }
+                }, 1000);
+            }
+        }
+        
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+        }
+        
+        function resetTimer() {
+            pauseTimer();
+            timeLeft = 25 * 60;
+            updateTimerDisplay();
+        }
+        
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const taskName = input.value.trim();
+            
+            if (taskName) {
+                tasks.push({
+                    id: Date.now(),
+                    name: taskName,
+                    completed: false
+                });
+                saveTasks();
+                renderTasks();
+                input.value = '';
+            }
+        }
+        
+        function toggleTask(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (task) {                task.completed = !task.completed;
+                if (task.completed) {
+                    addPoints(5);
+                    completedTasks++;
+                    localStorage.setItem('completedTasks', completedTasks);
+                    updateStats();
+                    updateAchievements();
+                    updateProgress();
+                    
+                    if (completedTasks === 1) unlockAchievement('ach-firstTask');
+                    if (completedTasks === 5) unlockAchievement('ach-fiveTasks');
+                    if (completedTasks === 10) unlockAchievement('ach-tenTasks');
+                }
+                saveTasks();
+                renderTasks();
+            }
+        }
+        
+        function deleteTask(taskId) {
+            tasks = tasks.filter(t => t.id !== taskId);
+            saveTasks();
+            renderTasks();
+        }
+        
+        function renderTasks() {
+            const taskList = document.getElementById('taskList');
+            if (tasks.length === 0) {
+                taskList.innerHTML = '<li style="text-align: center; color: #999;">✨ أضف مهامك الأولى ✨</li>';
+                return;
+            }
+            
+            taskList.innerHTML = tasks.map(task => `
+                <li class="task-item ${task.completed ? 'completed' : ''}">
+                    <div class="task-content">
+                        <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${task.id})">
+                        <span>${task.name}</span>
+                    </div>
+                    <button class="delete-task" onclick="deleteTask(${task.id})">🗑️</button>
+                </li>
+            `).join('');
+        }
+        
+        function addPoints(amount) {
+            points += amount;
+            localStorage.setItem('points', points);
+            updateStats();
+            
+            const pointsElement = document.getElementById('totalPoints');
+            pointsElement.style.transform = 'scale(1.2)';
+            setTimeout(() => {                pointsElement.style.transform = 'scale(1)';
+            }, 300);
+        }
+        
+        function updateStats() {
+            document.getElementById('totalPoints').textContent = points;
+            document.getElementById('studyStreak').textContent = streak;
+            document.getElementById('totalTasks').textContent = completedTasks;
+        }
+        
+        function unlockAchievement(achievementId) {
+            const achievement = document.getElementById(achievementId);
+            if (achievement && !achievement.classList.contains('unlocked')) {
+                achievement.classList.add('unlocked');
+                addPoints(20);
+                alert(`🏆 إنجاز جديد! ${achievement.querySelector('.achievement-name').textContent} +20 نقطة`);
+            }
+        }
+        
+        function updateAchievements() {
+            if (completedTasks >= 1) unlockAchievement('ach-firstTask');
+            if (completedTasks >= 5) unlockAchievement('ach-fiveTasks');
+            if (completedTasks >= 10) unlockAchievement('ach-tenTasks');
+            
+            const studyMinutes = parseInt(localStorage.getItem('studyMinutes')) || 0;
+            if (studyMinutes >= 60) unlockAchievement('ach-studyHour');
+        }
+        
+        function updateProgress() {
+            const dailyGoal = 5;
+            const progress = Math.min((completedTasks / dailyGoal) * 100, 100);
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = `${progress}%`;
+            progressBar.textContent = `${Math.round(progress)}%`;
+            
+            const message = document.getElementById('progressMessage');
+            if (progress >= 100) {
+                message.innerHTML = "🎉 مذهل! لقد حققت هدفك اليومي! 🎉";
+            } else if (progress >= 75) {
+                message.innerHTML = "🔥 أنت على وشك الإنجاز! أكمل ما تبقى 🔥";
+            } else if (progress >= 50) {
+                message.innerHTML = "💪 نصف الطريق! استمر بنفس الحماس 💪";
+            } else if (progress >= 25) {
+                message.innerHTML = "🌟 بداية رائعة! استمر في الإنجاز 🌟";
+            } else {
+                message.innerHTML = "🚀 ابدأ بمهمة جديدة وحقق أهدافك اليومية! 🚀";
+            }
+        }
+        
+        function displayRandomMotivation() {            const randomIndex = Math.floor(Math.random() * motivations.length);
+            const motivation = motivations[randomIndex];
+            document.getElementById('motivationText').textContent = `"${motivation.text}"`;
+            document.getElementById('motivationAuthor').textContent = `- ${motivation.author} -`;
+        }
