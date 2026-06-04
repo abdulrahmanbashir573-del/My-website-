@@ -47,7 +47,8 @@
 
         .logo p {
             color: #666;
-            font-size: 14px;        }
+            font-size: 14px;
+        }
 
         .stats {
             display: flex;
@@ -96,7 +97,8 @@
             margin-bottom: 20px;
             font-size: 22px;
             border-right: 4px solid #667eea;
-            padding-right: 15px;        }
+            padding-right: 15px;
+        }
 
         .timer-display {
             text-align: center;
@@ -146,6 +148,7 @@
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(102,126,234,0.4);
         }
+
         .btn-secondary {
             background: #f0f0f0;
             color: #333;
@@ -194,6 +197,7 @@
             opacity: 0.6;
             text-decoration: line-through;
         }
+
         .task-content {
             display: flex;
             align-items: center;
@@ -243,7 +247,8 @@
         .achievement {
             text-align: center;
             padding: 15px;
-            background: #f8f9fa;            border-radius: 15px;
+            background: #f8f9fa;
+            border-radius: 15px;
             transition: all 0.3s;
         }
 
@@ -292,7 +297,8 @@
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
-                text-align: center;            }
+                text-align: center;
+            }
             
             .stats {
                 justify-content: center;
@@ -341,7 +347,8 @@
                     <div class="timer-controls">
                         <button class="btn btn-primary" onclick="startTimer()">▶ بدء</button>
                         <button class="btn btn-secondary" onclick="pauseTimer()">⏸ إيقاف</button>
-                        <button class="btn btn-secondary" onclick="resetTimer()">🔄 إعادة</button>                    </div>
+                        <button class="btn btn-secondary" onclick="resetTimer()">🔄 إعادة</button>
+                    </div>
                 </div>
                 <p style="text-align: center; color: #666; margin-top: 15px;">
                     🎯 ركز 25 دقيقة، خذ 5 دقائق راحة
@@ -390,7 +397,8 @@
                 </div>
                 <div class="achievement" id="ach-studyHour">
                     <div class="achievement-icon">⏰</div>
-                    <div class="achievement-name">ساعة ذهبية</div>                </div>
+                    <div class="achievement-name">ساعة ذهبية</div>
+                </div>
             </div>
         </div>
 
@@ -439,7 +447,8 @@
             document.getElementById('timerDisplay').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             
             const circumference = 565.48;
-            const offset = circumference - (timeLeft / (25 * 60)) * circumference;            document.getElementById('timer-progress').style.strokeDashoffset = offset;
+            const offset = circumference - (timeLeft / (25 * 60)) * circumference;
+            document.getElementById('timer-progress').style.strokeDashoffset = offset;
         }
         
         function startTimer() {
@@ -488,7 +497,8 @@
         
         function toggleTask(taskId) {
             const task = tasks.find(t => t.id === taskId);
-            if (task) {                task.completed = !task.completed;
+            if (task) {
+                task.completed = !task.completed;
                 if (task.completed) {
                     addPoints(5);
                     completedTasks++;
@@ -537,7 +547,8 @@
             
             const pointsElement = document.getElementById('totalPoints');
             pointsElement.style.transform = 'scale(1.2)';
-            setTimeout(() => {                pointsElement.style.transform = 'scale(1)';
+            setTimeout(() => {
+                pointsElement.style.transform = 'scale(1)';
             }, 300);
         }
         
@@ -586,8 +597,39 @@
             }
         }
         
-        function displayRandomMotivation() {            const randomIndex = Math.floor(Math.random() * motivations.length);
+        function displayRandomMotivation() {
+            const randomIndex = Math.floor(Math.random() * motivations.length);
             const motivation = motivations[randomIndex];
             document.getElementById('motivationText').textContent = `"${motivation.text}"`;
             document.getElementById('motivationAuthor').textContent = `- ${motivation.author} -`;
         }
+        
+        function changeMotivation() {
+            displayRandomMotivation();
+        }
+        
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+        
+        function updateStreak() {
+            const lastStudyDate = localStorage.getItem('lastStudyDate');
+            const today = new Date().toDateString();
+            
+            if (lastStudyDate !== today) {
+                if (lastStudyDate === new Date(Date.now() - 86400000).toDateString()) {
+                    streak++;
+                } else {
+                    streak = 1;
+                }
+                localStorage.setItem('streak', streak);
+                localStorage.setItem('lastStudyDate', today);
+                updateStats();
+            }
+        }
+        
+        updateStreak();
+        init();
+    </script>
+</body>
+</html>
